@@ -24,6 +24,9 @@ struct AVLNode
 
     //overloaded operators
     AVLNode & operator=(const AVLNode &);
+
+    //getters
+    T & getData() { return data; }
 };
 
 /* ------------------------------------------------- Implementation ------------------------------------------------- */
