@@ -7,7 +7,7 @@ private:
     vector<string> docIDs;
     int numOfDocs;
 public:
-    Word();
+    Word(const string& word);
     Word(const string&, const string&);
     void addDocID(const string&);
     vector<string>& getDocIDs();

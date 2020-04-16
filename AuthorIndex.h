@@ -8,6 +8,6 @@ private:
     HashTable table;
 public:
     void addAuthor(string word, string doc) {table.insert(word,doc);}
-    vector<string> getIndex(string name) {return table.getAtKey(name);}
+    vector<string> getAuthor(string name) {return table.getAtKey(name);}
     void clear() {table.removeAll();}
 };

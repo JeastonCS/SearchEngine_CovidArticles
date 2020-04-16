@@ -5,7 +5,9 @@
 using namespace std;
 
 
-Word::Word() { }
+Word::Word(const string& word) {
+    this->word = word;
+}
 
 // CHECK
 Word::Word(const string& word, const string& doc) {
