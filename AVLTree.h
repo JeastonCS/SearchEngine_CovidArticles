@@ -25,7 +25,7 @@ public:
     AVLTree & operator=(const AVLTree &);
 
     /* AVL insertion public interface */
-    void insert (const T &val) { insert(val, root); }
+    void insert (const T &val) { insert(val, root); numNodes++;}
     /**/
     void clear();
     /**/
@@ -74,6 +74,7 @@ template<typename T>
 AVLTree<T>::AVLTree()
 {
     root = nullptr;
+    numNodes = 0;
 }
 
 template<typename T>
@@ -83,6 +84,8 @@ AVLTree<T>::AVLTree(const AVLTree &other)
         root = nullptr;
     else
         inOrderCopy(other.root);
+
+    numNodes = other.numNodes;
 }
 
 template<typename T>
@@ -98,6 +101,8 @@ AVLTree<T> &AVLTree<T>::operator=(const AVLTree &rhs) {
     else
         inOrderCopy(rhs.root);
 
+    numNodes = rhs.numNodes;
+
     return *this;
 }
 
@@ -105,6 +110,8 @@ template<typename T>
 void AVLTree<T>::clear() {
     delete root;
     root = nullptr;
+
+    numNodes = 0;
 }
 
 template<typename T>

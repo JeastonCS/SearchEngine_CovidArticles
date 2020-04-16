@@ -39,12 +39,12 @@ void UserInterface::interfaceLoop()
 
         //update user command
         cout    << "Type your command below (or type \"command list\" for a list of commands):\n"
-                << ">>> " << flush;
+                << ">>>" << flush;
 
         getline(cin, command);
         command = lowercase(command);
         cout << endl;
-    } while (command != "quit");
+    }
 }
 
 void UserInterface::introduction()
