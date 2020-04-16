@@ -1,4 +1,6 @@
 #include "iostream"
+#include "Word.h"
+#include "AVLTree.h"
 using namespace std;
 class WordIndex{
 private:

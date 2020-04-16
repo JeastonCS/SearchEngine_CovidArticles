@@ -5,17 +5,15 @@
 #ifndef JSONTEST_INDEXHANDLER_H
 #define JSONTEST_INDEXHANDLER_H
 
-//#include "Word.h"
-//#include "Author.h"
-//#include "MainIndex.h"
-//#include "AuthorIndex.h"
+#include "WordIndex.h"
+#include "AuthorIndex.h"
 #include "DocumentProcessor.h"
 
 
 class IndexHandler {
 private:
-//    MainIndex textIndex;
-//    AuthorIndex nameIndex;
+    WordIndex textIndex;
+    AuthorIndex nameIndex;
     DocumentProcessor dProcessor;
 public:
     IndexHandler();
@@ -23,15 +21,15 @@ public:
     void addProcessorWords();
     void addProcessorAuthors();
 
-//    vector<string> getWordDocs(string);
-//    vector<string> getAuthorDocs(string);
+    vector<string> getWordDocs(string);
+    vector<string> getAuthorDocs(string);
 
-    int getNumUniqueWords() {return /*textIndex.getNumUniqueWords()*/ 0; }
+    int getNumUniqueWords() {return textIndex.getNumUniqueWords(); }
 
     void setProcessor(const DocumentProcessor &);
 
 private:
-    void addToMainIndex(string, string);
+    void addToWordIndex(string, string);
     void addToAuthorIndex(string, string);
 };
 

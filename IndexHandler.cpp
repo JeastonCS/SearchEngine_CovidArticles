@@ -5,8 +5,8 @@
 #include "IndexHandler.h"
 
 IndexHandler::IndexHandler() {
-//    textIndex = * new MainIndex;
-//    nameIndex = * new AuthorIndex;
+    textIndex = * new WordIndex;
+    nameIndex = * new AuthorIndex;
     dProcessor = * new DocumentProcessor;
 }
 
@@ -15,7 +15,7 @@ void IndexHandler::addProcessorWords() {
     vector<string> words = dProcessor.getProcessedWords();
 
     for (int i = 0; i < words.size(); i++)
-        addToMainIndex(docID, words[i]);
+        addToWordIndex(docID, words[i]);
 }
 
 void IndexHandler::addProcessorAuthors() {
@@ -26,25 +26,23 @@ void IndexHandler::addProcessorAuthors() {
         addToAuthorIndex(docID, authors[i]);
 }
 
-//vector<string> IndexHandler::getWordDocs(string word) {
-//    return textIndex.getWord(word).getDocIDs();
-//}
+vector<string> IndexHandler::getWordDocs(string word) {
+    return textIndex.getWord(word).getDocIDs();
+}
 
-//vector<string> IndexHandler::getAuthorDocs(string name) {
-//    return nameIndex.getAuthor(name).get
-//}
+vector<string> IndexHandler::getAuthorDocs(string name) {
+    return nameIndex.getAuthor(name).get
+}
 
 void IndexHandler::setProcessor(const DocumentProcessor &other) {
     dProcessor = other;
 }
 
-void IndexHandler::addToMainIndex(string docID, string word) {
-//    Word indexWord = * new Word(word, docID);
-//    textIndex.addWord(indexWord);
+void IndexHandler::addToWordIndex(string docID, string word) {
+    textIndex.addWord(word, docID);
 }
 
 void IndexHandler::addToAuthorIndex(string docID, string name) {
-//    Author author = * new Author(name, docID);
-//    nameIndex.addAuthor(author);
+    nameIndex.addAuthor(name, docID);
 }
 
