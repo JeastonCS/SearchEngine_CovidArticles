@@ -31,10 +31,11 @@ public:
     /**/
     bool contains(const T &);
     /**/
-    AVLNode<T> *& find(const T &);
+    AVLNode<T> * find(const T &);
 
     //getters
     AVLNode<T> * getRoot() { return root; }
+    int getNumNodes() { return numNodes; }
 
     //print public interface
     void print();
@@ -58,7 +59,7 @@ private:
     void rotateRight(AVLNode<T> *&);
 
     /**/
-    AVLNode<T> *& find(const T &, AVLNode<T> *&);
+    AVLNode<T> * find(const T &, AVLNode<T> *&);
 
     //recursive print
     void print(AVLNode<T> *, int);
@@ -81,7 +82,7 @@ AVLTree<T>::AVLTree(const AVLTree &other)
     if (other.root == nullptr)
         root = nullptr;
     else
-        inOrderTraversal(other.root);
+        inOrderCopy(other.root);
 }
 
 template<typename T>
@@ -95,7 +96,7 @@ AVLTree<T> &AVLTree<T>::operator=(const AVLTree &rhs) {
     if (rhs.root == nullptr)
         root = nullptr;
     else
-        inOrderTraversal(rhs.root);
+        inOrderCopy(rhs.root);
 
     return *this;
 }
@@ -107,7 +108,7 @@ void AVLTree<T>::clear() {
 }
 
 template<typename T>
-AVLNode<T> *&AVLTree<T>::find(const T &element) {
+AVLNode<T> *AVLTree<T>::find(const T &element) {
     return find(element, root);
 }
 
@@ -198,18 +199,18 @@ void AVLTree<T>::inOrderCopy(AVLNode<T> *otherCurr)
 {
     if (otherCurr != nullptr) {
         //left sub-tree
-        inOrderCopyConstructorRecursion(otherCurr->left);
+        inOrderCopy(otherCurr->left);
 
         //deep copy
         insert(otherCurr->data, root);
 
         //right sub-tree
-        inOrderCopyConstructorRecursion(otherCurr->right);
+        inOrderCopy(otherCurr->right);
     }
 }
 
 template<typename T>
-AVLNode<T> *&AVLTree<T>::find(const T &element, AVLNode<T> *&curr) {
+AVLNode<T> *AVLTree<T>::find(const T &element, AVLNode<T> *&curr) {
     if (curr == nullptr)
         return nullptr;
     else if (element < curr->data)

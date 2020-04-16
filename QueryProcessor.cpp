@@ -5,7 +5,7 @@ QueryProcessor::QueryProcessor(const IndexHandler & handler) {
     ih = handler;
 }
 
-vector<Document>& QueryProcessor::runQuery(string query) {
+vector<Document> QueryProcessor::runQuery(string query) {
     // process/split query
     stringstream ss(query);
     istream_iterator<std::string> begin(ss);
@@ -34,7 +34,7 @@ int QueryProcessor::findTFIDRStat(Document doc, string word) {
     return tf * idf;
 }
 
-vector<Document>& QueryProcessor::getUnion(vector<Document> lhs, vector<Document> rhs){
+vector<Document> QueryProcessor::getUnion(vector<Document> lhs, vector<Document> rhs){
     vector<Document> list = lhs;
 
     for (Document x : rhs) {
@@ -52,7 +52,7 @@ vector<Document>& QueryProcessor::getUnion(vector<Document> lhs, vector<Document
     return list;
 }
 
-vector<Document>& QueryProcessor::getIntersection(vector<Document> lhs, vector<Document> rhs) {
+vector<Document> QueryProcessor::getIntersection(vector<Document> lhs, vector<Document> rhs) {
     vector<Document> list;
 
     for (Document x : rhs) {
@@ -65,7 +65,7 @@ vector<Document>& QueryProcessor::getIntersection(vector<Document> lhs, vector<D
     return list;
 }
 
-vector<Document>& QueryProcessor::getDifference(vector<Document> lhs, vector<Document> rhs) {
+vector<Document> QueryProcessor::getDifference(vector<Document> lhs, vector<Document> rhs) {
     vector<Document> list = lhs;
 
     for (Document x : rhs) {
@@ -83,6 +83,6 @@ vector<Document>& QueryProcessor::getDifference(vector<Document> lhs, vector<Doc
     return list;
 }
 
-vector<Document>& QueryProcessor::getAuthor(vector<Document> list) {
+vector<Document> QueryProcessor::getAuthor(vector<Document> list) {
     return list;
 }
