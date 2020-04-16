@@ -6,7 +6,7 @@
 #define JSONTEST_USERINTERFACE_H
 
 #include "IndexHandler.h"
-//#include "QueryProcessor.h"
+#include "QueryProcessor.h"
 #include "DocumentProcessor.h"
 
 #include <dirent.h>
@@ -19,8 +19,8 @@ using namespace std;
 class UserInterface {
 private:
     IndexHandler handler;
-//    QueryProcessor qProcessor;
-//    vector<Documents> queryResults;
+    QueryProcessor qProcessor;
+    vector<Document> queryResults;
     int numDocsParsed;
 public:
     UserInterface();

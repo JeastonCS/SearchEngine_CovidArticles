@@ -9,7 +9,7 @@
 UserInterface::UserInterface()
 {
     handler = * new IndexHandler;
-//    qProcessor = * new QueryProcessor(handler);
+    qProcessor = * new QueryProcessor(handler);
 
     numDocsParsed = 0;
 }
@@ -121,10 +121,14 @@ void UserInterface::submitQuery()
 
     //get query results
     vector<string> documents;
-//    documents = qProcessor.runQuery(query);
+    queryResults = qProcessor.runQuery(query);
+
+    //TODO clean this up
+    for (Document doc: queryResults)
+        documents.push_back(doc.title);
 
     //output query results to user
-    cout    << "Number of documents: " << documents.size() << '\n';
+    cout << "Number of documents: " << documents.size() << '\n';
 
     int pageNum = 1;
     while(true) {

@@ -1,17 +1,30 @@
 #include "QueryProcessor.h"
-#include "Word.h"
 #include <iterator>
 #include <sstream>
-void QueryProcessor::runQuery(string query) {
-    // process query
+QueryProcessor::QueryProcessor(const IndexHandler & handler) {
+    ih = handler;
+}
+
+vector<Document>& QueryProcessor::runQuery(string query) {
+    // process/split query
     stringstream ss(query);
     istream_iterator<std::string> begin(ss);
     istream_iterator<std::string> end;
     vector<std::string> queryOrder(begin, end);
 
+    vector<Document> docsFinal;
     ///////////  demo  /////////////
-    // queryOrder is size 1
-    // TODO research functions in index handler
+    if(queryOrder.size() == 1) {
+        vector<string> docs= ih.getWordDocs(query);
+        for (string d: docs) {
+            docsFinal.emplace_back(d);
+        }
+    }
+    else {
+        // parse vector of query
+    }
+
+    return docsFinal;
 }
 
 int QueryProcessor::findTFIDRStat(Document doc, string word) {

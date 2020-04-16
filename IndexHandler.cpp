@@ -31,7 +31,7 @@ vector<string> IndexHandler::getWordDocs(string word) {
 }
 
 vector<string> IndexHandler::getAuthorDocs(string name) {
-    return nameIndex.getAuthor(name).get
+    return nameIndex.getAuthor(name);
 }
 
 void IndexHandler::setProcessor(const DocumentProcessor &other) {
