@@ -34,3 +34,7 @@ bool Word::operator>(const Word& rhs) const {
 bool Word::operator==(const Word& rhs) const {
     return word == rhs.word;
 }
+
+void Word::print() {
+    cout << word;
+}

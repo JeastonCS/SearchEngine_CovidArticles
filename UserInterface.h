@@ -11,6 +11,7 @@
 
 #include <dirent.h>
 #include <sys/stat.h>
+#include <ctime>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -19,9 +20,9 @@ using namespace std;
 class UserInterface {
 private:
     IndexHandler handler;
-    QueryProcessor qProcessor;
-    vector<Document> queryResults;
+//    vector<Document> queryResults;
     int numDocsParsed;
+    double parseTime;
 public:
     UserInterface();
 

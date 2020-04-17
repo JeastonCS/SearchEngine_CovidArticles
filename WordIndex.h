@@ -7,19 +7,22 @@ private:
     AVLTree<Word> tree;
 public:
     void addWord(string word, string doc) {
-        Word index(word,doc);
+        Word index = *new Word(word,doc);
         AVLNode<Word>* node = tree.find(index);
         if(node == nullptr){
             tree.insert(index);
         } else {
-            vector<string> docs = node->data.getDocIDs();
-            docs.push_back(doc);
+            node->getData().addDocID(doc);
         }
     }
-    Word& getWord(string word){
+    vector<string> getWordDocs(string word){
         Word index(word);
         AVLNode<Word>* node = tree.find(word);
-        return node->data;
+        if(node != nullptr)
+            return node->data.getDocIDs();
+
+        vector<string> empty;
+        return empty;
     }
     void clear(){
         tree.clear();
@@ -28,4 +31,7 @@ public:
     int getNumUniqueWords() {
         return tree.getNumNodes();
     }
+
+    //TODO
+    AVLTree<Word> & getTree() { return tree; }
 };

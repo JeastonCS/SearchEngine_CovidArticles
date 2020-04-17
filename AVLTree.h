@@ -256,7 +256,8 @@ void AVLTree<T>::print(AVLNode<T> *curr, int numTabs) {
     cout << endl;
     for (int i = 0; i < numTabs; i++)
         cout << "\t";
-    cout << curr->data << endl;
+    curr->data.print();
+    cout << endl;
 
     print(curr->left, numTabs + 1);
 }
