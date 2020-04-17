@@ -16,4 +16,6 @@ public:
     bool operator>(const Word &) const;
     bool operator<(const Word &) const;
     bool operator==(const Word &) const;
+
+    void print();
 };

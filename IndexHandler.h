@@ -25,6 +25,8 @@ public:
 //    vector<string> getAuthorDocs(string);
 
     int getNumUniqueWords() {return textIndex.getNumUniqueWords(); }
+    //TODO
+    WordIndex & getWordIndex() { return textIndex; }
 
     void setProcessor(const DocumentProcessor &);
 

@@ -9,7 +9,7 @@
 UserInterface::UserInterface()
 {
     handler = * new IndexHandler;
-    qProcessor = * new QueryProcessor(handler);
+    qProcessor = new QueryProcessor(handler);
 
     numDocsParsed = 0;
 }
@@ -42,7 +42,7 @@ void UserInterface::interfaceLoop()
 
         //update user command
         cout    << "Type your command below (or type \"command list\" for a list of commands):\n"
-                << ">>>" << flush;
+                << ">>> " << flush;
 
         getline(cin, command);
         command = lowercase(command);
@@ -115,6 +115,7 @@ void UserInterface::populateIndexWithCorpus()
 
 void UserInterface::submitQuery()
 {
+    qProcessor->setIH(handler);
     //get query
     string query;
     cout    << "Enter your query:\n"
@@ -124,14 +125,15 @@ void UserInterface::submitQuery()
 
     //get query results
     vector<string> documents;
-    queryResults = qProcessor.runQuery(query);
+    documents = qProcessor->runQuery(query);
+//    queryResults = qProcessor.runQuery(query);
 
     //TODO clean this up
-    for (Document doc: queryResults)
-        documents.push_back(doc.title);
+//    for (Document doc: queryResults)
+//        documents.push_back(doc.title);
 
     //output query results to user
-    cout << "Number of documents: " << documents.size() << '\n';
+    cout << "Number of documents: " << documents.size() << '\n' << endl;
 
     int pageNum = 1;
     while(true) {
@@ -157,7 +159,7 @@ void UserInterface::submitQuery()
 
 void UserInterface::paginateResultingDocuments(vector<string> &documents, int pageNum) {
     cout << "Page " << pageNum << endl;
-    for (int i = (pageNum - 1) * 15; i < documents.size(); i++) {
+    for (int i = (pageNum - 1) * 15; i < documents.size() && i < pageNum * 15; i++) {
         cout << i+1 << ". " << documents[i] << endl;
     }
     cout << endl;

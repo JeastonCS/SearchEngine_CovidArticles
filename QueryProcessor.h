@@ -7,7 +7,8 @@ struct Document{
     string author;
     string publication;
     double tfStat;
-    Document(string t) {title = t;}
+    Document(string t = "empty") {title = t;}
+    void print() { cout << title; }
 };
 
 class QueryProcessor{
@@ -18,10 +19,10 @@ private:
     string name;
 
 public:
-    QueryProcessor() = default;
+//    QueryProcessor() = default;
     QueryProcessor(const IndexHandler &);
 
-    vector<Document> runQuery(string query);
+    vector<string> runQuery(string query);
 
     vector<Document> getUnion(vector<Document> lhs, vector<Document> rhs);
     vector<Document> getIntersection(vector<Document> lhs, vector<Document> rhs);
@@ -30,4 +31,6 @@ public:
 
     int findTFIDRStat(Document doc, string word);
     void relevancySort(vector<Document>&);
+
+    void setIH(const IndexHandler &handler) { ih = handler; }
 };

@@ -7,13 +7,12 @@ private:
     AVLTree<Word> tree;
 public:
     void addWord(string word, string doc) {
-        Word index(word,doc);
+        Word index = *new Word(word,doc);
         AVLNode<Word>* node = tree.find(index);
         if(node == nullptr){
             tree.insert(index);
         } else {
-            vector<string> docs = node->data.getDocIDs();
-            docs.push_back(doc);
+            node->getData().addDocID(doc);
         }
     }
     vector<string> getWordDocs(string word){
@@ -32,4 +31,7 @@ public:
     int getNumUniqueWords() {
         return tree.getNumNodes();
     }
+
+    //TODO
+    AVLTree<Word> & getTree() { return tree; }
 };
