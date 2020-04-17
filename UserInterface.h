@@ -11,6 +11,7 @@
 
 #include <dirent.h>
 #include <sys/stat.h>
+#include <ctime>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -22,6 +23,7 @@ private:
     QueryProcessor qProcessor;
     vector<Document> queryResults;
     int numDocsParsed;
+    double parseTime;
 public:
     UserInterface();
 

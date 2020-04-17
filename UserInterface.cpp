@@ -25,7 +25,10 @@ void UserInterface::interfaceLoop()
             displayOptions();
         }
         else if (command == "json") {
+            time_t start = time(nullptr);
             populateIndexWithCorpus();
+            time_t end = time(nullptr);
+            parseTime = difftime(end, start);
         }
         else if (command == "query") {
             submitQuery();
@@ -163,6 +166,7 @@ void UserInterface::paginateResultingDocuments(vector<string> &documents, int pa
 void UserInterface::getStatistics()
 {
     cout << "Number of documents parsed: " << numDocsParsed << endl;
+    cout << "Time to parse: " << parseTime << " seconds" << endl;
     cout << "Number of unique words: " << handler.getNumUniqueWords() << endl;
     cout << endl;
 }
