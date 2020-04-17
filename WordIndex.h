@@ -16,10 +16,14 @@ public:
             docs.push_back(doc);
         }
     }
-    Word& getWord(string word){
+    vector<string> getWordDocs(string word){
         Word index(word);
         AVLNode<Word>* node = tree.find(word);
-        return node->data;
+        if(node != nullptr)
+            return node->data.getDocIDs();
+
+        vector<string> empty;
+        return empty;
     }
     void clear(){
         tree.clear();

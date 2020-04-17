@@ -27,7 +27,7 @@ void IndexHandler::addProcessorWords() {
 //}
 
 vector<string> IndexHandler::getWordDocs(string word) {
-    return textIndex.getWord(word).getDocIDs();
+    return textIndex.getWordDocs(word);
 }
 
 //vector<string> IndexHandler::getAuthorDocs(string name) {
