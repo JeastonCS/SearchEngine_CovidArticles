@@ -9,7 +9,6 @@
 UserInterface::UserInterface()
 {
     handler = * new IndexHandler;
-    qProcessor = new QueryProcessor(handler);
 
     numDocsParsed = 0;
 }
@@ -115,7 +114,7 @@ void UserInterface::populateIndexWithCorpus()
 
 void UserInterface::submitQuery()
 {
-    qProcessor->setIH(handler);
+    QueryProcessor *qProcessor = new QueryProcessor(handler);
     //get query
     string query;
     cout    << "Enter your query:\n"

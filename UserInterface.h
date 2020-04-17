@@ -20,7 +20,6 @@ using namespace std;
 class UserInterface {
 private:
     IndexHandler handler;
-    QueryProcessor *qProcessor;
 //    vector<Document> queryResults;
     int numDocsParsed;
     double parseTime;

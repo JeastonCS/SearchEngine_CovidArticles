@@ -31,6 +31,4 @@ public:
 
     int findTFIDRStat(Document doc, string word);
     void relevancySort(vector<Document>&);
-
-    void setIH(const IndexHandler &handler) { ih = handler; }
 };
