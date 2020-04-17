@@ -10,19 +10,19 @@ HashTable::HashTable() {
 }
 
 HashTable::~HashTable() {
-    for (int i = 0; i < tableSize; i++) {
-        if (table[i] != nullptr){
-            HashNode* temp = table[i];
-            HashNode* curr = temp->next;
-            while (curr != nullptr) {
-                delete temp;
-                temp = curr->next;
-                curr = curr->next;
-            }
-            delete temp;
-        }
-        delete[] table;
-    }
+//    for (int i = 0; i < tableSize; i++) {
+//        if (table[i] != nullptr){
+//            HashNode* temp = table[i];
+//            HashNode* curr = temp->next;
+//            while (curr != nullptr) {
+//                delete temp;
+//                temp = curr->next;
+//                curr = curr->next;
+//            }
+//            delete temp;
+//        }
+//        delete[] table;
+//    }
 }
 
 // modify and use different library

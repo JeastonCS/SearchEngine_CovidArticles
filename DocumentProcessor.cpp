@@ -41,14 +41,14 @@ void DocumentProcessor::parseJson(const char *fileName) {
     docID = doc["paper_id"].GetString();
 
     //get and store author names
-    for (Value &val : doc["metadata"]["authors"].GetArray()) {
-        // format = "first last"
-        string authorName = val["first"].GetString();
-        authorName += " ";
-        authorName += val["last"].GetString();
-
-        authors.push_back(authorName);
-    }
+//    for (Value &val : doc["metadata"]["authors"].GetArray()) {
+//        // format = "first last"
+//        string authorName = val["first"].GetString();
+//        authorName += " ";
+//        authorName += val["last"].GetString();
+//
+//        authors.push_back(authorName);
+//    }
 
     //get and store raw text
     for(Value &val : doc["body_text"].GetArray()) {
