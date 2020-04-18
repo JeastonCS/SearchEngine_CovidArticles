@@ -1,28 +1,38 @@
 #include "QueryProcessor.h"
 #include <iterator>
-#include <sstream>
+#include "stemmer/porter2_stemmer.h"
 QueryProcessor::QueryProcessor(const IndexHandler & handler) {
     ih = handler;
 }
 
-vector<Document> QueryProcessor::runQuery(string query) {
+vector<string> QueryProcessor::runQuery(string query) {
     // process/split query
+    Porter2Stemmer::trim(query);
+    Porter2Stemmer::stem(query);
+
     stringstream ss(query);
     istream_iterator<std::string> begin(ss);
     istream_iterator<std::string> end;
     vector<std::string> queryOrder(begin, end);
 
-    vector<Document> docsFinal;
+    vector<string> docsFinal;
+
+    //TODO
+    docsFinal = ih.getWordDocs(query);
+//    cout << "DOCSFINAL: " << endl;
+//    for (int i = 0; i < docsFinal.size(); i++) {
+//        cout << docsFinal[i] << endl;
+//    }
     ///////////  demo  /////////////
-    if(queryOrder.size() == 1) {
-        vector<string> docs= ih.getWordDocs(query);
-        for (string d: docs) {
-            docsFinal.emplace_back(d);
-        }
-    }
-    else {
-        // parse vector of query
-    }
+//    if(queryOrder.size() == 1) {
+//        vector<string> docs= ih.getWordDocs(query);
+//        for (string d: docs) {
+//            docsFinal.emplace_back(d);
+//        }
+//    }
+//    else {
+//        // parse vector of query
+//    }
 
     return docsFinal;
 }

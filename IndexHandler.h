@@ -19,18 +19,20 @@ public:
     IndexHandler();
 
     void addProcessorWords();
-//    void addProcessorAuthors();
+    void addProcessorAuthors();
 
     vector<string> getWordDocs(string);
-//    vector<string> getAuthorDocs(string);
+    vector<string> getAuthorDocs(string);
 
     int getNumUniqueWords() {return textIndex.getNumUniqueWords(); }
+    //TODO
+    WordIndex & getWordIndex() { return textIndex; }
 
     void setProcessor(const DocumentProcessor &);
 
 private:
     void addToWordIndex(string, string);
-//    void addToAuthorIndex(string, string);
+    void addToAuthorIndex(string, string);
 };
 
 

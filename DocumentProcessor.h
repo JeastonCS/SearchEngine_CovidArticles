@@ -33,7 +33,7 @@ public:
 
     string & getDocID() { return docID; }
     vector<string> & getProcessedWords() { return processedWords; }
-//    vector<string> & getAuthors() { return authors; }
+    vector<string> & getAuthors() { return authors; }
 
     void print();
 
