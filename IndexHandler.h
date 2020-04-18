@@ -9,6 +9,10 @@
 #include "AuthorIndex.h"
 #include "DocumentProcessor.h"
 
+#include <sstream>
+#include <fstream>
+using namespace std;
+
 
 class IndexHandler {
 private:
@@ -20,17 +24,18 @@ public:
 
     void addProcessorWords();
 //    void addProcessorAuthors();
+    void populateMainWithFile(const char *);
+//    void populateAuthorsWithFile(const char *);
+//    void writeMainToFile(const char *);
+//    void writeAuthorsToFile(const char *);
 
     vector<string> getWordDocs(string);
 //    vector<string> getAuthorDocs(string);
 
     int getNumUniqueWords() {return textIndex.getNumUniqueWords(); }
-    //TODO
-    WordIndex & getWordIndex() { return textIndex; }
 
     void setProcessor(const DocumentProcessor &);
 
-private:
     void addToWordIndex(string, string);
 //    void addToAuthorIndex(string, string);
 };

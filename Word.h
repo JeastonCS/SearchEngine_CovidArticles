@@ -16,6 +16,7 @@ public:
     bool operator>(const Word &) const;
     bool operator<(const Word &) const;
     bool operator==(const Word &) const;
+//    friend ostream & operator<<(ostream&, const Word &);
 
     void print();
 };

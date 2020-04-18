@@ -11,7 +11,7 @@
 
 #include <dirent.h>
 #include <sys/stat.h>
-#include <ctime>
+#include <chrono>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -20,9 +20,8 @@ using namespace std;
 class UserInterface {
 private:
     IndexHandler handler;
-//    vector<Document> queryResults;
     int numDocsParsed;
-    double parseTime;
+    chrono::microseconds parseTime;
 public:
     UserInterface();
 
@@ -32,7 +31,8 @@ private:
     void introduction();
     void displayOptions();
     void populateIndexWithCorpus();
-//    void populateIndexWithFile();
+    void populateIndexWithFile(const char *);
+//    void writeIndexToFile(const char *);
     void submitQuery();
     void paginateResultingDocuments(vector<string> &, int);
     void getStatistics();
