@@ -3,26 +3,26 @@
 using namespace std;
 
 HashTable::HashTable() {
-    table = new HashNode *[tableSize];
+    table = new HashNode* [tableSize];
     for (int i = 0; i < tableSize; i++) {
         table[i] = nullptr;
     }
 }
 
 HashTable::~HashTable() {
-//    for (int i = 0; i < tableSize; i++) {
-//        if (table[i] != nullptr){
-//            HashNode* temp = table[i];
-//            HashNode* curr = temp->next;
-//            while (curr != nullptr) {
-//                delete temp;
-//                temp = curr->next;
-//                curr = curr->next;
-//            }
-//            delete temp;
-//        }
-//        delete[] table;
-//    }
+    for (int i = 0; i < tableSize; i++) {
+        if (table[i] != nullptr){
+            HashNode* temp = table[i];
+            HashNode* curr = temp->next;
+            while (curr != nullptr) {
+                delete temp;
+                temp = curr;
+                curr = curr->next;
+            }
+            delete temp;
+        }
+    }
+    delete[] table;
 }
 
 // modify and use different library
@@ -73,7 +73,7 @@ void HashTable::removeAll() {
     }
 }
 
-vector<string>& HashTable::getAtKey(string k) {
+vector<string> HashTable::getAtKey(string k) {
     vector<string> docs;
     int h = hashFunc(k);
     if (table[h]!=nullptr) {

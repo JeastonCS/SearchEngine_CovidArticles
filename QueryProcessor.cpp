@@ -9,11 +9,11 @@ vector<string> QueryProcessor::runQuery(string query) {
     // process/split query
     Porter2Stemmer::trim(query);
     Porter2Stemmer::stem(query);
-
 //    stringstream ss(query);
 //    istream_iterator<std::string> begin(ss);
 //    istream_iterator<std::string> end;
 //    vector<std::string> queryOrder(begin, end);
+
 
     vector<string> docsFinal;
 

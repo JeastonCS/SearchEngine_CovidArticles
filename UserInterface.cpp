@@ -103,7 +103,7 @@ void UserInterface::populateIndexWithCorpus()
         DocumentProcessor dProcessor = * new DocumentProcessor(filepath.c_str());
         handler.setProcessor(dProcessor);
         handler.addProcessorWords();
-//        handler.addProcessorAuthors();
+        handler.addProcessorAuthors();
 
         //increment number of parsed documents
         numDocsParsed++;

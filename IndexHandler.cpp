@@ -18,21 +18,21 @@ void IndexHandler::addProcessorWords() {
         addToWordIndex(docID, words[i]);
 }
 
-//void IndexHandler::addProcessorAuthors() {
-//    string docID = dProcessor.getDocID();
-//    vector<string> authors = dProcessor.getAuthors();
-//
-//    for (int i = 0; i < authors.size(); i++)
-//        addToAuthorIndex(docID, authors[i]);
-//}
+void IndexHandler::addProcessorAuthors() {
+    string docID = dProcessor.getDocID();
+    vector<string> authors = dProcessor.getAuthors();
+
+    for (int i = 0; i < authors.size(); i++)
+        addToAuthorIndex(docID, authors[i]);
+}
 
 vector<string> IndexHandler::getWordDocs(string word) {
     return textIndex.getWordDocs(word);
 }
 
-//vector<string> IndexHandler::getAuthorDocs(string name) {
-//    return nameIndex.getAuthor(name);
-//}
+vector<string> IndexHandler::getAuthorDocs(string name) {
+    return nameIndex.getAuthor(name);
+}
 
 void IndexHandler::setProcessor(const DocumentProcessor &other) {
     dProcessor = other;
@@ -42,7 +42,7 @@ void IndexHandler::addToWordIndex(string docID, string word) {
     textIndex.addWord(word, docID);
 }
 
-//void IndexHandler::addToAuthorIndex(string docID, string name) {
-//    nameIndex.addAuthor(name, docID);
-//}
+void IndexHandler::addToAuthorIndex(string docID, string name) {
+    nameIndex.addAuthor(name, docID);
+}
 

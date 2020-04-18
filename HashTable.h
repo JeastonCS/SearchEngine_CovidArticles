@@ -10,6 +10,7 @@ private:
     struct HashNode{
         HashNode(string k, string v){
             key = k; value = v;
+            next = nullptr;
         }
         string key;
         string value;
@@ -20,7 +21,7 @@ public:
     HashTable();
     ~HashTable();
     void insert(string k, string v);
-    vector<string>& getAtKey(string k);
+    vector<string> getAtKey(string k);
     void remove(string k);
     void removeAll();
     int hashFunc(string k);
