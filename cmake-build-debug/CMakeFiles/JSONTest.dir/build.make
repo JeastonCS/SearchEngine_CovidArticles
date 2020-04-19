@@ -42,10 +42,10 @@ RM = "C:\Program Files\JetBrains\CLion 2019.3.3\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24"
+CMAKE_SOURCE_DIR = "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug"
+CMAKE_BINARY_DIR = "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/JSONTest.dir/depend.make
@@ -58,120 +58,120 @@ include CMakeFiles/JSONTest.dir/flags.make
 
 CMakeFiles/JSONTest.dir/main.cpp.obj: CMakeFiles/JSONTest.dir/flags.make
 CMakeFiles/JSONTest.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/JSONTest.dir/main.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\main.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/JSONTest.dir/main.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\main.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\main.cpp"
 
 CMakeFiles/JSONTest.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/JSONTest.dir/main.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\main.cpp" > CMakeFiles\JSONTest.dir\main.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\main.cpp" > CMakeFiles\JSONTest.dir\main.cpp.i
 
 CMakeFiles/JSONTest.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/JSONTest.dir/main.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\main.cpp" -o CMakeFiles\JSONTest.dir\main.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\main.cpp" -o CMakeFiles\JSONTest.dir\main.cpp.s
 
 CMakeFiles/JSONTest.dir/DocumentProcessor.cpp.obj: CMakeFiles/JSONTest.dir/flags.make
 CMakeFiles/JSONTest.dir/DocumentProcessor.cpp.obj: ../DocumentProcessor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/JSONTest.dir/DocumentProcessor.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\DocumentProcessor.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\DocumentProcessor.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/JSONTest.dir/DocumentProcessor.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\DocumentProcessor.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\DocumentProcessor.cpp"
 
 CMakeFiles/JSONTest.dir/DocumentProcessor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/JSONTest.dir/DocumentProcessor.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\DocumentProcessor.cpp" > CMakeFiles\JSONTest.dir\DocumentProcessor.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\DocumentProcessor.cpp" > CMakeFiles\JSONTest.dir\DocumentProcessor.cpp.i
 
 CMakeFiles/JSONTest.dir/DocumentProcessor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/JSONTest.dir/DocumentProcessor.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\DocumentProcessor.cpp" -o CMakeFiles\JSONTest.dir\DocumentProcessor.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\DocumentProcessor.cpp" -o CMakeFiles\JSONTest.dir\DocumentProcessor.cpp.s
 
 CMakeFiles/JSONTest.dir/UserInterface.cpp.obj: CMakeFiles/JSONTest.dir/flags.make
 CMakeFiles/JSONTest.dir/UserInterface.cpp.obj: ../UserInterface.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/JSONTest.dir/UserInterface.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\UserInterface.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\UserInterface.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/JSONTest.dir/UserInterface.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\UserInterface.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\UserInterface.cpp"
 
 CMakeFiles/JSONTest.dir/UserInterface.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/JSONTest.dir/UserInterface.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\UserInterface.cpp" > CMakeFiles\JSONTest.dir\UserInterface.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\UserInterface.cpp" > CMakeFiles\JSONTest.dir\UserInterface.cpp.i
 
 CMakeFiles/JSONTest.dir/UserInterface.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/JSONTest.dir/UserInterface.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\UserInterface.cpp" -o CMakeFiles\JSONTest.dir\UserInterface.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\UserInterface.cpp" -o CMakeFiles\JSONTest.dir\UserInterface.cpp.s
 
 CMakeFiles/JSONTest.dir/stemmer/porter2_stemmer.cpp.obj: CMakeFiles/JSONTest.dir/flags.make
 CMakeFiles/JSONTest.dir/stemmer/porter2_stemmer.cpp.obj: ../stemmer/porter2_stemmer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/JSONTest.dir/stemmer/porter2_stemmer.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\stemmer\porter2_stemmer.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\stemmer\porter2_stemmer.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/JSONTest.dir/stemmer/porter2_stemmer.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\stemmer\porter2_stemmer.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\stemmer\porter2_stemmer.cpp"
 
 CMakeFiles/JSONTest.dir/stemmer/porter2_stemmer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/JSONTest.dir/stemmer/porter2_stemmer.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\stemmer\porter2_stemmer.cpp" > CMakeFiles\JSONTest.dir\stemmer\porter2_stemmer.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\stemmer\porter2_stemmer.cpp" > CMakeFiles\JSONTest.dir\stemmer\porter2_stemmer.cpp.i
 
 CMakeFiles/JSONTest.dir/stemmer/porter2_stemmer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/JSONTest.dir/stemmer/porter2_stemmer.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\stemmer\porter2_stemmer.cpp" -o CMakeFiles\JSONTest.dir\stemmer\porter2_stemmer.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\stemmer\porter2_stemmer.cpp" -o CMakeFiles\JSONTest.dir\stemmer\porter2_stemmer.cpp.s
 
 CMakeFiles/JSONTest.dir/IndexHandler.cpp.obj: CMakeFiles/JSONTest.dir/flags.make
 CMakeFiles/JSONTest.dir/IndexHandler.cpp.obj: ../IndexHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/JSONTest.dir/IndexHandler.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\IndexHandler.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\IndexHandler.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/JSONTest.dir/IndexHandler.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\IndexHandler.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\IndexHandler.cpp"
 
 CMakeFiles/JSONTest.dir/IndexHandler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/JSONTest.dir/IndexHandler.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\IndexHandler.cpp" > CMakeFiles\JSONTest.dir\IndexHandler.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\IndexHandler.cpp" > CMakeFiles\JSONTest.dir\IndexHandler.cpp.i
 
 CMakeFiles/JSONTest.dir/IndexHandler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/JSONTest.dir/IndexHandler.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\IndexHandler.cpp" -o CMakeFiles\JSONTest.dir\IndexHandler.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\IndexHandler.cpp" -o CMakeFiles\JSONTest.dir\IndexHandler.cpp.s
 
 CMakeFiles/JSONTest.dir/Word.cpp.obj: CMakeFiles/JSONTest.dir/flags.make
 CMakeFiles/JSONTest.dir/Word.cpp.obj: ../Word.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/JSONTest.dir/Word.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\Word.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\Word.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/JSONTest.dir/Word.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\Word.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\Word.cpp"
 
 CMakeFiles/JSONTest.dir/Word.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/JSONTest.dir/Word.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\Word.cpp" > CMakeFiles\JSONTest.dir\Word.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\Word.cpp" > CMakeFiles\JSONTest.dir\Word.cpp.i
 
 CMakeFiles/JSONTest.dir/Word.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/JSONTest.dir/Word.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\Word.cpp" -o CMakeFiles\JSONTest.dir\Word.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\Word.cpp" -o CMakeFiles\JSONTest.dir\Word.cpp.s
 
 CMakeFiles/JSONTest.dir/HashTable.cpp.obj: CMakeFiles/JSONTest.dir/flags.make
 CMakeFiles/JSONTest.dir/HashTable.cpp.obj: ../HashTable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/JSONTest.dir/HashTable.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\HashTable.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\HashTable.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/JSONTest.dir/HashTable.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\HashTable.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\HashTable.cpp"
 
 CMakeFiles/JSONTest.dir/HashTable.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/JSONTest.dir/HashTable.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\HashTable.cpp" > CMakeFiles\JSONTest.dir\HashTable.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\HashTable.cpp" > CMakeFiles\JSONTest.dir\HashTable.cpp.i
 
 CMakeFiles/JSONTest.dir/HashTable.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/JSONTest.dir/HashTable.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\HashTable.cpp" -o CMakeFiles\JSONTest.dir\HashTable.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\HashTable.cpp" -o CMakeFiles\JSONTest.dir\HashTable.cpp.s
 
 CMakeFiles/JSONTest.dir/QueryProcessor.cpp.obj: CMakeFiles/JSONTest.dir/flags.make
 CMakeFiles/JSONTest.dir/QueryProcessor.cpp.obj: ../QueryProcessor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/JSONTest.dir/QueryProcessor.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\QueryProcessor.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\QueryProcessor.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/JSONTest.dir/QueryProcessor.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\QueryProcessor.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\QueryProcessor.cpp"
 
 CMakeFiles/JSONTest.dir/QueryProcessor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/JSONTest.dir/QueryProcessor.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\QueryProcessor.cpp" > CMakeFiles\JSONTest.dir\QueryProcessor.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\QueryProcessor.cpp" > CMakeFiles\JSONTest.dir\QueryProcessor.cpp.i
 
 CMakeFiles/JSONTest.dir/QueryProcessor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/JSONTest.dir/QueryProcessor.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\QueryProcessor.cpp" -o CMakeFiles\JSONTest.dir\QueryProcessor.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\QueryProcessor.cpp" -o CMakeFiles\JSONTest.dir\QueryProcessor.cpp.s
 
 CMakeFiles/JSONTest.dir/Document.cpp.obj: CMakeFiles/JSONTest.dir/flags.make
 CMakeFiles/JSONTest.dir/Document.cpp.obj: ../Document.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/JSONTest.dir/Document.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\Document.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\Document.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/JSONTest.dir/Document.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\JSONTest.dir\Document.cpp.obj -c "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\Document.cpp"
 
 CMakeFiles/JSONTest.dir/Document.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/JSONTest.dir/Document.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\Document.cpp" > CMakeFiles\JSONTest.dir\Document.cpp.i
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\Document.cpp" > CMakeFiles\JSONTest.dir\Document.cpp.i
 
 CMakeFiles/JSONTest.dir/Document.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/JSONTest.dir/Document.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\Document.cpp" -o CMakeFiles\JSONTest.dir\Document.cpp.s
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\Document.cpp" -o CMakeFiles\JSONTest.dir\Document.cpp.s
 
 # Object files for target JSONTest
 JSONTest_OBJECTS = \
@@ -201,7 +201,7 @@ JSONTest.exe: CMakeFiles/JSONTest.dir/build.make
 JSONTest.exe: CMakeFiles/JSONTest.dir/linklibs.rsp
 JSONTest.exe: CMakeFiles/JSONTest.dir/objects1.rsp
 JSONTest.exe: CMakeFiles/JSONTest.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable JSONTest.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable JSONTest.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\JSONTest.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -214,6 +214,6 @@ CMakeFiles/JSONTest.dir/clean:
 .PHONY : CMakeFiles/JSONTest.dir/clean
 
 CMakeFiles/JSONTest.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24" "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24" "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug" "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug" "C:\Users\Jack Easton\CLionProjects\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles\JSONTest.dir\DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24" "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24" "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug" "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug" "C:\Users\Jack Easton\CLionProjects\FinalProgram\CS2341-SearchEngine-JeastonCS-ysinha24\cmake-build-debug\CMakeFiles\JSONTest.dir\DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/JSONTest.dir/depend
 
