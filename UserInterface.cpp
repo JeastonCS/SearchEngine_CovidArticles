@@ -69,7 +69,7 @@ UserInterface::UserInterface()
 void UserInterface::populateIndexWithCorpus(char *directory)
 {
     //get name of the folder of json documents
-    string dir, filepath;
+    string dir = directory, filepath;
     DIR *dp;
     struct dirent *dirp;
     struct stat filestat;
