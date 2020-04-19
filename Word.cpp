@@ -35,6 +35,13 @@ bool Word::operator==(const Word& rhs) const {
     return word == rhs.word;
 }
 
+//ostream &operator<<(ostream &os, const Word &rhs) {
+//    os << rhs.word << " ";
+//
+//    for (string docID : rhs.docIDs)
+//        os << docID << " ";
+//}
+
 void Word::print() {
     cout << word;
 }

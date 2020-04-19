@@ -56,6 +56,10 @@ string
 vector
 -
 
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/IndexHandler.cpp
+IndexHandler.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/IndexHandler.h
+
 C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/IndexHandler.h
 WordIndex.h
 C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/WordIndex.h
@@ -63,6 +67,10 @@ AuthorIndex.h
 C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/AuthorIndex.h
 DocumentProcessor.h
 C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentProcessor.h
+sstream
+-
+fstream
+-
 
 C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/QueryProcessor.cpp
 QueryProcessor.h
@@ -80,30 +88,6 @@ iostream
 vector
 -
 
-C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/UserInterface.cpp
-UserInterface.h
-C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/UserInterface.h
-
-C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/UserInterface.h
-IndexHandler.h
-C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/IndexHandler.h
-QueryProcessor.h
-C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/QueryProcessor.h
-DocumentProcessor.h
-C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentProcessor.h
-dirent.h
--
-sys/stat.h
--
-ctime
--
-vector
--
-string
--
-iostream
--
-
 C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/Word.h
 iostream
 -
@@ -117,10 +101,6 @@ Word.h
 C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/Word.h
 AVLTree.h
 C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/AVLTree.h
-
-C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/main.cpp
-UserInterface.h
-C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/UserInterface.h
 
 C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/allocators.h
 rapidjson.h

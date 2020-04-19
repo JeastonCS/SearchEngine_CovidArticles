@@ -24,10 +24,8 @@ void UserInterface::interfaceLoop()
             displayOptions();
         }
         else if (command == "json") {
-            time_t start = time(nullptr);
             populateIndexWithCorpus();
-            time_t end = time(nullptr);
-            parseTime = difftime(end, start);
+            getStatistics();
         }
         else if (command == "query") {
             submitQuery();
@@ -59,10 +57,12 @@ void UserInterface::introduction()
 void UserInterface::displayOptions()
 {
     cout    << "Options: \n"
-            << " - quit  -> quit session\n"
-            << " - json  -> populate indexes using directory with json documents\n"
-            << " - query -> enter a query\n"
-            << " - stats -> get a list of statistics of the search engine\n"
+            << " - quit    -> quit session\n"
+            << " - json    -> populate indexes using directory with json documents\n"
+            << " - query   -> enter a query\n"
+            << " - stats   -> get a list of statistics of the search engine\n"
+//            << " - to file -> write current indexes to files\n"
+//            << " - file    -> populate indexes using files\n"
             << flush;
 }
 
@@ -92,6 +92,8 @@ void UserInterface::populateIndexWithCorpus()
         }
     }
 
+    auto start = chrono::high_resolution_clock::now();
+    /*--------------------------------------------------------------------------------------------------------------*/
     while ( (dirp = readdir(dp)) ) {
         filepath = dir + "/" + dirp->d_name;
 
@@ -100,7 +102,7 @@ void UserInterface::populateIndexWithCorpus()
         if (S_ISDIR( filestat.st_mode ))         continue;
 
         //create DocumentProcessor with current json and add its words/authors
-        DocumentProcessor dProcessor = * new DocumentProcessor(filepath.c_str());
+        DocumentProcessor dProcessor(filepath.c_str());
         handler.setProcessor(dProcessor);
         handler.addProcessorWords();
         handler.addProcessorAuthors();
@@ -110,7 +112,15 @@ void UserInterface::populateIndexWithCorpus()
     }
 
     closedir(dp);
+    /*--------------------------------------------------------------------------------------------------------------*/
+    auto end = chrono::high_resolution_clock::now();
+    parseTime = chrono::duration_cast<chrono::microseconds>(end - start);
 }
+
+//void UserInterface::populateIndexWithFile(const char *fileName) {
+//    handler.populateMainWithFile(fileName);
+////    handler.populateAuthorsWithFile(fileName);
+//}
 
 void UserInterface::submitQuery()
 {
@@ -156,6 +166,12 @@ void UserInterface::submitQuery()
     }
 }
 
+//void UserInterface::writeIndexToFile(const char *outputFileName)
+//{
+//    handler.writeMainToFile(outputFileName);
+//    handler.writeAuthorsToFile(outputFileName);
+//}
+
 void UserInterface::paginateResultingDocuments(vector<string> &documents, int pageNum) {
     cout << "Page " << pageNum << endl;
     for (int i = (pageNum - 1) * 15; i < documents.size() && i < pageNum * 15; i++) {
@@ -167,7 +183,7 @@ void UserInterface::paginateResultingDocuments(vector<string> &documents, int pa
 void UserInterface::getStatistics()
 {
     cout << "Number of documents parsed: " << numDocsParsed << endl;
-    cout << "Time to parse: " << parseTime << " seconds" << endl;
+    cout << "Time to parse: " << parseTime.count() / 1000000.0 << " seconds" << endl;
     cout << "Number of unique words: " << handler.getNumUniqueWords() << endl;
     cout << endl;
 }

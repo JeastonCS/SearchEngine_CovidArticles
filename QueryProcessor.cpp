@@ -17,8 +17,6 @@ vector<string> QueryProcessor::runQuery(string query) {
 
     vector<string> docsFinal;
 
-    //TODO
-    docsFinal = ih.getWordDocs(query);
 //    cout << "DOCSFINAL: " << endl;
 //    for (int i = 0; i < docsFinal.size(); i++) {
 //        cout << docsFinal[i] << endl;
@@ -34,7 +32,7 @@ vector<string> QueryProcessor::runQuery(string query) {
 //        // parse vector of query
 //    }
 
-    return docsFinal;
+    return ih.getWordDocs(query);
 }
 
 int QueryProcessor::findTFIDRStat(Document doc, string word) {

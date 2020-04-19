@@ -15,7 +15,7 @@ DocumentProcessor::DocumentProcessor(const char *fileName) {
 DocumentProcessor &DocumentProcessor::operator=(const DocumentProcessor &rhs) {
     docText = rhs.docText;
     processedWords = rhs.processedWords;
-    authors = rhs.authors;
+//    authors = rhs.authors;
     docID = rhs.docID;
 
     return *this;
@@ -63,13 +63,6 @@ void DocumentProcessor::populateStopWords(const char *stopFileName) {
         exit(1);
     }
 
-    while (!stopWordsFile.eof()) {
-        string word;
-        stopWordsFile >> word;
-
-        stopWords.push_back(word);
-    }
-
     string stopWord;
     while (stopWordsFile >> stopWord) {
         stopWords.push_back(stopWord);
@@ -94,9 +87,9 @@ void DocumentProcessor::stem(string &toStem) {
 
 void DocumentProcessor::print() {
     cout << docID << endl;
-    for (int i = 0; i < authors.size(); i++) {
-        cout << "\t- " << authors.at(i) << endl;
-    }
+//    for (int i = 0; i < authors.size(); i++) {
+//        cout << "\t- " << authors.at(i) << endl;
+//    }
 
     for (int i = 0; i < processedWords.size(); i++) {
         cout << i + 1 << ": " << processedWords.at(i) << endl;
