@@ -61,8 +61,8 @@ void UserInterface::displayOptions()
             << " - json    -> populate indexes using directory with json documents\n"
             << " - query   -> enter a query\n"
             << " - stats   -> get a list of statistics of the search engine\n"
-            << " - to file -> write current indexes to files\n"
-            << " - file    -> populate indexes using files"
+//            << " - to file -> write current indexes to files\n"
+//            << " - file    -> populate indexes using files\n"
             << flush;
 }
 
@@ -117,10 +117,10 @@ void UserInterface::populateIndexWithCorpus()
     parseTime = chrono::duration_cast<chrono::microseconds>(end - start);
 }
 
-void UserInterface::populateIndexWithFile(const char *fileName) {
-    handler.populateMainWithFile(fileName);
-//    handler.populateAuthorsWithFile(fileName);
-}
+//void UserInterface::populateIndexWithFile(const char *fileName) {
+//    handler.populateMainWithFile(fileName);
+////    handler.populateAuthorsWithFile(fileName);
+//}
 
 void UserInterface::submitQuery()
 {
