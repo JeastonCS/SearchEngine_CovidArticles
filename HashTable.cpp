@@ -65,7 +65,7 @@ void HashTable::removeAll() {
             HashNode* curr = temp->next;
             while (curr != nullptr) {
                 delete temp;
-                temp = curr->next;
+                temp = curr;
                 curr = curr->next;
             }
             delete temp;
