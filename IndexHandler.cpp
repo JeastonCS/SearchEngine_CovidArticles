@@ -18,13 +18,13 @@ void IndexHandler::addProcessorWords() {
         addToWordIndex(docID, words[i]);
 }
 
-void IndexHandler::addProcessorAuthors() {
-    string docID = dProcessor.getDocID();
-    vector<string> authors = dProcessor.getAuthors();
-
-    for (int i = 0; i < authors.size(); i++)
-        addToAuthorIndex(docID, authors[i]);
-}
+//void IndexHandler::addProcessorAuthors() {
+//    string docID = dProcessor.getDocID();
+//    vector<string> authors = dProcessor.getAuthors();
+//
+//    for (int i = 0; i < authors.size(); i++)
+//        addToAuthorIndex(docID, authors[i]);
+//}
 
 void IndexHandler::populateMainWithFile(const char *fileName)
 {

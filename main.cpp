@@ -5,8 +5,7 @@
 #include "UserInterface.h"
 
 
-int main()
-{
+int main() {
     UserInterface interface;
     interface.interfaceLoop();
 
@@ -24,3 +23,4 @@ int main()
 //    }
 
     return 0;
+}

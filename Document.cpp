@@ -17,6 +17,8 @@ Document& Document::operator=(const Document& rhs) {
     author = rhs.author;
     publication = rhs.publication;
     tfStat = rhs.tfStat;
+
+    return *this;
 }
 bool Document::operator>(const Document& rhs) {
     return tfStat>rhs.tfStat;

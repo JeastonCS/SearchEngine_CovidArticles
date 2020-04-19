@@ -105,7 +105,7 @@ void UserInterface::populateIndexWithCorpus()
         DocumentProcessor dProcessor(filepath.c_str());
         handler.setProcessor(dProcessor);
         handler.addProcessorWords();
-        handler.addProcessorAuthors();
+//        handler.addProcessorAuthors();
 
         //increment number of parsed documents
         numDocsParsed++;
@@ -134,7 +134,7 @@ void UserInterface::submitQuery()
 
     //get query results
     vector<string> documents;
-    documents = qProcessor->runQuery(query);
+    documents = qProcessor->runQuery(query, numDocsParsed);
 //    queryResults = qProcessor.runQuery(query);
 
     //TODO clean this up
