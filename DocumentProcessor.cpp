@@ -38,6 +38,9 @@ void DocumentProcessor::parseJson(const char *fileName) {
     jsonFile.close();
 
     //get and store ID
+    if (!doc.IsObject())
+        return;
+
     docID = doc["paper_id"].GetString();
 
     //get and store author names

@@ -1,0 +1,262 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentProcessor.cpp
+DocumentProcessor.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentProcessor.h
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentProcessor.h
+rapidjson/document.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/document.h
+rapidjson/istreamwrapper.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/istreamwrapper.h
+stemmer/porter2_stemmer.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/stemmer/porter2_stemmer.h
+algorithm
+-
+sstream
+-
+string
+-
+vector
+-
+fstream
+-
+iostream
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/allocators.h
+rapidjson.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson.h
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/document.h
+reader.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/reader.h
+internal/meta.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/meta.h
+internal/strfunc.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/strfunc.h
+memorystream.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/memorystream.h
+encodedstream.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/encodedstream.h
+new
+-
+limits
+-
+compare
+-
+iterator
+-
+utility
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/encodedstream.h
+stream.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/stream.h
+memorystream.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/memorystream.h
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/encodings.h
+rapidjson.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson.h
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/error/error.h
+../rapidjson.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson.h
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/biginteger.h
+../rapidjson.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson.h
+intrin.h
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/clzll.h
+../rapidjson.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson.h
+intrin.h
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/diyfp.h
+../rapidjson.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson.h
+clzll.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/clzll.h
+limits
+-
+intrin.h
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/ieee754.h
+../rapidjson.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson.h
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/meta.h
+../rapidjson.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson.h
+type_traits
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/pow10.h
+../rapidjson.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson.h
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/stack.h
+../allocators.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/allocators.h
+swap.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/swap.h
+cstddef
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/strfunc.h
+../stream.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/stream.h
+cwchar
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/strtod.h
+ieee754.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/ieee754.h
+biginteger.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/biginteger.h
+diyfp.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/diyfp.h
+pow10.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/pow10.h
+climits
+-
+limits
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/swap.h
+../rapidjson.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson.h
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/istreamwrapper.h
+stream.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/stream.h
+iosfwd
+-
+ios
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/memorystream.h
+stream.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/stream.h
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/msinttypes/inttypes.h
+stdint.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/msinttypes/stdint.h
+inttypes.h
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/msinttypes/stdint.h
+stdint.h
+-
+limits.h
+-
+wchar.h
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson.h
+cstdlib
+-
+cstring
+-
+rapidjson/...
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson/...
+string
+-
+msinttypes/stdint.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/msinttypes/stdint.h
+msinttypes/inttypes.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/msinttypes/inttypes.h
+stdint.h
+-
+inttypes.h
+-
+endian.h
+-
+rapidjson/...
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson/...
+cassert
+-
+cassert
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/reader.h
+allocators.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/allocators.h
+stream.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/stream.h
+encodedstream.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/encodedstream.h
+internal/clzll.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/clzll.h
+internal/meta.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/meta.h
+internal/stack.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/stack.h
+internal/strtod.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/internal/strtod.h
+limits
+-
+intrin.h
+-
+nmmintrin.h
+-
+emmintrin.h
+-
+arm_neon.h
+-
+stdexcept
+-
+rapidjson/error/error.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson/error/error.h
+rapidjson/reader.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson/reader.h
+error/error.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/error/error.h
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/stream.h
+rapidjson.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/rapidjson.h
+encodings.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/rapidjson/encodings.h
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/stemmer/porter2_stemmer.h
+vector
+-
+string
+-
+util/string_view.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/stemmer/util/string_view.h
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/stemmer/util/hash.h
+array
+-
+cassert
+-
+cstdint
+-
+random
+-
+
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/stemmer/util/string_view.h
+hash.h
+C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/stemmer/util/hash.h
+experimental/string_view
+-
+algorithm
+-
+stdexcept
+-
+string
+-
+
