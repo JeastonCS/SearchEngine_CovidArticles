@@ -1,8 +1,8 @@
 # Prerequisites
 *.d
 build/
-cmake-build-debug/CMakeFiles/
-cmake-build-debug/CMakeCache.txt
+**/CMakeFiles/
+**/CMakeCache.txt
 .idea/
 
 # Compiled Object files
