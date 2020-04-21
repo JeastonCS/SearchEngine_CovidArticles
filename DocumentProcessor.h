@@ -22,7 +22,7 @@ class DocumentProcessor {
 private:
     string docText;
     vector<string> processedWords;
-//    vector<string> authors;
+    vector<string> authors;
     string docID;
 
     vector<string> stopWords;
@@ -33,7 +33,7 @@ public:
 
     string & getDocID() { return docID; }
     vector<string> & getProcessedWords() { return processedWords; }
-//    vector<string> & getAuthors() { return authors; }
+    vector<string> & getAuthors() { return authors; }
 
     void print();
 
