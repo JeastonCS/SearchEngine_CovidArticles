@@ -23,7 +23,7 @@ public:
     IndexHandler();
 
     void addProcessorWords();
-//    void addProcessorAuthors();
+    void addProcessorAuthors();
     void populateMainWithFile(const char *);
 //    void populateAuthorsWithFile(const char *);
 //    void writeMainToFile(const char *);
