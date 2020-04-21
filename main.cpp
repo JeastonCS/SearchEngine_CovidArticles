@@ -7,10 +7,7 @@
 
 int main(int argc, char** argv) {
     UserInterface interface;
-//    interface.interfaceLoop();
-    interface.populateIndexWithCorpus(argv[1]);
-    interface.getStatistics();
-    interface.submitQuery(argv[2]);
+    interface.interfaceLoop();
 
     return 0;
 }

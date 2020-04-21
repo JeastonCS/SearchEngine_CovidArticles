@@ -70,7 +70,7 @@ void UserInterface::populateIndexWithCorpus()
 {
     //get name of the folder of json documents
     string dir, filepath;
-    DIR *dp;
+    DIR *dp = NULL;
     struct dirent *dirp;
     struct stat filestat;
 
