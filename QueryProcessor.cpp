@@ -22,89 +22,85 @@ vector<Document> QueryProcessor::stringToDoc(const vector<string> &strs) {
 vector<string> QueryProcessor::runQuery(string query, int numOfDocs) {
     // process/split query
     stringstream ss(query);
-//    istream_iterator<string> begin(ss);
-//    istream_iterator<string> end;
-//    vector<string> queryOrder(begin, end);
+    istream_iterator<string> begin(ss);
+    istream_iterator<string> end;
+    vector<string> queryOrder(begin, end);
 
 
     vector<string> docsFinal;
-    /////////  demo  /////////////
-    stem(query);
-    docsFinal = ih.getWordDocs(query);
-    //////////////////////////////
 
     //TODO get Author Last Name or first and take union
-//    vector<Document> currentList;
-//    string param1 = "";
-//    string param2 = "";
-//
-//    while (!queryOrder.empty()){
-//        string curr = queryOrder[queryOrder.size() - 1];
-//
-//        if(curr == "AUTHOR"){
-//           currentList = stringToDoc(ih.getAuthorDocs(param1));
-//           param1 = "";
-//        }
-//
-//        else if(curr == "AND"){
-//            vector<Document> d1;
-//            if(!currentList.empty())
-//                d1 = currentList;
-//            else
-//                d1 = stringToDoc(ih.getWordDocs(param1));
-//            vector<Document> d2 = stringToDoc(ih.getWordDocs(param2));
-//            currentList = getIntersection(d2,d1);
-//
-//            param1 = ""; param2 = "";
-//        }
-//
-//        else if(curr == "OR"){
-//            vector<Document> d1;
-//            if(!currentList.empty())
-//                d1 = currentList;
-//            else
-//                d1 = stringToDoc(ih.getWordDocs(param1));
-//            vector<Document> d2 = stringToDoc(ih.getWordDocs(param2));
-//            currentList = getUnion(d2,d1);
-//
-//            param1 = ""; param2 = "";
-//        }
-//
-//        else if(curr == "NOT"){
-//            vector<Document> d1;
-//            if(!currentList.empty())
-//                d1 = currentList;
-//            else
-//                d1 = stringToDoc(ih.getWordDocs(param1));
-//            string nextParam = queryOrder[queryOrder.size() - 2];
-//            stem(nextParam);
-//            vector<Document> d2 = stringToDoc(ih.getWordDocs(nextParam));
-//            currentList = getDifference(d2,d1);
-//
-//            param1 = ""; param2 = "";
-//            queryOrder.pop_back();
-//        }
-//
-//        else {
-//            if(param1 == "") {
-//                param1 = curr;
-//                stem(param1);
-//            }
-//            else {
-//                param2 = curr;
-//                stem(param2);
-//            }
-//        }
-//
-//        if(param1 != "" && queryOrder.size() == 1)
-//            currentList = stringToDoc(ih.getWordDocs(param1));
-//
-//        queryOrder.pop_back();
-//    }
-//    //TODO convert back to string for now
-//    //TODO need to complete TF-IDR stat for sort
-//    for (Document x: currentList)
-//        docsFinal.push_back(x.title);
+    vector<Document> currentList;
+    string param1 = "";
+    string param2 = "";
+
+    while (!queryOrder.empty()){
+        string curr = queryOrder[queryOrder.size() - 1];
+
+        if(curr == "AUTHOR"){
+           currentList = stringToDoc(ih.getAuthorDocs(param1));
+           param1 = "";
+        }
+
+        else if(curr == "AND"){
+            vector<Document> d1;
+            if(!currentList.empty())
+                d1 = currentList;
+            else
+                d1 = stringToDoc(ih.getWordDocs(param1));
+            vector<Document> d2 = stringToDoc(ih.getWordDocs(param2));
+            currentList = getIntersection(d2,d1);
+
+            param1 = ""; param2 = "";
+        }
+
+        else if(curr == "OR"){
+            vector<Document> d1;
+            if(!currentList.empty())
+                d1 = currentList;
+            else
+                d1 = stringToDoc(ih.getWordDocs(param1));
+            vector<Document> d2 = stringToDoc(ih.getWordDocs(param2));
+            currentList = getUnion(d2,d1);
+
+            param1 = ""; param2 = "";
+        }
+
+        else if(curr == "NOT"){
+            vector<Document> d1;
+            if(!currentList.empty())
+                d1 = currentList;
+            else
+                d1 = stringToDoc(ih.getWordDocs(param1));
+            string nextParam = queryOrder[queryOrder.size() - 2];
+            stem(nextParam);
+            vector<Document> d2 = stringToDoc(ih.getWordDocs(nextParam));
+            currentList = getDifference(d2,d1);
+
+            param1 = ""; param2 = "";
+            queryOrder.pop_back();
+        }
+
+        else {
+            if(param1 == "") {
+                param1 = curr;
+                stem(param1);
+            }
+            else {
+                param2 = curr;
+                stem(param2);
+            }
+        }
+
+        if(param1 != "" && queryOrder.size() == 1)
+            currentList = stringToDoc(ih.getWordDocs(param1));
+
+        queryOrder.pop_back();
+    }
+    //TODO convert back to string for now
+    //TODO need to complete TF-IDR stat for sort
+    for (Document x: currentList)
+        docsFinal.push_back(x.title);
     return docsFinal;
 }
 
