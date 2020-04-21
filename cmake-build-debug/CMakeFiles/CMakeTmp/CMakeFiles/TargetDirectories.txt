@@ -1,3 +1,0 @@
-C:/Users/sinha/Documents/CS2341/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_78045.dir
-C:/Users/sinha/Documents/CS2341/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/edit_cache.dir
-C:/Users/sinha/Documents/CS2341/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/CMakeFiles/CMakeTmp/CMakeFiles/rebuild_cache.dir
