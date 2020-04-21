@@ -25,9 +25,9 @@ public:
     void addProcessorWords();
     void addProcessorAuthors();
     void populateMainWithFile(const char *);
-//    void populateAuthorsWithFile(const char *);
-//    void writeMainToFile(const char *);
-//    void writeAuthorsToFile(const char *);
+    void populateAuthorsWithFile(const char *);
+    void writeMainToFile(const char *);
+    void writeAuthorsToFile(const char *);
 
     vector<string> getWordDocs(string);
     vector<string> getAuthorDocs(string);

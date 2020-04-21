@@ -52,41 +52,41 @@ void IndexHandler::populateMainWithFile(const char *fileName)
     input.close();
 }
 
-//void IndexHandler::populateAuthorsWithFile(const char *fileName)
-//{
-//    ifstream input(fileName);
-//    if (!input) {
-//        cout << "could not open file with index data" << endl;
-//        exit(1);
-//    }
-//
-//    string line;
-//    while (!input.eof()) {
-//        getline(input, line);
-//        stringstream stream(line);
-//
-//        //extract data and add to index
-//        string author;
-//        stream >> author;
-//
-//        string docID;
-//        while (stream >> docID) {
-//            addToAuthorIndex(docID, author);
-//        }
-//    }
-//
-//    input.close();
-//}
+void IndexHandler::populateAuthorsWithFile(const char *fileName)
+{
+    ifstream input(fileName);
+    if (!input) {
+        cout << "could not open file with index data" << endl;
+        exit(1);
+    }
 
-//void IndexHandler::writeMainToFile(const char *outputName)
-//{
+    string line;
+    while (!input.eof()) {
+        getline(input, line);
+        stringstream stream(line);
+
+        //extract data and add to index
+        string author;
+        stream >> author;
+
+        string docID;
+        while (stream >> docID) {
+            addToAuthorIndex(docID, author);
+        }
+    }
+
+    input.close();
+}
+
+void IndexHandler::writeMainToFile(const char *outputName)
+{
 //    textIndex.writeToFile(outputName);
-//}
-//
-//void IndexHandler::writeAuthorsToFile(const char *outputName)
-//{
+}
+
+void IndexHandler::writeAuthorsToFile(const char *outputName)
+{
 //    nameIndex.writeToFile(outputName);
-//}
+}
 
 vector<string> IndexHandler::getWordDocs(string word)
 {
@@ -105,7 +105,7 @@ void IndexHandler::addToWordIndex(string docID, string word) {
     textIndex.addWord(word, docID);
 }
 
-//void IndexHandler::addToAuthorIndex(string docID, string name) {
-//    nameIndex.addAuthor(name, docID);
-//}
+void IndexHandler::addToAuthorIndex(string docID, string name) {
+    nameIndex.addAuthor(name, docID);
+}
 

@@ -23,23 +23,19 @@ private:
 public:
     UserInterface();
 
-//    void interfaceLoop();
-
-    void populateIndexWithCorpus(char *);
-    void submitQuery(char *);
-    void getStatistics();
+    void interfaceLoop();
 
 private:
-//    void introduction();
-//    void displayOptions();
-//    void populateIndexWithCorpus();
-//    void populateIndexWithFile(const char *);
-//    void writeIndexToFile(const char *);
-//    void submitQuery();
-//    void paginateResultingDocuments(vector<string> &, int);
-//    void getStatistics();
+    void introduction();
+    void displayOptions();
+    void populateIndexWithCorpus();
+    void populateIndexWithFile(const char *);
+    void writeIndexToFile(const char *);
+    void submitQuery();
+    void paginateResultingDocuments(vector<string> &, int);
+    void getStatistics();
 
-//    string lowercase(string);
+    string lowercase(string);
 };
 
 
