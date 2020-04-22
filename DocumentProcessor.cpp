@@ -45,11 +45,7 @@ void DocumentProcessor::parseJson(const char *fileName) {
 
     //get and store author names
     for (Value &val : doc["metadata"]["authors"].GetArray()) {
-        // format = "first last"
-        string authorName = val["first"].GetString();
-        authorName += " ";
-        authorName += val["last"].GetString();
-
+        string authorName = val["last"].GetString();
         authors.push_back(authorName);
     }
 
@@ -78,8 +74,28 @@ void DocumentProcessor::populateProcessedWords() {
     string word;
     while(sstream >> word) {
         stem(word);
-        if ( (word.size() > 1) && (count(processedWords.begin(), processedWords.end(), word) == 0) && (count(stopWords.begin(), stopWords.end(), word) == 0) )
-            processedWords.push_back(word);
+
+        // if not a stop word AND more than 1 letter
+        if (word.size() > 1 && (count(stopWords.begin(), stopWords.end(), word) == 0)) {
+            DocumentWord *docWord = new DocumentWord(word);
+
+            if (count(processedWords.begin(), processedWords.end(), word) != 0) { //already in processedWords
+                //increment that word's count
+                find(processedWords.begin(), processedWords.end(), *docWord)->incrementTimesInDoc();
+            }
+            else {
+                //add to processedWords
+                processedWords.push_back(*docWord);
+            }
+            //increment total word count in document
+            docWordCount++;
+        }
+    }
+}
+
+void DocumentProcessor::initializeDocWordsTermFrequency() {
+    for (int i = 0; i < processedWords.size(); i++) {
+        processedWords[i].initTermFreq(docWordCount);
     }
 }
 
@@ -94,9 +110,8 @@ void DocumentProcessor::print() {
         cout << "\t- " << authors.at(i) << endl;
     }
 
+    cout << "Total words: " << docWordCount << endl;
     for (int i = 0; i < processedWords.size(); i++) {
         cout << i + 1 << ": " << processedWords.at(i) << endl;
     }
-
-    cout << docText << endl;
 }

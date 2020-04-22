@@ -101,6 +101,12 @@
 		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentProcessor.h">
 			<Option target="SearchEngine"/>
 		</Unit>
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentWord.cpp">
+			<Option target="SearchEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentWord.h">
+			<Option target="SearchEngine"/>
+		</Unit>
 		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/HashTable.cpp">
 			<Option target="SearchEngine"/>
 		</Unit>

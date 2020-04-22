@@ -5,6 +5,8 @@
 #ifndef JSONTEST_DOCUMENTPROCESSOR_H
 #define JSONTEST_DOCUMENTPROCESSOR_H
 
+#include "DocumentWord.h"
+
 #include "rapidjson/document.h"
 #include "rapidjson/istreamwrapper.h"
 #include "stemmer/porter2_stemmer.h"
@@ -21,7 +23,8 @@ using namespace std;
 class DocumentProcessor {
 private:
     string docText;
-    vector<string> processedWords;
+    int docWordCount;
+    vector<DocumentWord> processedWords; //of DocumentWords
     vector<string> authors;
     string docID;
 
@@ -32,8 +35,10 @@ public:
     DocumentProcessor & operator=(const DocumentProcessor &);
 
     string & getDocID() { return docID; }
-    vector<string> & getProcessedWords() { return processedWords; }
+    vector<DocumentWord> & getProcessedWords() { return processedWords; }
     vector<string> & getAuthors() { return authors; }
+
+    void initializeDocWordsTermFrequency();
 
     void print();
 

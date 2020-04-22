@@ -8,6 +8,7 @@
 #include "WordIndex.h"
 #include "AuthorIndex.h"
 #include "DocumentProcessor.h"
+#include "DocumentWord.h"
 
 #include <sstream>
 #include <fstream>
@@ -36,8 +37,10 @@ public:
 
     void setProcessor(const DocumentProcessor &);
 
-    void addToWordIndex(string, string);
+    void addToWordIndex(string, string, double);
     void addToAuthorIndex(string, string);
+
+    void print();
 };
 
 

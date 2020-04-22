@@ -33,6 +33,16 @@ void UserInterface::interfaceLoop()
         else if (command == "stats") {
             getStatistics();
         }
+        else if (command == "to file") {
+            const char *wordOutput = "word_index.txt";
+            const char *authorOutput = "author_index.txt";
+            writeIndexToFile(wordOutput, authorOutput);
+        }
+        else if (command == "file") {
+            const char *wordFile = "word_index.txt";
+            const char *authorFile = "author_index.txt";
+            populateIndexWithFile(wordFile, authorFile);
+        }
         else {
             cout << "Invalid command. Try again." << endl;
         }
@@ -102,11 +112,12 @@ void UserInterface::populateIndexWithCorpus()
         filepath = dir + "/" + dirp->d_name;
 
         //check to make sure filepath is valid
-        if (stat( filepath.c_str(), &filestat )) continue;
-        if (S_ISDIR( filestat.st_mode ))         continue;
+        if (stat( filepath.c_str(), &filestat ))    continue;
+        if (S_ISDIR( filestat.st_mode ))        continue;
 
         //create DocumentProcessor with current json and add its words/authors
         DocumentProcessor dProcessor(filepath.c_str());
+        dProcessor.initializeDocWordsTermFrequency();
         handler.setProcessor(dProcessor);
         handler.addProcessorWords();
         handler.addProcessorAuthors();
@@ -116,11 +127,20 @@ void UserInterface::populateIndexWithCorpus()
     }
 
     closedir(dp);
+
+    //TODO REMOVE
+    handler.print();
 }
 
-void UserInterface::populateIndexWithFile(const char *fileName) {
-    handler.populateMainWithFile(fileName);
-    handler.populateAuthorsWithFile(fileName);
+void UserInterface::populateIndexWithFile(const char *wordIndex, const char *authorIndex) {
+    handler.populateMainWithFile(wordIndex);
+    handler.populateAuthorsWithFile(authorIndex);
+}
+
+void UserInterface::writeIndexToFile(const char *wordOutput, const char *authorOutput)
+{
+    handler.writeMainToFile(wordOutput);
+    handler.writeAuthorsToFile(authorOutput);
 }
 
 void UserInterface::submitQuery()
@@ -165,12 +185,6 @@ void UserInterface::submitQuery()
 
         pageNum++;
     }
-}
-
-void UserInterface::writeIndexToFile(const char *outputFileName)
-{
-    handler.writeMainToFile(outputFileName);
-    handler.writeAuthorsToFile(outputFileName);
 }
 
 void UserInterface::paginateResultingDocuments(vector<string> &documents, int pageNum) {

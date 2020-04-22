@@ -29,8 +29,8 @@ private:
     void introduction();
     void displayOptions();
     void populateIndexWithCorpus();
-    void populateIndexWithFile(const char *);
-    void writeIndexToFile(const char *);
+    void populateIndexWithFile(const char *, const char *);
+    void writeIndexToFile(const char *, const char *);
     void submitQuery();
     void paginateResultingDocuments(vector<string> &, int);
     void getStatistics();

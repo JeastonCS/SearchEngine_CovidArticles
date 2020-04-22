@@ -6,13 +6,14 @@ class WordIndex{
 private:
     AVLTree<Word> tree;
 public:
-    void addWord(string word, string doc) {
-        Word index = *new Word(word,doc);
+    void addWord(string word, string doc, double termFreq) {
+        Word index = *new Word(word,doc, termFreq);
         AVLNode<Word>* node = tree.find(index);
         if(node == nullptr){
             tree.insert(index);
         } else {
             node->getData().addDocID(doc);
+            node->getData().addTermFrequency(termFreq);
         }
     }
     vector<string> getWordDocs(string word){
@@ -32,6 +33,7 @@ public:
         return tree.getNumNodes();
     }
 
-    //TODO
-    AVLTree<Word> & getTree() { return tree; }
+    void print() {
+        tree.print();
+    }
 };
