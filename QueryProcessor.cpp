@@ -1,5 +1,6 @@
 #include "QueryProcessor.h"
 #include <iterator>
+#include <math.h>
 #include "stemmer/porter2_stemmer.h"
 QueryProcessor::QueryProcessor(const IndexHandler & handler) {
     ih = handler;
@@ -104,10 +105,10 @@ vector<string> QueryProcessor::runQuery(string query, int numOfDocs) {
     return docsFinal;
 }
 
-double QueryProcessor::findTFIDRStat(Document doc, string word, int querySize ,int numOfDocs) {
+double QueryProcessor::findTFIDRStat(Document doc, string word, int querySize = 1,int numOfDocs = 1) {
     // TODO find ways to get terms and which to use as parameters
     double tf = 1; // find term frequency in doc / total words in doc
-    double idf = numOfDocs / querySize; // log_e(total num of documents / number of documents with word)
+    double idf = log(numOfDocs / querySize); // log_e(total num of documents / number of documents with word)
     return tf * idf;
 }
 
