@@ -24,7 +24,7 @@ class DocumentProcessor {
 private:
     string docText;
     int docWordCount;
-    vector<DocumentWord> processedWords; //of DocumentWords
+    vector<DocumentWord> processedWords;
     vector<string> authors;
     string docID;
 
