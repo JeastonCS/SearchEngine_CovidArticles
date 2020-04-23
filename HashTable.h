@@ -3,7 +3,7 @@
 #include<string>
 #include <vector>
 using namespace std;
-const int tableSize = 10000;
+const int tableSize = 100000;
 
 class HashTable {
 private:
@@ -25,4 +25,6 @@ public:
     void remove(string k);
     void removeAll();
     int hashFunc(string k);
+    void writeToFile(char* file);
+    void getFile(char* file);
 };

@@ -1,9 +1,6 @@
 # Prerequisites
 *.d
 build/
-
-**/CMakeFiles/
-**/CMakeCache.txt
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
