@@ -127,9 +127,6 @@ void UserInterface::populateIndexWithCorpus()
     }
 
     closedir(dp);
-
-    //TODO REMOVE
-    handler.print();
 }
 
 void UserInterface::populateIndexWithFile(const char *wordIndex, const char *authorIndex) {

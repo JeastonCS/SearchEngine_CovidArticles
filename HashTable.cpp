@@ -104,20 +104,20 @@ void HashTable::writeToFile(char* file) {
 }
 
 void HashTable::getFile(char *file) {
-    ifstream in(file);
-    char* buf = new char[2048];
-    while (in.getline(buf,2048,'\n')){
-        string line = buf;
-        stringstream ss(line);
-        istream_iterator<string> begin(ss);
-        istream_iterator<string> end;
-        vector<string> nameAndDocs(begin, end);
-
-        string name = nameAndDocs[0];
-        for (int i = 1; i < nameAndDocs.size(); ++i) {
-            insert(name, nameAndDocs[i]);
-        }
-    }
-
-    delete buf;
+//    ifstream in(file);
+//    char* buf = new char[2048];
+//    while (in.getline(buf,2048,'\n')){
+//        string line = buf;
+//        stringstream ss(line);
+//        istream_iterator<string> begin(ss);
+//        istream_iterator<string> end;
+//        vector<string> nameAndDocs(begin, end);
+//
+//        string name = nameAndDocs[0];
+//        for (int i = 1; i < nameAndDocs.size(); ++i) {
+//            insert(name, nameAndDocs[i]);
+//        }
+//    }
+//
+//    delete buf;
 }

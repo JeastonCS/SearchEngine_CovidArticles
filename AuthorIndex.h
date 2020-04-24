@@ -14,7 +14,7 @@ public:
         return table.getAtKey(name);
     }
     void writeToFile(char * file) {
-        table.writeFile(file);
+        table.writeToFile(file);
     }
     void populateFromFile(char * file) {
         table.getFile(file);
