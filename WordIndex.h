@@ -25,9 +25,17 @@ public:
         vector<string> empty;
         return empty;
     }
-    void writeToFile(const char *outFileName) {
-        tree.writeToFile(outFileName);
+
+    vector<double> getTermFreq(string word) {
+        Word index(word);
+        AVLNode<Word>* node = tree.find(word);
+        if(node != nullptr)
+            return node->data.getTermFrequencies();
+
+        vector<double> empty;
+        return empty;
     }
+
     void clear(){
         tree.clear();
     }
