@@ -31,6 +31,7 @@ public:
     void writeAuthorsToFile(const char *);
 
     vector<string> getWordDocs(string);
+    vector<double> getWordFreq(string);
     vector<string> getAuthorDocs(string);
 
     int getNumUniqueWords() {return textIndex.getNumUniqueWords(); }
