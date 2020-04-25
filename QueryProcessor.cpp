@@ -1,6 +1,7 @@
 #include "QueryProcessor.h"
 #include <iterator>
 #include <math.h>
+#include <algorithm>
 #include "stemmer/porter2_stemmer.h"
 QueryProcessor::QueryProcessor(const IndexHandler & handler) {
     ih = handler;
@@ -221,4 +222,5 @@ void QueryProcessor::relevancySort(vector<Document> & list) {
         }
         list[j + 1] = key;
     }
+    reverse(list.begin(),list.end());
 }
