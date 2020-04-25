@@ -28,60 +28,61 @@ void IndexHandler::addProcessorAuthors() {
 
 void IndexHandler::populateMainWithFile(const char *fileName)
 {
-//    ifstream input(fileName);
-//    if (!input) {
-//        cout << "could not open file with index data" << endl;
-//        exit(1);
-//    }
-//
-//
-//    string line;
-//    while (!input.eof()) {
-//        getline(input, line);
-//        stringstream stream(line);
-//
-//        //extract data and add to index
-//        string word;
-//        stream >> word;
-//
-//        string docID;
-//        while (stream >> docID) {
-//            addToWordIndex(docID, word);
-//        }
-//    }
-//
-//    input.close();
+    ifstream input(fileName);
+    if (!input) {
+        cout << "could not open file with index data" << endl;
+        exit(1);
+    }
+
+    string line;
+    while (!input.eof()) {
+        getline(input, line);
+        stringstream stream(line);
+
+        //extract data and add to index
+        string word;
+        stream >> word;
+
+        string docID;
+        double termFreq;
+        while (stream >> docID) {
+            stream >> termFreq;
+            addToWordIndex(docID, word, termFreq);
+        }
+    }
+
+    input.close();
 }
 
 void IndexHandler::populateAuthorsWithFile(const char *fileName)
 {
-//    ifstream input(fileName);
-//    if (!input) {
-//        cout << "could not open file with index data" << endl;
-//        exit(1);
-//    }
-//
-//    string line;
-//    while (!input.eof()) {
-//        getline(input, line);
-//        stringstream stream(line);
-//
-//        //extract data and add to index
-//        string author;
-//        stream >> author;
-//
-//        string docID;
-//        while (stream >> docID) {
-//            addToAuthorIndex(docID, author);
-//        }
-//    }
-//
-//    input.close();
+    ifstream input(fileName);
+    if (!input) {
+        cout << "could not open file with index data" << endl;
+        exit(1);
+    }
+
+    string line;
+    while (!input.eof()) {
+        getline(input, line);
+        stringstream stream(line);
+
+        //extract data and add to index
+        string author;
+        stream >> author;
+
+        string docID;
+        while (stream >> docID) {
+            addToAuthorIndex(docID, author);
+        }
+    }
+
+    input.close();
 }
 
 void IndexHandler::writeMainToFile(const char *outputName)
 {
-//    textIndex.writeToFile(outputName);
+    textIndex.writeToFile(outputName);
 }
 
 void IndexHandler::writeAuthorsToFile(const char *outputName)
@@ -108,6 +109,11 @@ void IndexHandler::addToWordIndex(string docID, string word, double termFreq) {
 
 void IndexHandler::addToAuthorIndex(string docID, string name) {
     nameIndex.addAuthor(name, docID);
+}
+
+void IndexHandler::clearIndexes() {
+    textIndex.clear();
+    nameIndex.clear();
 }
 
 void IndexHandler::print() {

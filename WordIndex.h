@@ -25,6 +25,9 @@ public:
         vector<string> empty;
         return empty;
     }
+    void writeToFile(const char *outFileName) {
+        tree.writeToFile(outFileName);
+    }
     void clear(){
         tree.clear();
     }

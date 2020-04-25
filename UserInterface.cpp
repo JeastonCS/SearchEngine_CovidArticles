@@ -17,6 +17,9 @@ void UserInterface::interfaceLoop()
 {
     introduction();
 
+    const char *wordFile = "word_index.txt";
+    const char *authorFile = "author_index.txt";
+
     string command = "command list";
     while (command != "quit") {
         //chose path based on user command
@@ -34,14 +37,14 @@ void UserInterface::interfaceLoop()
             getStatistics();
         }
         else if (command == "to file") {
-            const char *wordOutput = "word_index.txt";
-            const char *authorOutput = "author_index.txt";
-            writeIndexToFile(wordOutput, authorOutput);
+            writeIndexToFile(wordFile, authorFile);
         }
         else if (command == "file") {
-            const char *wordFile = "word_index.txt";
-            const char *authorFile = "author_index.txt";
             populateIndexWithFile(wordFile, authorFile);
+        }
+        else if (command == "clear") {
+            handler.clearIndexes();
+            clear(wordFile, authorFile);
         }
         else {
             cout << "Invalid command. Try again." << endl;
@@ -73,6 +76,7 @@ void UserInterface::displayOptions()
             << " - stats   -> get a list of statistics of the search engine\n"
             << " - to file -> write current indexes to files\n"
             << " - file    -> populate indexes using files\n"
+            << " - clear   -> clear current indexes\n"
             << flush;
 }
 
@@ -199,6 +203,17 @@ void UserInterface::getStatistics()
     cout << endl;
 }
 
+void UserInterface::clear(const char *wordFileName, const char *authorFileName)
+{
+    ifstream wordFile(wordFileName), authorFile(authorFileName);
+    if (!wordFile || !authorFile) {
+        cout << "could not open index files to clear" << endl;
+        exit(1);
+    }
+
+    wordFile.close();
+    authorFile.close();
+}
 
 string UserInterface::lowercase(string command)
 {
