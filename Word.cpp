@@ -23,7 +23,7 @@ void Word::addDocID(const string& doc) {
     numOfDocs++;
 }
 
-void Word::addTermFrequency(int frequency) {
+void Word::addTermFrequency(double frequency) {
     termFrequencies.push_back(frequency);
 }
 

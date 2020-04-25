@@ -71,6 +71,7 @@ void DocumentProcessor::populateStopWords(const char *stopFileName) {
 void DocumentProcessor::populateProcessedWords() {
     stringstream sstream(docText);
 
+    docWordCount = 0;
     string word;
     while(sstream >> word) {
         stem(word);

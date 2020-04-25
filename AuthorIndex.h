@@ -13,7 +13,7 @@ public:
     vector<string> getAuthor(string name) {
         return table.getAtKey(name);
     }
-    void writeToFile(char * file) {
+    void writeToFile(const char * file) {
         table.writeToFile(file);
     }
     void populateFromFile(char * file) {

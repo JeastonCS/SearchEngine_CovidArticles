@@ -108,6 +108,7 @@ void HashTable::writeToFile(const char* file) {
             out << '\n';
         }
     }
+    out.close();
 }
 
 void HashTable::getFile(const char *file) {

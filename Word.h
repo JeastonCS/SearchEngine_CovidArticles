@@ -11,7 +11,7 @@ public:
     Word(const string& word);
     Word(const string&, const string&, double);
     void addDocID(const string&);
-    void addTermFrequency(int);
+    void addTermFrequency(double);
     vector<string>& getDocIDs();
     vector<double>& getTermFrequencies();
 

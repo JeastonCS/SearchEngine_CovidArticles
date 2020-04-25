@@ -87,7 +87,7 @@ void IndexHandler::writeMainToFile(const char *outputName)
 
 void IndexHandler::writeAuthorsToFile(const char *outputName)
 {
-//    nameIndex.writeToFile(outputName);
+    nameIndex.writeToFile(outputName);
 }
 
 vector<string> IndexHandler::getWordDocs(string word)
