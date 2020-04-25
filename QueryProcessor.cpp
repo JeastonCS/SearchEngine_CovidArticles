@@ -57,7 +57,6 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
 
             // run AuthorUnion and sort
             currentList = getAuthor(d2,d1);
-            relevancySort(currentList);
             param1 = ""; param2 = "";
             queryOrder.pop_back();
         }
@@ -139,6 +138,9 @@ vector<Document> QueryProcessor::getUnion(vector<Document> lhs, vector<Document>
     for (Document x : rhs) {
         bool found = false;
         for (Document y: list) {
+            if(x.docID == y.docID) {
+                y.tfStat = y.tfStat + x.tfStat; // change to make more precise
+            }
             if(x.docID != y.docID) {
                 found = true;
                 break;
@@ -147,7 +149,7 @@ vector<Document> QueryProcessor::getUnion(vector<Document> lhs, vector<Document>
         if(!found)
             list.push_back(x);
     }
-
+    relevancySort(list);
     return list;
 }
 
@@ -156,11 +158,14 @@ vector<Document> QueryProcessor::getIntersection(vector<Document> lhs, vector<Do
 
     for (Document x : rhs) {
         for (Document y : lhs) {
-            if (x.docID == y.docID)
+            if (x.docID == y.docID) {
+                x.tfStat = x.tfStat * y.tfStat; // edit to make more precise
                 list.push_back(x);
+            }
         }
     }
 
+    relevancySort(list);
     return list;
 }
 
@@ -181,6 +186,7 @@ vector<Document> QueryProcessor::getDifference(vector<Document> lhs, vector<Docu
         }
     }
 
+    relevancySort(list);
     return list;
 }
 
@@ -195,6 +201,7 @@ vector<Document> QueryProcessor::getAuthor(vector<Document> lhs, vector<Document
         }
     }
 
+    relevancySort(list);
     return list;
 }
 

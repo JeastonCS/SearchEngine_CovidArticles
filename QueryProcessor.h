@@ -7,8 +7,6 @@ using namespace std;
 class QueryProcessor{
 private:
     IndexHandler ih;
-    string word1;
-    string word2;
     string name;
     int numOfDocs;
 
