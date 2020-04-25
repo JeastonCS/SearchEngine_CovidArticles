@@ -130,7 +130,6 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
 double QueryProcessor::findTFIDRStat(int querySize,int numOfDocs, double termFreq) {
     double tf = termFreq; // find term frequency in doc / total words in doc -> done in DocumentWord
     double idf = log((numOfDocs*1.0) / (querySize) + 1); // log_e(total num of documents / number of documents with word + 1)
-    cout << querySize <<"  " << numOfDocs << "  " << termFreq << endl;
     return tf * idf;
 }
 
