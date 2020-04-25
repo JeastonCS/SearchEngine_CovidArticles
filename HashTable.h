@@ -7,6 +7,7 @@ const int tableSize = 100000;
 
 class HashTable {
 private:
+    int newAuthors = 0;
     struct HashNode{
         HashNode(string k, string v){
             key = k; value = v;
@@ -25,6 +26,6 @@ public:
     void remove(string k);
     void removeAll();
     int hashFunc(string k);
-    void writeToFile(char* file);
-    void getFile(char* file);
+    void writeToFile(const char* file);
+    void getFile(const char* file);
 };

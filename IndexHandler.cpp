@@ -98,6 +98,10 @@ vector<string> IndexHandler::getAuthorDocs(string name) {
     return nameIndex.getAuthor(name);
 }
 
+vector<double> IndexHandler::getWordFreq(string word) {
+    return textIndex.getTermFreq(word);
+}
+
 void IndexHandler::setProcessor(const DocumentProcessor &other) {
     dProcessor = other;
 }

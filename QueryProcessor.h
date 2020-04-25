@@ -10,6 +10,7 @@ private:
     string word1;
     string word2;
     string name;
+    int numOfDocs;
 
 public:
 //    QueryProcessor() = default;
@@ -20,10 +21,10 @@ public:
     vector<Document> getUnion(vector<Document> lhs, vector<Document> rhs);
     vector<Document> getIntersection(vector<Document> lhs, vector<Document> rhs);
     vector<Document> getDifference(vector<Document> lhs, vector<Document> rhs);
-    vector<Document> getAuthor(vector<Document> list);
+    vector<Document> getAuthor(vector<Document> lhs,vector<Document> list);
 
     void stem(string& );
-    vector<Document> stringToDoc(const vector<string>& strs);
-    double findTFIDRStat(Document doc, string word, int querySize, int numOfDoc);
+    vector<Document> stringToDoc(const string strs);
+    double findTFIDRStat(int querySize, int numOfDoc, double termFreq);
     void relevancySort(vector<Document>&);
 };
