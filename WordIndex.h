@@ -36,6 +36,10 @@ public:
         return empty;
     }
 
+    void writeToFile(const char *fileName) {
+        tree.writeToFile(fileName);
+    }
+
     void clear(){
         tree.clear();
     }

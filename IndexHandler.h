@@ -41,6 +41,8 @@ public:
     void addToWordIndex(string, string, double);
     void addToAuthorIndex(string, string);
 
+    void clearIndexes();
+
     void print();
 };
 

@@ -1,6 +1,7 @@
 #include "QueryProcessor.h"
 #include <iterator>
 #include <math.h>
+#include <algorithm>
 #include "stemmer/porter2_stemmer.h"
 QueryProcessor::QueryProcessor(const IndexHandler & handler) {
     ih = handler;
@@ -20,6 +21,7 @@ vector<Document> QueryProcessor::stringToDoc(const string word) {
         Document strToDoc = * new Document(s);
         strToDoc.tfStat = findTFIDRStat(strs.size(),numOfDocs,freq[i]);
         docs.push_back(strToDoc);
+        i++;
     }
     return docs;
 }
@@ -128,7 +130,6 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
 double QueryProcessor::findTFIDRStat(int querySize,int numOfDocs, double termFreq) {
     double tf = termFreq; // find term frequency in doc / total words in doc -> done in DocumentWord
     double idf = log((numOfDocs*1.0) / (querySize) + 1); // log_e(total num of documents / number of documents with word + 1)
-    cout << querySize <<"  " << numOfDocs << "  " << termFreq << endl;
     return tf * idf;
 }
 
@@ -193,7 +194,6 @@ vector<Document> QueryProcessor::getDifference(vector<Document> lhs, vector<Docu
 
 vector<Document> QueryProcessor::getAuthor(vector<Document> lhs, vector<Document> aList) {
     vector<Document> list;
-    cout << aList.size() <<endl;
     for (Document x : aList) {
         for (Document y : lhs) {
             if (x.docID == y.docID)
@@ -220,4 +220,5 @@ void QueryProcessor::relevancySort(vector<Document> & list) {
         }
         list[j + 1] = key;
     }
+    reverse(list.begin(),list.end());
 }

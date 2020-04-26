@@ -23,7 +23,7 @@ void Word::addDocID(const string& doc) {
     numOfDocs++;
 }
 
-void Word::addTermFrequency(int frequency) {
+void Word::addTermFrequency(double frequency) {
     termFrequencies.push_back(frequency);
 }
 
@@ -51,8 +51,9 @@ ostream &operator<<(ostream &os, const Word &rhs) {
     os << rhs.word << " ";
 
     for (int i = 0; i < rhs.docIDs.size(); i++)
-        os << rhs.docIDs[i] << "(" << rhs.termFrequencies[i] << ") ";
+        os << rhs.docIDs[i] << " " << rhs.termFrequencies[i] << " ";
 
+    os << flush;
     return os;
 }
 

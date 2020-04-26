@@ -34,6 +34,7 @@ private:
     void submitQuery();
     void paginateResultingDocuments(vector<string> &, int);
     void getStatistics();
+    void clear(const char *, const char *);
 
     string lowercase(string);
 };
