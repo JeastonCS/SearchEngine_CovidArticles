@@ -194,7 +194,6 @@ vector<Document> QueryProcessor::getDifference(vector<Document> lhs, vector<Docu
 
 vector<Document> QueryProcessor::getAuthor(vector<Document> lhs, vector<Document> aList) {
     vector<Document> list;
-    cout << aList.size() <<endl;
     for (Document x : aList) {
         for (Document y : lhs) {
             if (x.docID == y.docID)
