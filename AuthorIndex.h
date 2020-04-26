@@ -16,7 +16,7 @@ public:
     void writeToFile(const char * file) {
         table.writeToFile(file);
     }
-    void populateFromFile(char * file) {
+    void populateFromFile(const char * file) {
         table.getFile(file);
     }
     void clear() {

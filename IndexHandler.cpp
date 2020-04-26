@@ -1,3 +1,4 @@
+
 /* Created By: Jack Easton
  * 4/13/2020
  */
@@ -123,4 +124,3 @@ void IndexHandler::clearIndexes() {
 void IndexHandler::print() {
     textIndex.print();
 }
-
