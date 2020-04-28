@@ -3,19 +3,19 @@
 Document::Document(const Document& doc){
     docID = doc.docID;
     title = doc.title;
-    author = doc.author;
+    authors = doc.authors;
     publication = doc.publication;
     tfStat = doc.tfStat;
 }
 void Document::print() {
-    cout << docID;
+    cout << title << "\n\t(" << docID << ")" << endl;
 }
 Document& Document::operator=(const Document& rhs) {
     if(&rhs == this)
         return *this;
     docID = rhs.docID;
     title = rhs.title;
-    author = rhs.author;
+    authors = rhs.authors;
     publication = rhs.publication;
     tfStat = rhs.tfStat;
 
@@ -29,4 +29,10 @@ bool Document::operator<(const Document& rhs) {
 }
 bool Document::operator==(const Document& rhs) {
     return tfStat==rhs.tfStat;
+}
+
+ostream &operator<<(ostream &os, const Document &doc) {
+    os << doc.docID << flush;
+
+    return os;
 }

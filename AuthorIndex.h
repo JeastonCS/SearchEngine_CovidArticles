@@ -7,8 +7,8 @@ class AuthorIndex{
 private:
     HashTable table;
 public:
-    void addAuthor(string word, string doc) {
-        table.insert(word,doc);
+    void addAuthor(string word, const Document &doc) {
+//        table.insert(word,doc);
     }
     vector<string> getAuthor(string name) {
         return table.getAtKey(name);
@@ -16,7 +16,7 @@ public:
     void writeToFile(const char * file) {
         table.writeToFile(file);
     }
-    void populateFromFile(const char * file) {
+    void populateFromFile(char * file) {
         table.getFile(file);
     }
     void clear() {

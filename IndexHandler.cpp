@@ -1,4 +1,3 @@
-
 /* Created By: Jack Easton
  * 4/13/2020
  */
@@ -12,7 +11,7 @@ IndexHandler::IndexHandler() {
 }
 
 void IndexHandler::addProcessorWords() {
-    string docID = dProcessor.getDocID();
+    Document docID = dProcessor.getDocument();
     vector<DocumentWord> words = dProcessor.getProcessedWords();
 
     for (int i = 0; i < words.size(); i++)
@@ -20,7 +19,7 @@ void IndexHandler::addProcessorWords() {
 }
 
 void IndexHandler::addProcessorAuthors() {
-    string docID = dProcessor.getDocID();
+    Document docID = dProcessor.getDocument();
     vector<string> authors = dProcessor.getAuthors();
 
     for (int i = 0; i < authors.size(); i++)
@@ -91,7 +90,7 @@ void IndexHandler::writeAuthorsToFile(const char *outputName)
     nameIndex.writeToFile(outputName);
 }
 
-vector<string> IndexHandler::getWordDocs(string word)
+vector<Document> IndexHandler::getWordDocs(string word)
 {
     return textIndex.getWordDocs(word);
 }
@@ -108,11 +107,11 @@ void IndexHandler::setProcessor(const DocumentProcessor &other) {
     dProcessor = other;
 }
 
-void IndexHandler::addToWordIndex(string docID, string word, double termFreq) {
-    textIndex.addWord(word, docID, termFreq);
+void IndexHandler::addToWordIndex(const Document &doc, string word, double termFreq) {
+    textIndex.addWord(word, doc, termFreq);
 }
 
-void IndexHandler::addToAuthorIndex(string docID, string name) {
+void IndexHandler::addToAuthorIndex(const Document &docID, string name) {
     nameIndex.addAuthor(name, docID);
 }
 
@@ -124,3 +123,4 @@ void IndexHandler::clearIndexes() {
 void IndexHandler::print() {
     textIndex.print();
 }
+

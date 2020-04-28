@@ -14,7 +14,7 @@ public:
 //    QueryProcessor() = default;
     QueryProcessor(const IndexHandler &);
 
-    vector<string> runQuery(string query, int numOfDocs);
+    vector<Document> runQuery(string query, int numOfDocs);
 
     vector<Document> getUnion(vector<Document> lhs, vector<Document> rhs);
     vector<Document> getIntersection(vector<Document> lhs, vector<Document> rhs);

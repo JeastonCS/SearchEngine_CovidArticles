@@ -33,9 +33,6 @@ void UserInterface::interfaceLoop()
         else if (command == "query") {
             submitQuery();
         }
-        else if (command == "stats") {
-            getStatistics();
-        }
         else if (command == "to file") {
             writeIndexToFile(wordFile, authorFile);
         }
@@ -51,6 +48,7 @@ void UserInterface::interfaceLoop()
         }
 
         //update user command
+        cout    << "<<<----------------------------------------------------------------------------->>>" << endl;
         cout    << "Type your command below (or type \"command list\" for a list of commands):\n"
                 << ">>> " << flush;
 
@@ -70,13 +68,12 @@ void UserInterface::introduction()
 void UserInterface::displayOptions()
 {
     cout    << "Options: \n"
-            << " - quit    -> quit session\n"
             << " - json    -> populate indexes using directory with json documents\n"
-            << " - query   -> enter a query\n"
-            << " - stats   -> get a list of statistics of the search engine\n"
-            << " - to file -> write current indexes to files\n"
             << " - file    -> populate indexes using files\n"
+            << " - query   -> enter a query\n"
+            << " - to file -> write current indexes to files\n"
             << " - clear   -> clear current indexes\n"
+            << " - quit    -> quit session\n"
             << flush;
 }
 
@@ -90,7 +87,7 @@ void UserInterface::populateIndexWithCorpus()
 
     while(dp == NULL) {
         cout    << "Enter the name of your directory (or type \"new command\" to submit a new command):\n"
-                << ">>>" << flush;
+                << ">>> " << flush;
         getline(cin, dir);
         cout << endl;
 
@@ -131,9 +128,6 @@ void UserInterface::populateIndexWithCorpus()
     }
 
     closedir(dp);
-
-    //TODO REMOVE
-    handler.print();
 }
 
 void UserInterface::populateIndexWithFile(const char *wordIndex, const char *authorIndex) {
@@ -153,50 +147,52 @@ void UserInterface::submitQuery()
     //get query
     string query;
     cout    << "Enter your query:\n"
-            << ">>> ";
+            << ">>> " << flush;
     getline(cin, query);
-    cout << endl;
 
-    //get query results
-    vector<string> documents;
-    documents = qProcessor->runQuery(query, numDocsParsed);
+    while (query != "new command") {
+        //get query results
+        vector<Document> documents;
+        documents = qProcessor->runQuery(query, numDocsParsed);
 
-    //output query results to user
-    cout << "Number of documents: " << documents.size() << '\n' << endl;
+        //output query results to user
+        cout << "Number of documents: " << documents.size() << '\n' << endl;
 
-    cout << "Document IDs: " << endl;
-    for (string ID : documents) {
-        cout << ID << endl;
-    }
+        int pageNum = 1;
+        while(paginateResultingDocuments(documents, pageNum)) {
+            //check to see if user wants to see more documents
+            cout    << "View next page? (\"yes\" or \"no\")\n"
+                    << ">>> " << flush;
+            string choice;
+            getline(cin, choice);
+            cout << endl;
+            lowercase(choice);
 
-    int pageNum = 1;
-    while(true) {
-        paginateResultingDocuments(documents, pageNum);
+            //user wants to ask a new command
+            if (choice == "no") {
+                return;
+            }
 
-        //check to see if user wants to see more documents
-        cout    << "View next page? (if no, type \"new command\" to submit a new command)\n"
-                << ">>>" << flush;
-        string choice;
-        getline(cin, choice);
-        cout << endl;
-        lowercase(choice);
-
-        //user wants to ask a new command
-        if (choice == "new command") {
-            cout << "REDIRECTING...\n" << endl;
-            return;
+            pageNum++;
         }
 
-        pageNum++;
+        cout    << "Enter a new query (or \"new command\" to go back to the main menu):\n"
+                << ">>> ";
+        getline(cin, query);
+        query = lowercase(query);
+        cout << endl;
     }
 }
 
-void UserInterface::paginateResultingDocuments(vector<string> &documents, int pageNum) {
+bool UserInterface::paginateResultingDocuments(vector<Document> &documents, int pageNum) {
     cout << "Page " << pageNum << endl;
     for (int i = (pageNum - 1) * 15; i < documents.size() && i < pageNum * 15; i++) {
-        cout << i+1 << ". " << documents[i] << endl;
+        cout << i+1 << ". ";
+        documents[i].print();
     }
     cout << endl;
+
+    return (pageNum * 15) < documents.size();
 }
 
 void UserInterface::getStatistics()

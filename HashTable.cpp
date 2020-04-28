@@ -78,6 +78,7 @@ void HashTable::removeAll() {
                 curr = curr->next;
             }
             delete temp;
+            table[i] = nullptr;
         }
     }
 }

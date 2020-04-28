@@ -30,7 +30,7 @@ public:
     void writeMainToFile(const char *);
     void writeAuthorsToFile(const char *);
 
-    vector<string> getWordDocs(string);
+    vector<Document> getWordDocs(string);
     vector<double> getWordFreq(string);
     vector<string> getAuthorDocs(string);
 
@@ -38,8 +38,8 @@ public:
 
     void setProcessor(const DocumentProcessor &);
 
-    void addToWordIndex(string, string, double);
-    void addToAuthorIndex(string, string);
+    void addToWordIndex(const Document &, string, double);
+    void addToAuthorIndex(const Document &, string);
 
     void clearIndexes();
 

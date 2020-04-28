@@ -8,6 +8,7 @@
 #include "IndexHandler.h"
 #include "QueryProcessor.h"
 #include "DocumentProcessor.h"
+#include "Document.h"
 
 #include <dirent.h>
 #include <sys/stat.h>
@@ -32,7 +33,7 @@ private:
     void populateIndexWithFile(const char *, const char *);
     void writeIndexToFile(const char *, const char *);
     void submitQuery();
-    void paginateResultingDocuments(vector<string> &, int);
+    bool paginateResultingDocuments(vector<Document> &, int);
     void getStatistics();
     void clear(const char *, const char *);
 

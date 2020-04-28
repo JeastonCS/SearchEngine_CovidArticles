@@ -12,21 +12,22 @@ void QueryProcessor::stem(string & str) {
     Porter2Stemmer::stem(str);
 }
 
-vector<Document> QueryProcessor::stringToDoc(const string word) {
-    vector<string> strs = ih.getWordDocs(word);
-    vector<double> freq = ih.getWordFreq(word);
-    vector<Document> docs;
-    int i = 0;
-    for (string s:strs) {
-        Document strToDoc = * new Document(s);
-        strToDoc.tfStat = findTFIDRStat(strs.size(),numOfDocs,freq[i]);
-        docs.push_back(strToDoc);
-        i++;
-    }
-    return docs;
+vector<Document> QueryProcessor::stringToDoc(const string word) { //TODO redundancies bc we now use Document objects (maybe make docs an instance variable and make this method initializeTFStats)
+//    vector<string> strs = ih.getWordDocs(word);
+//    vector<double> freq = ih.getWordFreq(word);
+//    vector<Document> docs;
+//    int i = 0;
+//    for (string s:strs) {
+//        Document strToDoc = * new Document(s);
+//        strToDoc.tfStat = findTFIDRStat(strs.size(),numOfDocs,freq[i]);
+//        docs.push_back(strToDoc);
+//        i++;
+//    }
+//    return docs;
+    return ih.getWordDocs(word);
 }
 
-vector<string> QueryProcessor::runQuery(string query, int numDocs) {
+vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
     numOfDocs = numDocs;
 
     // process/split query
@@ -37,7 +38,7 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
 
     // temporarily output as string
     //TODO Need to load Title, Description, Authors, and Publication Date Per result
-    vector<string> docsFinal;
+//    vector<string> docsFinal;
 
     vector<Document> currentList;
     string param1 = "";
@@ -122,9 +123,9 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
         queryOrder.pop_back();
     }
     //TODO convert back to string for now
-    for (Document x: currentList)
-        docsFinal.push_back(x.docID);
-    return docsFinal;
+//    for (Document x: currentList)
+//        docsFinal.push_back(x.docID);
+    return currentList;
 }
 
 double QueryProcessor::findTFIDRStat(int querySize,int numOfDocs, double termFreq) {
