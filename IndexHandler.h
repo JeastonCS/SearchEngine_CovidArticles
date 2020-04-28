@@ -32,7 +32,7 @@ public:
 
     vector<Document> getWordDocs(string);
     vector<double> getWordFreq(string);
-    vector<string> getAuthorDocs(string);
+    vector<Document> getAuthorDocs(string);
 
     int getNumUniqueWords() {return textIndex.getNumUniqueWords(); }
 

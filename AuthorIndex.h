@@ -10,7 +10,7 @@ public:
     void addAuthor(string word, const Document &doc) {
 //        table.insert(word,doc);
     }
-    vector<string> getAuthor(string name) {
+    vector<Document> getAuthor(string name) {
         return table.getAtKey(name);
     }
     void writeToFile(const char * file) {

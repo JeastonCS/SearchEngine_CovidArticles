@@ -8,18 +8,18 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="SearchEngine">
-				<Option output="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/SearchEngine.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug"/>
+				<Option output="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/SearchEngine.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -32,15 +32,15 @@
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 SearchEngine"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 SearchEngine"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="SearchEngine/fast">
-				<Option output="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/SearchEngine.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug"/>
+				<Option output="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/SearchEngine.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -53,103 +53,103 @@
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 SearchEngine/fast"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 SearchEngine/fast"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/AVLNode.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/AVLNode.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/AVLTree.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/AVLTree.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/AuthorIndex.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/AuthorIndex.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/Document.cpp">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/Document.cpp">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/Document.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/Document.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentProcessor.cpp">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentProcessor.cpp">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentProcessor.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentProcessor.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentWord.cpp">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentWord.cpp">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentWord.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/DocumentWord.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/HashTable.cpp">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/HashTable.cpp">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/HashTable.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/HashTable.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/IndexHandler.cpp">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/IndexHandler.cpp">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/IndexHandler.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/IndexHandler.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/QueryProcessor.cpp">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/QueryProcessor.cpp">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/QueryProcessor.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/QueryProcessor.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/UserInterface.cpp">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/UserInterface.cpp">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/UserInterface.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/UserInterface.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/Word.cpp">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/Word.cpp">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/Word.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/Word.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/WordIndex.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/WordIndex.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/main.cpp">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/main.cpp">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/stemmer/porter2_stemmer.cpp">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/stemmer/porter2_stemmer.cpp">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/stemmer/porter2_stemmer.h">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/stemmer/porter2_stemmer.h">
 			<Option target="SearchEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Jack Easton/CLionProjects/CS2341-SearchEngine-JeastonCS-ysinha24/CMakeLists.txt">
+		<Unit filename="C:/Users/Jack Easton/CLionProjects/FinalProgram/CS2341-SearchEngine-JeastonCS-ysinha24/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -95,7 +95,7 @@ vector<Document> IndexHandler::getWordDocs(string word)
     return textIndex.getWordDocs(word);
 }
 
-vector<string> IndexHandler::getAuthorDocs(string name) {
+vector<Document> IndexHandler::getAuthorDocs(string name) {
     return nameIndex.getAuthor(name);
 }
 

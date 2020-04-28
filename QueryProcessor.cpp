@@ -26,7 +26,7 @@ vector<Document> QueryProcessor::stringToDoc(const string word) {
     return docs;
 }
 
-vector<string> QueryProcessor::runQuery(string query, int numDocs) {
+vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
     numOfDocs = numDocs;
 
     // process/split query
@@ -34,10 +34,6 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
     istream_iterator<string> begin(ss);
     istream_iterator<string> end;
     vector<string> queryOrder(begin, end);
-
-    // temporarily output as string
-    //TODO Need to load Title, Description, Authors, and Publication Date Per result
-    vector<string> docsFinal;
 
     vector<Document> currentList;
     vector<string> params;
@@ -154,10 +150,8 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
 
         queryOrder.pop_back();
     }
-    //TODO convert back to string for now
-    for (Document x: currentList)
-        docsFinal.push_back(x.docID);
-    return docsFinal;
+
+    return currentList;
 }
 
 double QueryProcessor::findTFIDRStat(int querySize,int numOfDocs, double termFreq) {
