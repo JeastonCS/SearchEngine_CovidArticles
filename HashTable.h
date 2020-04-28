@@ -3,10 +3,11 @@
 #include<string>
 #include <vector>
 using namespace std;
-const int tableSize = 10000;
+const int tableSize = 100000;
 
 class HashTable {
 private:
+    int newAuthors = 0;
     struct HashNode{
         HashNode(string k, string v){
             key = k; value = v;
@@ -25,4 +26,6 @@ public:
     void remove(string k);
     void removeAll();
     int hashFunc(string k);
+    void writeToFile(const char* file);
+    void getFile(const char* file);
 };

@@ -7,20 +7,32 @@ using namespace std;
 
 Word::Word(const string& word) {
     this->word = word;
+    numOfDocs = 0;
 }
 
 // CHECK
-Word::Word(const string& word, const string& doc) {
+Word::Word(const string& word, const Document& doc, double termFrequency) {
     this->word = word;
     docIDs.push_back(doc);
+    termFrequencies.push_back(termFrequency);
+    numOfDocs = 1;
 }
 
-void Word::addDocID(const string& doc) {
+void Word::addDoc(const Document& doc) {
     docIDs.push_back(doc);
+    numOfDocs++;
 }
 
-vector<string>& Word::getDocIDs() {
+void Word::addTermFrequency(double frequency) {
+    termFrequencies.push_back(frequency);
+}
+
+vector<Document>& Word::getDocs() {
     return docIDs;
+}
+
+vector<double>& Word::getTermFrequencies() {
+    return termFrequencies;
 }
 
 bool Word::operator<(const Word& rhs) const {
@@ -35,13 +47,16 @@ bool Word::operator==(const Word& rhs) const {
     return word == rhs.word;
 }
 
-//ostream &operator<<(ostream &os, const Word &rhs) {
-//    os << rhs.word << " ";
-//
-//    for (string docID : rhs.docIDs)
-//        os << docID << " ";
-//}
+ostream &operator<<(ostream &os, const Word &rhs) {
+    os << rhs.word << " ";
+
+    for (int i = 0; i < rhs.docIDs.size(); i++)
+        os << rhs.docIDs[i] << " " << rhs.termFrequencies[i] << " ";
+
+    os << flush;
+    return os;
+}
 
 void Word::print() {
-    cout << word;
+    cout << *this;
 }

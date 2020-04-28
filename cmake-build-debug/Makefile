@@ -110,17 +110,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named JSONTest
+# Target rules for targets named SearchEngine
 
 # Build rule for target.
-JSONTest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 JSONTest
-.PHONY : JSONTest
+SearchEngine: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 SearchEngine
+.PHONY : SearchEngine
 
 # fast build rule for target.
-JSONTest/fast:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/build
-.PHONY : JSONTest/fast
+SearchEngine/fast:
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/build
+.PHONY : SearchEngine/fast
 
 Document.obj: Document.cpp.obj
 
@@ -128,7 +128,7 @@ Document.obj: Document.cpp.obj
 
 # target to build an object file
 Document.cpp.obj:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/Document.cpp.obj
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/Document.cpp.obj
 .PHONY : Document.cpp.obj
 
 Document.i: Document.cpp.i
@@ -137,7 +137,7 @@ Document.i: Document.cpp.i
 
 # target to preprocess a source file
 Document.cpp.i:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/Document.cpp.i
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/Document.cpp.i
 .PHONY : Document.cpp.i
 
 Document.s: Document.cpp.s
@@ -146,7 +146,7 @@ Document.s: Document.cpp.s
 
 # target to generate assembly for a file
 Document.cpp.s:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/Document.cpp.s
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/Document.cpp.s
 .PHONY : Document.cpp.s
 
 DocumentProcessor.obj: DocumentProcessor.cpp.obj
@@ -155,7 +155,7 @@ DocumentProcessor.obj: DocumentProcessor.cpp.obj
 
 # target to build an object file
 DocumentProcessor.cpp.obj:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/DocumentProcessor.cpp.obj
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/DocumentProcessor.cpp.obj
 .PHONY : DocumentProcessor.cpp.obj
 
 DocumentProcessor.i: DocumentProcessor.cpp.i
@@ -164,7 +164,7 @@ DocumentProcessor.i: DocumentProcessor.cpp.i
 
 # target to preprocess a source file
 DocumentProcessor.cpp.i:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/DocumentProcessor.cpp.i
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/DocumentProcessor.cpp.i
 .PHONY : DocumentProcessor.cpp.i
 
 DocumentProcessor.s: DocumentProcessor.cpp.s
@@ -173,8 +173,35 @@ DocumentProcessor.s: DocumentProcessor.cpp.s
 
 # target to generate assembly for a file
 DocumentProcessor.cpp.s:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/DocumentProcessor.cpp.s
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/DocumentProcessor.cpp.s
 .PHONY : DocumentProcessor.cpp.s
+
+DocumentWord.obj: DocumentWord.cpp.obj
+
+.PHONY : DocumentWord.obj
+
+# target to build an object file
+DocumentWord.cpp.obj:
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/DocumentWord.cpp.obj
+.PHONY : DocumentWord.cpp.obj
+
+DocumentWord.i: DocumentWord.cpp.i
+
+.PHONY : DocumentWord.i
+
+# target to preprocess a source file
+DocumentWord.cpp.i:
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/DocumentWord.cpp.i
+.PHONY : DocumentWord.cpp.i
+
+DocumentWord.s: DocumentWord.cpp.s
+
+.PHONY : DocumentWord.s
+
+# target to generate assembly for a file
+DocumentWord.cpp.s:
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/DocumentWord.cpp.s
+.PHONY : DocumentWord.cpp.s
 
 HashTable.obj: HashTable.cpp.obj
 
@@ -182,7 +209,7 @@ HashTable.obj: HashTable.cpp.obj
 
 # target to build an object file
 HashTable.cpp.obj:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/HashTable.cpp.obj
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/HashTable.cpp.obj
 .PHONY : HashTable.cpp.obj
 
 HashTable.i: HashTable.cpp.i
@@ -191,7 +218,7 @@ HashTable.i: HashTable.cpp.i
 
 # target to preprocess a source file
 HashTable.cpp.i:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/HashTable.cpp.i
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/HashTable.cpp.i
 .PHONY : HashTable.cpp.i
 
 HashTable.s: HashTable.cpp.s
@@ -200,7 +227,7 @@ HashTable.s: HashTable.cpp.s
 
 # target to generate assembly for a file
 HashTable.cpp.s:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/HashTable.cpp.s
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/HashTable.cpp.s
 .PHONY : HashTable.cpp.s
 
 IndexHandler.obj: IndexHandler.cpp.obj
@@ -209,7 +236,7 @@ IndexHandler.obj: IndexHandler.cpp.obj
 
 # target to build an object file
 IndexHandler.cpp.obj:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/IndexHandler.cpp.obj
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/IndexHandler.cpp.obj
 .PHONY : IndexHandler.cpp.obj
 
 IndexHandler.i: IndexHandler.cpp.i
@@ -218,7 +245,7 @@ IndexHandler.i: IndexHandler.cpp.i
 
 # target to preprocess a source file
 IndexHandler.cpp.i:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/IndexHandler.cpp.i
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/IndexHandler.cpp.i
 .PHONY : IndexHandler.cpp.i
 
 IndexHandler.s: IndexHandler.cpp.s
@@ -227,7 +254,7 @@ IndexHandler.s: IndexHandler.cpp.s
 
 # target to generate assembly for a file
 IndexHandler.cpp.s:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/IndexHandler.cpp.s
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/IndexHandler.cpp.s
 .PHONY : IndexHandler.cpp.s
 
 QueryProcessor.obj: QueryProcessor.cpp.obj
@@ -236,7 +263,7 @@ QueryProcessor.obj: QueryProcessor.cpp.obj
 
 # target to build an object file
 QueryProcessor.cpp.obj:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/QueryProcessor.cpp.obj
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/QueryProcessor.cpp.obj
 .PHONY : QueryProcessor.cpp.obj
 
 QueryProcessor.i: QueryProcessor.cpp.i
@@ -245,7 +272,7 @@ QueryProcessor.i: QueryProcessor.cpp.i
 
 # target to preprocess a source file
 QueryProcessor.cpp.i:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/QueryProcessor.cpp.i
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/QueryProcessor.cpp.i
 .PHONY : QueryProcessor.cpp.i
 
 QueryProcessor.s: QueryProcessor.cpp.s
@@ -254,7 +281,7 @@ QueryProcessor.s: QueryProcessor.cpp.s
 
 # target to generate assembly for a file
 QueryProcessor.cpp.s:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/QueryProcessor.cpp.s
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/QueryProcessor.cpp.s
 .PHONY : QueryProcessor.cpp.s
 
 UserInterface.obj: UserInterface.cpp.obj
@@ -263,7 +290,7 @@ UserInterface.obj: UserInterface.cpp.obj
 
 # target to build an object file
 UserInterface.cpp.obj:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/UserInterface.cpp.obj
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/UserInterface.cpp.obj
 .PHONY : UserInterface.cpp.obj
 
 UserInterface.i: UserInterface.cpp.i
@@ -272,7 +299,7 @@ UserInterface.i: UserInterface.cpp.i
 
 # target to preprocess a source file
 UserInterface.cpp.i:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/UserInterface.cpp.i
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/UserInterface.cpp.i
 .PHONY : UserInterface.cpp.i
 
 UserInterface.s: UserInterface.cpp.s
@@ -281,7 +308,7 @@ UserInterface.s: UserInterface.cpp.s
 
 # target to generate assembly for a file
 UserInterface.cpp.s:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/UserInterface.cpp.s
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/UserInterface.cpp.s
 .PHONY : UserInterface.cpp.s
 
 Word.obj: Word.cpp.obj
@@ -290,7 +317,7 @@ Word.obj: Word.cpp.obj
 
 # target to build an object file
 Word.cpp.obj:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/Word.cpp.obj
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/Word.cpp.obj
 .PHONY : Word.cpp.obj
 
 Word.i: Word.cpp.i
@@ -299,7 +326,7 @@ Word.i: Word.cpp.i
 
 # target to preprocess a source file
 Word.cpp.i:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/Word.cpp.i
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/Word.cpp.i
 .PHONY : Word.cpp.i
 
 Word.s: Word.cpp.s
@@ -308,7 +335,7 @@ Word.s: Word.cpp.s
 
 # target to generate assembly for a file
 Word.cpp.s:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/Word.cpp.s
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/Word.cpp.s
 .PHONY : Word.cpp.s
 
 main.obj: main.cpp.obj
@@ -317,7 +344,7 @@ main.obj: main.cpp.obj
 
 # target to build an object file
 main.cpp.obj:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/main.cpp.obj
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -326,7 +353,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -335,7 +362,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 stemmer/porter2_stemmer.obj: stemmer/porter2_stemmer.cpp.obj
@@ -344,7 +371,7 @@ stemmer/porter2_stemmer.obj: stemmer/porter2_stemmer.cpp.obj
 
 # target to build an object file
 stemmer/porter2_stemmer.cpp.obj:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/stemmer/porter2_stemmer.cpp.obj
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/stemmer/porter2_stemmer.cpp.obj
 .PHONY : stemmer/porter2_stemmer.cpp.obj
 
 stemmer/porter2_stemmer.i: stemmer/porter2_stemmer.cpp.i
@@ -353,7 +380,7 @@ stemmer/porter2_stemmer.i: stemmer/porter2_stemmer.cpp.i
 
 # target to preprocess a source file
 stemmer/porter2_stemmer.cpp.i:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/stemmer/porter2_stemmer.cpp.i
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/stemmer/porter2_stemmer.cpp.i
 .PHONY : stemmer/porter2_stemmer.cpp.i
 
 stemmer/porter2_stemmer.s: stemmer/porter2_stemmer.cpp.s
@@ -362,7 +389,7 @@ stemmer/porter2_stemmer.s: stemmer/porter2_stemmer.cpp.s
 
 # target to generate assembly for a file
 stemmer/porter2_stemmer.cpp.s:
-	$(MAKE) -f CMakeFiles\JSONTest.dir\build.make CMakeFiles/JSONTest.dir/stemmer/porter2_stemmer.cpp.s
+	$(MAKE) -f CMakeFiles\SearchEngine.dir\build.make CMakeFiles/SearchEngine.dir/stemmer/porter2_stemmer.cpp.s
 .PHONY : stemmer/porter2_stemmer.cpp.s
 
 # Help Target
@@ -371,7 +398,7 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... JSONTest
+	@echo ... SearchEngine
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Document.obj
@@ -380,6 +407,9 @@ help:
 	@echo ... DocumentProcessor.obj
 	@echo ... DocumentProcessor.i
 	@echo ... DocumentProcessor.s
+	@echo ... DocumentWord.obj
+	@echo ... DocumentWord.i
+	@echo ... DocumentWord.s
 	@echo ... HashTable.obj
 	@echo ... HashTable.i
 	@echo ... HashTable.s

@@ -8,6 +8,7 @@
 #include "WordIndex.h"
 #include "AuthorIndex.h"
 #include "DocumentProcessor.h"
+#include "DocumentWord.h"
 
 #include <sstream>
 #include <fstream>
@@ -23,21 +24,26 @@ public:
     IndexHandler();
 
     void addProcessorWords();
-//    void addProcessorAuthors();
+    void addProcessorAuthors();
     void populateMainWithFile(const char *);
-//    void populateAuthorsWithFile(const char *);
-//    void writeMainToFile(const char *);
-//    void writeAuthorsToFile(const char *);
+    void populateAuthorsWithFile(const char *);
+    void writeMainToFile(const char *);
+    void writeAuthorsToFile(const char *);
 
-    vector<string> getWordDocs(string);
+    vector<Document> getWordDocs(string);
+    vector<double> getWordFreq(string);
     vector<string> getAuthorDocs(string);
 
     int getNumUniqueWords() {return textIndex.getNumUniqueWords(); }
 
     void setProcessor(const DocumentProcessor &);
 
-    void addToWordIndex(string, string);
-    void addToAuthorIndex(string, string);
+    void addToWordIndex(const Document &, string, double);
+    void addToAuthorIndex(const Document &, string);
+
+    void clearIndexes();
+
+    void print();
 };
 
 

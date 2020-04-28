@@ -7,9 +7,8 @@ using namespace std;
 class QueryProcessor{
 private:
     IndexHandler ih;
-    string word1;
-    string word2;
     string name;
+    int numOfDocs;
 
 public:
 //    QueryProcessor() = default;
@@ -17,13 +16,13 @@ public:
 
     vector<string> runQuery(string query, int numOfDocs);
 
-    vector<Document> getUnion(vector<Document> lhs, vector<Document> rhs);
-    vector<Document> getIntersection(vector<Document> lhs, vector<Document> rhs);
-    vector<Document> getDifference(vector<Document> lhs, vector<Document> rhs);
-    vector<Document> getAuthor(vector<Document> list);
+    vector<Document> getUnion(vector<vector<Document>>& docs);
+    vector<Document> getIntersection(vector<vector<Document>>& docs);
+    vector<Document> getDifference(vector<Document>& terms, vector<vector<Document>>& docs);
+    vector<Document> getAuthor(vector<Document>& terms, vector<vector<Document>>& docs);
 
-    void stem(string& );
-    vector<Document> stringToDoc(const vector<string>& strs);
-    double findTFIDRStat(Document doc, string word, int querySize, int numOfDoc);
-    void relevancySort(vector<Document>&);
+    void stem(string& str);
+    vector<Document> stringToDoc(const string strs);
+    double findTFIDRStat(int querySize, int numOfDoc, double termFreq);
+    static void relevancySort(vector<Document>&);
 };

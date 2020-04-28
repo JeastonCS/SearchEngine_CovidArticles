@@ -1,5 +1,7 @@
 #include "QueryProcessor.h"
 #include <iterator>
+#include <math.h>
+#include <algorithm>
 #include "stemmer/porter2_stemmer.h"
 QueryProcessor::QueryProcessor(const IndexHandler & handler) {
     ih = handler;
@@ -10,178 +12,254 @@ void QueryProcessor::stem(string & str) {
     Porter2Stemmer::stem(str);
 }
 
-vector<Document> QueryProcessor::stringToDoc(const vector<string> &strs) {
+vector<Document> QueryProcessor::stringToDoc(const string word) {
+    vector<string> strs = ih.getWordDocs(word);
+    vector<double> freq = ih.getWordFreq(word);
     vector<Document> docs;
+    int i = 0;
     for (string s:strs) {
         Document strToDoc = * new Document(s);
+        strToDoc.tfStat = findTFIDRStat(strs.size(),numOfDocs,freq[i]);
         docs.push_back(strToDoc);
+        i++;
     }
     return docs;
 }
 
-vector<string> QueryProcessor::runQuery(string query, int numOfDocs) {
+vector<string> QueryProcessor::runQuery(string query, int numDocs) {
+    numOfDocs = numDocs;
+
     // process/split query
     stringstream ss(query);
-//    istream_iterator<string> begin(ss);
-//    istream_iterator<string> end;
-//    vector<string> queryOrder(begin, end);
+    istream_iterator<string> begin(ss);
+    istream_iterator<string> end;
+    vector<string> queryOrder(begin, end);
 
-
+    // temporarily output as string
+    //TODO Need to load Title, Description, Authors, and Publication Date Per result
     vector<string> docsFinal;
-    /////////  demo  /////////////
-    stem(query);
-    docsFinal = ih.getWordDocs(query);
-    //////////////////////////////
 
-    //TODO get Author Last Name or first and take union
-//    vector<Document> currentList;
-//    string param1 = "";
-//    string param2 = "";
-//
-//    while (!queryOrder.empty()){
-//        string curr = queryOrder[queryOrder.size() - 1];
-//
-//        if(curr == "AUTHOR"){
-//           currentList = stringToDoc(ih.getAuthorDocs(param1));
-//           param1 = "";
-//        }
-//
-//        else if(curr == "AND"){
-//            vector<Document> d1;
-//            if(!currentList.empty())
-//                d1 = currentList;
-//            else
-//                d1 = stringToDoc(ih.getWordDocs(param1));
-//            vector<Document> d2 = stringToDoc(ih.getWordDocs(param2));
-//            currentList = getIntersection(d2,d1);
-//
-//            param1 = ""; param2 = "";
-//        }
-//
-//        else if(curr == "OR"){
-//            vector<Document> d1;
-//            if(!currentList.empty())
-//                d1 = currentList;
-//            else
-//                d1 = stringToDoc(ih.getWordDocs(param1));
-//            vector<Document> d2 = stringToDoc(ih.getWordDocs(param2));
-//            currentList = getUnion(d2,d1);
-//
-//            param1 = ""; param2 = "";
-//        }
-//
-//        else if(curr == "NOT"){
-//            vector<Document> d1;
-//            if(!currentList.empty())
-//                d1 = currentList;
-//            else
-//                d1 = stringToDoc(ih.getWordDocs(param1));
-//            string nextParam = queryOrder[queryOrder.size() - 2];
-//            stem(nextParam);
-//            vector<Document> d2 = stringToDoc(ih.getWordDocs(nextParam));
-//            currentList = getDifference(d2,d1);
-//
-//            param1 = ""; param2 = "";
-//            queryOrder.pop_back();
-//        }
-//
-//        else {
-//            if(param1 == "") {
-//                param1 = curr;
-//                stem(param1);
-//            }
-//            else {
-//                param2 = curr;
-//                stem(param2);
-//            }
-//        }
-//
-//        if(param1 != "" && queryOrder.size() == 1)
-//            currentList = stringToDoc(ih.getWordDocs(param1));
-//
-//        queryOrder.pop_back();
-//    }
-//    //TODO convert back to string for now
-//    //TODO need to complete TF-IDR stat for sort
-//    for (Document x: currentList)
-//        docsFinal.push_back(x.title);
+    vector<Document> currentList;
+    vector<string> params;
+
+    // use a stack functionality to compute queries similar to infix notation
+    // pop words into the parameters and pop operator calls set functions
+    while (!queryOrder.empty()){
+        string curr = queryOrder[queryOrder.size() - 1];
+
+        if(strcasecmp(curr.c_str(),"AUTHOR") == 0){
+            // get Authors and convert to Documents
+            vector<vector<Document>> docs;
+            for (string& s: params) {
+                vector<string> temp = ih.getAuthorDocs(s);
+                vector<Document> tempDocs;
+                for (string str : temp) {
+                    Document x(str);
+                    x.tfStat = 0;
+                    tempDocs.push_back(x);
+                }
+                docs.push_back(tempDocs);
+            }
+
+            // check current to chain queries
+            if (!currentList.empty())
+                docs.push_back(currentList);
+
+            // get search term preceding the AUTHOR
+            if (queryOrder.size() == 1) {
+                cout << "not valid AUTHOR Statement --  term AUTHOR author(s)" << endl;
+                break;
+            }
+            string nextParam = queryOrder[queryOrder.size() - 2];
+            stem(nextParam);
+            vector<Document> d1 = stringToDoc(nextParam);
+
+            // do set difference and clear
+            currentList = getAuthor(d1,docs);
+            queryOrder.pop_back();
+            params.clear();
+        }
+
+        else if(strcasecmp(curr.c_str(),"AND") == 0){
+            // stem and initialize
+            vector<vector<Document>> docs;
+            for (string& s: params) {
+                stem(s);
+                docs.push_back(stringToDoc(s));
+            }
+
+            // check current to chain queries
+            if (!currentList.empty())
+                docs.push_back(currentList);
+
+            // get set intersection and clear
+            currentList = getIntersection(docs);
+            params.clear();
+        }
+
+        else if(strcasecmp(curr.c_str(),"OR") == 0){
+            // stem and initialize
+            vector<vector<Document>> docs;
+            for (string& s: params) {
+                stem(s);
+                docs.push_back(stringToDoc(s));
+            }
+
+            // check current to chain queries
+            if (!currentList.empty())
+                docs.push_back(currentList);
+
+            // get set Union and clear
+            currentList = getUnion(docs);
+            params.clear();
+        }
+
+        else if(strcasecmp(curr.c_str(),"NOT") == 0){
+            // stem and initialize
+            vector<vector<Document>> docs;
+            for (string& s: params) {
+                stem(s);
+                docs.push_back(stringToDoc(s));
+            }
+
+            // check current to chain queries
+            if (!currentList.empty())
+                docs.push_back(currentList);
+
+            // get search term preceding the NOT
+            if (queryOrder.size() == 1) {
+                cout << "Not Valid NOT statement -- term NOT term(s)" << endl;
+                break;
+            }
+            string nextParam = queryOrder[queryOrder.size() - 2];
+            stem(nextParam);
+            vector<Document> d1 = stringToDoc(nextParam);
+
+            // do set difference and clear
+            currentList = getDifference(d1,docs);
+            queryOrder.pop_back();
+            params.clear();
+        }
+
+        else {
+            params.push_back(curr);
+        }
+
+        // if query is only one word
+        if(params.size() == 1 && queryOrder.size() == 1) {
+            stem(params[0]);
+            currentList = stringToDoc(params[0]);
+            relevancySort(currentList);
+        }
+
+        queryOrder.pop_back();
+    }
+    //TODO convert back to string for now
+    for (Document x: currentList)
+        docsFinal.push_back(x.docID);
     return docsFinal;
 }
 
-double QueryProcessor::findTFIDRStat(Document doc, string word, int querySize ,int numOfDocs) {
-    // TODO find ways to get terms and which to use as parameters
-    double tf = 1; // find term frequency / total words in doc
-    double idf = numOfDocs / querySize; // log_e(total num of documents / number of documents with word)
+double QueryProcessor::findTFIDRStat(int querySize,int numOfDocs, double termFreq) {
+    double tf = termFreq; // find term frequency in doc / total words in doc -> done in DocumentWord
+    double idf = log((numOfDocs*1.0) / (querySize) + 1); // log_e(total num of documents / number of documents with word + 1)
     return tf * idf;
 }
 
-vector<Document> QueryProcessor::getUnion(vector<Document> lhs, vector<Document> rhs){
-    vector<Document> list = lhs;
+vector<Document> QueryProcessor::getUnion(vector<vector<Document>>& docs){
+    vector<Document> resultList = docs[0];
 
-    for (Document x : rhs) {
+    for (int i = 1; i < docs.size(); i++){
+        for (Document &x : docs[i]) {
+            bool found = false;
+            for (Document &y: resultList) {
+                if (x.docID == y.docID) {
+                    y.tfStat = y.tfStat + x.tfStat; // change to make more precise
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+                resultList.push_back(x);
+        }
+    }
+    relevancySort(resultList);
+    return resultList;
+}
+
+vector<Document> QueryProcessor::getIntersection(vector<vector<Document>>& docs) {
+    vector<Document> currList = docs[0];
+    vector<Document> resultList;
+
+    for (int i = 1; i < docs.size(); ++i) {
+        for (Document &x : docs[i]) {
+            for (Document &y : currList) {
+                if (x.docID == y.docID) {
+                    x.tfStat = x.tfStat + y.tfStat; // edit to make more precise
+                    resultList.push_back(x);
+                }
+            }
+        }
+
+        currList = resultList;
+        resultList.clear();
+    }
+
+    relevancySort(currList);
+    return currList;
+}
+
+vector<Document> QueryProcessor::getDifference(vector<Document>& terms, vector<vector<Document>>& docs) {
+    vector<Document> currList = getUnion(docs);
+    vector<Document> resultList;
+
+    for (Document& x : terms) {
         bool found = false;
-        for (Document y: list) {
-            if(x.title != y.title) {
+        for (Document& y: currList) {
+            if(x.docID == y.docID) {
                 found = true;
                 break;
             }
         }
-        if(!found)
-            list.push_back(x);
-    }
-
-    return list;
-}
-
-vector<Document> QueryProcessor::getIntersection(vector<Document> lhs, vector<Document> rhs) {
-    vector<Document> list;
-
-    for (Document x : rhs) {
-        for (Document y : lhs) {
-            if (x.title == y.title)
-                list.push_back(x);
+        if(!found) {
+            resultList.push_back(x);
         }
     }
 
-    return list;
+    relevancySort(resultList);
+    return resultList;
 }
 
-vector<Document> QueryProcessor::getDifference(vector<Document> lhs, vector<Document> rhs) {
-    vector<Document> list = lhs;
 
-    for (Document x : rhs) {
-        bool notFound = false;
-        for (Document y: list) {
-            if(x.title == y.title) {
-                notFound = true;
-                break;
-            }
+vector<Document> QueryProcessor::getAuthor(vector<Document>& terms, vector<vector<Document>>& docs) {
+    vector<Document> currList = getUnion(docs);
+    vector<Document> resultList;
+
+    for (Document& x : terms) {
+        for (Document& y : currList) {
+            if (x.docID == y.docID)
+                resultList.push_back(x);
         }
-        if(!notFound)
-            list.push_back(x);
     }
 
-    return list;
+    relevancySort(resultList);
+    return resultList;
 }
 
 void QueryProcessor::relevancySort(vector<Document> & list) {
-    // use insertion sort
-    //TODO need compare operators in Document class
+    // used insertion sort
     int size = list.size();
-
     int i, j;
     Document key;
+
     for (i = 1; i < size; i++) {
         key = list[i];
         j = i - 1;
         while (j >= 0 && list[j] > key) {
             list[j + 1] = list[j];
-            j = j - 1;
+            j--;
         }
         list[j + 1] = key;
     }
-}
-
-vector<Document> QueryProcessor::getAuthor(vector<Document> list) {
-    return list;
+    reverse(list.begin(),list.end());
 }

@@ -6,24 +6,40 @@ class WordIndex{
 private:
     AVLTree<Word> tree;
 public:
-    void addWord(string word, string doc) {
-        Word index = *new Word(word,doc);
+    void addWord(string word, const Document &doc, double termFreq) {
+        Word index = *new Word(word,doc, termFreq);
         AVLNode<Word>* node = tree.find(index);
         if(node == nullptr){
             tree.insert(index);
         } else {
-            node->getData().addDocID(doc);
+            node->getData().addDoc(doc);
+            node->getData().addTermFrequency(termFreq);
         }
     }
-    vector<string> getWordDocs(string word){
+    vector<Document> getWordDocs(string word){
         Word index(word);
         AVLNode<Word>* node = tree.find(word);
         if(node != nullptr)
-            return node->data.getDocIDs();
+            return node->data.getDocs();
 
-        vector<string> empty;
+        vector<Document> empty;
         return empty;
     }
+
+    vector<double> getTermFreq(string word) {
+        Word index(word);
+        AVLNode<Word>* node = tree.find(word);
+        if(node != nullptr)
+            return node->data.getTermFrequencies();
+
+        vector<double> empty;
+        return empty;
+    }
+
+    void writeToFile(const char *fileName) {
+        tree.writeToFile(fileName);
+    }
+
     void clear(){
         tree.clear();
     }
@@ -32,6 +48,7 @@ public:
         return tree.getNumNodes();
     }
 
-    //TODO
-    AVLTree<Word> & getTree() { return tree; }
+    void print() {
+        tree.print();
+    }
 };

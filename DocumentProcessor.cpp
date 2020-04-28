@@ -15,8 +15,7 @@ DocumentProcessor::DocumentProcessor(const char *fileName) {
 DocumentProcessor &DocumentProcessor::operator=(const DocumentProcessor &rhs) {
     docText = rhs.docText;
     processedWords = rhs.processedWords;
-//    authors = rhs.authors;
-    docID = rhs.docID;
+    doc = rhs.doc;
 
     return *this;
 }
@@ -33,28 +32,27 @@ void DocumentProcessor::parseJson(const char *fileName) {
     IStreamWrapper isw(jsonFile);
 
     //create and parse your document
-    Document doc;
-    doc.ParseStream( isw );
+    rapidjson::Document document;
+    document.ParseStream( isw );
     jsonFile.close();
 
-    //get and store ID
-    if (!doc.IsObject())
+    if (!document.IsObject())
         return;
 
-    docID = doc["paper_id"].GetString();
+    //get and store ID
+    doc.setDocID(document["paper_id"].GetString());
+
+    //get and store title
+    doc.setTitle(document["metadata"]["title"].GetString());
 
     //get and store author names
-//    for (Value &val : doc["metadata"]["authors"].GetArray()) {
-//        // format = "first last"
-//        string authorName = val["first"].GetString();
-//        authorName += " ";
-//        authorName += val["last"].GetString();
-//
-//        authors.push_back(authorName);
-//    }
+    for (Value &val : document["metadata"]["authors"].GetArray()) {
+        string authorName = val["last"].GetString();
+        doc.addAuthor(authorName);
+    }
 
     //get and store raw text
-    for(Value &val : doc["body_text"].GetArray()) {
+    for(Value &val : document["body_text"].GetArray()) {
         docText += val["text"].GetString();
     }
 }
@@ -75,11 +73,32 @@ void DocumentProcessor::populateStopWords(const char *stopFileName) {
 void DocumentProcessor::populateProcessedWords() {
     stringstream sstream(docText);
 
+    docWordCount = 0;
     string word;
     while(sstream >> word) {
         stem(word);
-        if ( (word.size() > 1) && (count(processedWords.begin(), processedWords.end(), word) == 0) && (count(stopWords.begin(), stopWords.end(), word) == 0) )
-            processedWords.push_back(word);
+
+        // if not a stop word AND more than 1 letter
+        if (word.size() > 1 && (count(stopWords.begin(), stopWords.end(), word) == 0)) {
+            DocumentWord *docWord = new DocumentWord(word);
+
+            if (count(processedWords.begin(), processedWords.end(), word) != 0) { //already in processedWords
+                //increment that word's count
+                find(processedWords.begin(), processedWords.end(), *docWord)->incrementTimesInDoc();
+            }
+            else {
+                //add to processedWords
+                processedWords.push_back(*docWord);
+            }
+            //increment total word count in document
+            docWordCount++;
+        }
+    }
+}
+
+void DocumentProcessor::initializeDocWordsTermFrequency() {
+    for (int i = 0; i < processedWords.size(); i++) {
+        processedWords[i].initTermFreq(docWordCount);
     }
 }
 
@@ -89,14 +108,15 @@ void DocumentProcessor::stem(string &toStem) {
 }
 
 void DocumentProcessor::print() {
-    cout << docID << endl;
-//    for (int i = 0; i < authors.size(); i++) {
-//        cout << "\t- " << authors.at(i) << endl;
-//    }
+    cout << doc.getDocID() << endl;
 
+    vector<string> authors = doc.getAuthors();
+    for (int i = 0; i < authors.size(); i++) {
+        cout << "\t- " << authors.at(i) << endl;
+    }
+
+    cout << "Total words: " << docWordCount << endl;
     for (int i = 0; i < processedWords.size(); i++) {
         cout << i + 1 << ": " << processedWords.at(i) << endl;
     }
-
-    cout << docText << endl;
 }

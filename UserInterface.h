@@ -8,6 +8,7 @@
 #include "IndexHandler.h"
 #include "QueryProcessor.h"
 #include "DocumentProcessor.h"
+#include "Document.h"
 
 #include <dirent.h>
 #include <sys/stat.h>
@@ -23,23 +24,20 @@ private:
 public:
     UserInterface();
 
-//    void interfaceLoop();
-
-    void populateIndexWithCorpus(char *);
-    void submitQuery(char *);
-    void getStatistics();
+    void interfaceLoop();
 
 private:
-//    void introduction();
-//    void displayOptions();
-//    void populateIndexWithCorpus();
-//    void populateIndexWithFile(const char *);
-//    void writeIndexToFile(const char *);
-//    void submitQuery();
-//    void paginateResultingDocuments(vector<string> &, int);
-//    void getStatistics();
+    void introduction();
+    void displayOptions();
+    void populateIndexWithCorpus();
+    void populateIndexWithFile(const char *, const char *);
+    void writeIndexToFile(const char *, const char *);
+    void submitQuery();
+    bool paginateResultingDocuments(vector<Document> &, int);
+    void getStatistics();
+    void clear(const char *, const char *);
 
-//    string lowercase(string);
+    string lowercase(string);
 };
 
 
