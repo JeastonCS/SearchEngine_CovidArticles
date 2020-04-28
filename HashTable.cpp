@@ -101,6 +101,8 @@ void HashTable::writeToFile(const char* file) {
     for (int i = 0; i < tableSize; ++i) {
         if(table[i] != nullptr){
             HashNode* curr = table[i];
+            if(curr->key == "")
+                continue;
             out << curr->key << " ";
             while (curr != nullptr) {
                 out << curr->value << " ";

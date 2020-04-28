@@ -14,15 +14,15 @@ public:
 //    QueryProcessor() = default;
     QueryProcessor(const IndexHandler &);
 
-    vector<Document> runQuery(string query, int numOfDocs);
+    vector<string> runQuery(string query, int numOfDocs);
 
-    vector<Document> getUnion(vector<Document> lhs, vector<Document> rhs);
-    vector<Document> getIntersection(vector<Document> lhs, vector<Document> rhs);
-    vector<Document> getDifference(vector<Document> lhs, vector<Document> rhs);
-    vector<Document> getAuthor(vector<Document> lhs,vector<Document> list);
+    vector<Document> getUnion(vector<vector<Document>>& docs);
+    vector<Document> getIntersection(vector<vector<Document>>& docs);
+    vector<Document> getDifference(vector<Document>& terms, vector<vector<Document>>& docs);
+    vector<Document> getAuthor(vector<Document>& terms, vector<vector<Document>>& docs);
 
-    void stem(string& );
+    void stem(string& str);
     vector<Document> stringToDoc(const string strs);
     double findTFIDRStat(int querySize, int numOfDoc, double termFreq);
-    void relevancySort(vector<Document>&);
+    static void relevancySort(vector<Document>&);
 };
