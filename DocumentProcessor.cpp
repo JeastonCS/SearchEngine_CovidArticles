@@ -15,8 +15,7 @@ DocumentProcessor::DocumentProcessor(const char *fileName) {
 DocumentProcessor &DocumentProcessor::operator=(const DocumentProcessor &rhs) {
     docText = rhs.docText;
     processedWords = rhs.processedWords;
-    authors = rhs.authors;
-    docID = rhs.docID;
+    doc = rhs.doc;
 
     return *this;
 }
@@ -33,24 +32,27 @@ void DocumentProcessor::parseJson(const char *fileName) {
     IStreamWrapper isw(jsonFile);
 
     //create and parse your document
-    Document doc;
-    doc.ParseStream( isw );
+    rapidjson::Document document;
+    document.ParseStream( isw );
     jsonFile.close();
 
-    //get and store ID
-    if (!doc.IsObject())
+    if (!document.IsObject())
         return;
 
-    docID = doc["paper_id"].GetString();
+    //get and store ID
+    doc.setDocID(document["paper_id"].GetString());
+
+    //get and store title
+    doc.setTitle(document["metadata"]["title"].GetString());
 
     //get and store author names
-    for (Value &val : doc["metadata"]["authors"].GetArray()) {
+    for (Value &val : document["metadata"]["authors"].GetArray()) {
         string authorName = val["last"].GetString();
-        authors.push_back(authorName);
+        doc.addAuthor(authorName);
     }
 
     //get and store raw text
-    for(Value &val : doc["body_text"].GetArray()) {
+    for(Value &val : document["body_text"].GetArray()) {
         docText += val["text"].GetString();
     }
 }
@@ -106,7 +108,9 @@ void DocumentProcessor::stem(string &toStem) {
 }
 
 void DocumentProcessor::print() {
-    cout << docID << endl;
+    cout << doc.getDocID() << endl;
+
+    vector<string> authors = doc.getAuthors();
     for (int i = 0; i < authors.size(); i++) {
         cout << "\t- " << authors.at(i) << endl;
     }
