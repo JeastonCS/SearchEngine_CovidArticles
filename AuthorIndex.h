@@ -8,7 +8,7 @@ private:
     HashTable table;
 public:
     void addAuthor(string word, const Document &doc) {
-//        table.insert(word,doc);
+        table.insert(word,doc);
     }
     vector<Document> getAuthor(string name) {
         return table.getAtKey(name);
