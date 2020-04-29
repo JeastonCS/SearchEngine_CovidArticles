@@ -13,14 +13,12 @@ void QueryProcessor::stem(string & str) {
 }
 
 vector<Document> QueryProcessor::stringToDoc(const string word) {
-    vector<string> strs = ih.getWordDocs(word);
+    vector<Document> strs = ih.getWordDocs(word);
     vector<double> freq = ih.getWordFreq(word);
     vector<Document> docs;
     int i = 0;
-    for (string s:strs) {
-        Document strToDoc = * new Document(s);
-        strToDoc.tfStat = findTFIDRStat(strs.size(),numOfDocs,freq[i]);
-        docs.push_back(strToDoc);
+    for (Document& s:strs) {
+        s.tfStat = findTFIDRStat(strs.size(),numOfDocs,freq[i]);
         i++;
     }
     return docs;
@@ -47,12 +45,9 @@ vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
             // get Authors and convert to Documents
             vector<vector<Document>> docs;
             for (string& s: params) {
-                vector<string> temp = ih.getAuthorDocs(s);
-                vector<Document> tempDocs;
-                for (string str : temp) {
-                    Document x(str);
-                    x.tfStat = 0;
-                    tempDocs.push_back(x);
+                vector<Document> tempDocs = ih.getAuthorDocs(s);
+                for (Document& d : tempDocs) {
+                    d.tfStat = 0;
                 }
                 docs.push_back(tempDocs);
             }

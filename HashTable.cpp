@@ -35,18 +35,18 @@ int HashTable::hashFunc(string k) {
 }
 
 
-void HashTable::insert(string k, string v) {
+void HashTable::insert(string k, Document v) {
     int h = hashFunc(k);
     if (table[h] != nullptr) {
         HashNode* curr = table[h];
-        if (curr->value == v)
+        if (curr->value.docID == v.docID)
             return;
         while (curr->next != nullptr) {
-            if (curr->value == v)
+            if (curr->value.docID == v.docID)
                 return;
             curr = curr->next;
         }
-        curr->next = new HashNode(k,v);
+        curr->next = new HashNode(k, v);
     } else {
         newAuthors++;
         table[h] = new HashNode(k, v);
@@ -83,8 +83,8 @@ void HashTable::removeAll() {
     }
 }
 
-vector<string> HashTable::getAtKey(string k) {
-    vector<string> docs;
+vector<Document> HashTable::getAtKey(string k) {
+    vector<Document> docs;
     int h = hashFunc(k);
     if (table[h]!=nullptr) {
         HashNode* curr = table[h];
