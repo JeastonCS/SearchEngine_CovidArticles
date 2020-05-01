@@ -6,6 +6,7 @@
 
 #include <cmath>
 #include <fstream>
+#include <queue>
 
 #include "AVLNode.h"
 
@@ -265,15 +266,33 @@ void AVLTree<T>::print(AVLNode<T> *curr, int numTabs) {
 template<typename T>
 void AVLTree<T>::writeToFile(AVLNode<T> *curr, ofstream &file)
 {
-    //PRE-ORDER traversal
-    if (curr != nullptr) {
-        //visit current node
-        file << curr->data << endl;
+//    //PRE-ORDER traversal
+//    if (curr != nullptr) {
+//        //visit current node
+//        file << curr->data << endl;
+//
+//        //recurse to other nodes
+//        writeToFile(curr->left, file);
+//        writeToFile(curr->right, file);
+//    }
 
-        //recurse to other nodes
-        writeToFile(curr->left, file);
-        writeToFile(curr->right, file);
+
+    //Breadth first traversal
+    queue<AVLNode<T>*> q;
+    if (!curr)
+        return;
+    q.push(curr);
+    while(!q.empty()) {
+        const AVLNode<T>* const temp_node = q.front();
+        file << temp_node->data << endl;
+
+        if (temp_node->left)
+            q.push(temp_node->left);
+        if (temp_node->right)
+            q.push(temp_node->right);
+        q.pop();
     }
+
 }
 
 #endif //AVLTREE_AVLTREE_H

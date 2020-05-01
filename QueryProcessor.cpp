@@ -13,12 +13,12 @@ void QueryProcessor::stem(string & str) {
 }
 
 vector<Document> QueryProcessor::stringToDoc(const string word) {
-    vector<Document> strs = ih.getWordDocs(word);
+    vector<Document> docs = ih.getWordDocs(word);
     vector<double> freq = ih.getWordFreq(word);
-    vector<Document> docs;
+
     int i = 0;
-    for (Document& s:strs) {
-        s.tfStat = findTFIDRStat(strs.size(),numOfDocs,freq[i]);
+    for (Document& s:docs) {
+        s.tfStat = findTFIDRStat(docs.size(),numOfDocs,freq[i]);
         i++;
     }
     return docs;
@@ -36,7 +36,7 @@ vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
     vector<Document> currentList;
     vector<string> params;
 
-    // use a stack functionality to compute queries similar to infix notation
+    // use a stack functionality to compute queries similar to math infix notation
     // pop words into the parameters and pop operator calls set functions
     while (!queryOrder.empty()){
         string curr = queryOrder[queryOrder.size() - 1];
@@ -163,7 +163,8 @@ vector<Document> QueryProcessor::getUnion(vector<vector<Document>>& docs){
             bool found = false;
             for (Document &y: resultList) {
                 if (x.docID == y.docID) {
-                    y.tfStat = y.tfStat + x.tfStat; // change to make more precise
+                    y.tfStat += x.tfStat; // change to make more precise
+                    y.tfStat /= 2;
                     found = true;
                     break;
                 }
@@ -184,7 +185,8 @@ vector<Document> QueryProcessor::getIntersection(vector<vector<Document>>& docs)
         for (Document &x : docs[i]) {
             for (Document &y : currList) {
                 if (x.docID == y.docID) {
-                    x.tfStat = x.tfStat + y.tfStat; // edit to make more precise
+                    x.tfStat += y.tfStat; // edit to make more precise
+                    x.tfStat /= 2;
                     resultList.push_back(x);
                 }
             }

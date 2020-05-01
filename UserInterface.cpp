@@ -179,7 +179,6 @@ void UserInterface::submitQuery()
         cout    << "Enter a new query (or \"new command\" to go back to the main menu):\n"
                 << ">>> ";
         getline(cin, query);
-        query = lowercase(query);
         cout << endl;
     }
 }
