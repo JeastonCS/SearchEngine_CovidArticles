@@ -7,23 +7,18 @@
 IndexHandler::IndexHandler() {
     textIndex = * new WordIndex;
     nameIndex = * new AuthorIndex;
-    dProcessor = * new DocumentProcessor;
+//    dProcessor = * new DocumentProcessor;
 }
 
-void IndexHandler::addProcessorWords() {
-    Document docID = dProcessor.getDocument();
-    vector<DocumentWord> words = dProcessor.getProcessedWords();
-
+void IndexHandler::addProcessorWords(vector<DocumentWord> &words, const string &docID) {
     for (int i = 0; i < words.size(); i++)
-        addToWordIndex(docID, words[i].getWord(), words[i].getTermFreq());
+        textIndex.addWord(words[i].getWord(), docID, words[i].getTermFreq());
 }
 
-void IndexHandler::addProcessorAuthors() {
-    Document docID = dProcessor.getDocument();
-    vector<string> authors = dProcessor.getAuthors();
-
-    for (int i = 0; i < authors.size(); i++)
+void IndexHandler::addProcessorAuthors(vector<string> &authors, const string &docID) {
+    for (int i = 0; i < authors.size(); i++) {
         addToAuthorIndex(docID, authors[i]);
+    }
 }
 
 void IndexHandler::populateMainWithFile(const char *fileName)
@@ -80,6 +75,44 @@ void IndexHandler::populateAuthorsWithFile(const char *fileName)
     input.close();
 }
 
+vector<Document> IndexHandler::getDocumentsWithFile(const char *fileName) {
+    ifstream docsFile(fileName);
+    if (!docsFile) {
+        cout << "could not open documents file to read from" << endl;
+        exit(1);
+    }
+
+    vector<Document> documents;
+
+    string ID, publication, url, title, rawText;
+    string line, author;
+    vector<string> authors;
+
+    docsFile >> ID;
+    while(!docsFile.eof()) {
+        docsFile >> publication;
+        docsFile >> url;
+        getline(docsFile, title);
+
+        getline(docsFile, line);
+        stringstream ss(line);
+        while (ss >> author)
+            authors.push_back(author);
+
+        getline(docsFile, rawText);
+
+        //create Document object with persistence file data
+        Document doc(ID, publication, url, title, authors, rawText);
+
+        //add current document to vector of documents
+        documents.push_back(doc);
+    }
+
+    docsFile.close();
+
+    return documents;
+}
+
 void IndexHandler::writeMainToFile(const char *outputName)
 {
     textIndex.writeToFile(outputName);
@@ -90,12 +123,37 @@ void IndexHandler::writeAuthorsToFile(const char *outputName)
     nameIndex.writeToFile(outputName);
 }
 
-vector<Document> IndexHandler::getWordDocs(string word)
+void IndexHandler::writeDocumentsToFile(vector<Document> &documents, const char *outputName)
 {
-    return textIndex.getWordDocs(word);
+    ofstream documentFile(outputName);
+    if (!documentFile) {
+        cout << "could not open document file to write to" << endl;
+        exit(1);
+    }
+
+    for (Document& doc : documents) {
+        documentFile << doc.getDocID() << " " << doc.getPublication() << " " << doc.getURL() << " " << doc.getTitle() << endl;
+        for (string &author: doc.getAuthors()) {
+            documentFile << author << " ";
+        }
+        documentFile << endl;
+        documentFile << doc.getText() << endl;
+    }
+
+    documentFile.close();
 }
 
-vector<Document> IndexHandler::getAuthorDocs(string name) {
+vector<string> IndexHandler::getWordDocIDs(string word)
+{
+    return textIndex.getWordDocIDs(word);
+}
+//
+//vector<Document> &IndexHandler::getWordDocs(string word)
+//{
+//
+//}
+
+vector<string> IndexHandler::getAuthorDocIDs(string name) {
     return nameIndex.getAuthor(name);
 }
 
@@ -103,15 +161,15 @@ vector<double> IndexHandler::getWordFreq(string word) {
     return textIndex.getTermFreq(word);
 }
 
-void IndexHandler::setProcessor(const DocumentProcessor &other) {
-    dProcessor = other;
+//void IndexHandler::setProcessor(const DocumentProcessor &other) {
+//    dProcessor = other;
+//}
+
+void IndexHandler::addToWordIndex(const string &docID, string word, double termFreq) {
+    textIndex.addWord(word, docID, termFreq);
 }
 
-void IndexHandler::addToWordIndex(const Document &doc, string word, double termFreq) {
-    textIndex.addWord(word, doc, termFreq);
-}
-
-void IndexHandler::addToAuthorIndex(const Document &docID, string name) {
+void IndexHandler::addToAuthorIndex(const string &docID, string name) {
     nameIndex.addAuthor(name, docID);
 }
 

@@ -22,7 +22,7 @@ public:
     vector<Document> getAuthor(vector<Document>& terms, vector<vector<Document>>& docs);
 
     void stem(string& str);
-    vector<Document> stringToDoc(const string strs);
+    vector<Document> stringToDoc(const string &);
     double findTFIDRStat(int querySize, int numOfDoc, double termFreq);
     static void relevancySort(vector<Document>&);
 };

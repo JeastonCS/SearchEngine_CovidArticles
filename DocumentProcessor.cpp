@@ -6,21 +6,41 @@
 
 #include "DocumentProcessor.h"
 
-DocumentProcessor::DocumentProcessor(const char *fileName) {
-    parseJson(fileName);
-    populateStopWords("StopWords.txt");
-    populateProcessedWords();
+DocumentProcessor::DocumentProcessor(const DocumentProcessor &toCopy)
+{
+    stopWords = toCopy.stopWords;
+    metadata = toCopy.metadata;
+    documents = toCopy.documents;
+    processedWords = toCopy.processedWords;
 }
 
 DocumentProcessor &DocumentProcessor::operator=(const DocumentProcessor &rhs) {
-    docText = rhs.docText;
+    stopWords = rhs.stopWords;
+    metadata = rhs.metadata;
+    documents = rhs.documents;
     processedWords = rhs.processedWords;
-    doc = rhs.doc;
 
     return *this;
 }
 
-void DocumentProcessor::parseJson(const char *fileName) {
+void DocumentProcessor::populateStopWords(const char *stopFileName) {
+    ifstream stopWordsFile(stopFileName);
+    if (!stopWordsFile) {
+        cout << "could not open stop words file" << endl;
+        exit(1);
+    }
+
+    string stopWord;
+    while (stopWordsFile >> stopWord) {
+        stopWords.push_back(stopWord);
+    }
+
+    stopWordsFile.close();
+}
+
+bool DocumentProcessor::parseJson(const char *fileName) {
+    Document doc = *new Document;
+
     using namespace rapidjson;
 
     //create ifstream wrapper
@@ -31,13 +51,13 @@ void DocumentProcessor::parseJson(const char *fileName) {
     }
     IStreamWrapper isw(jsonFile);
 
-    //create and parse your document
+    //create and parse current json document
     rapidjson::Document document;
     document.ParseStream( isw );
     jsonFile.close();
 
     if (!document.IsObject())
-        return;
+        return false;
 
     //get and store ID
     doc.setDocID(document["paper_id"].GetString());
@@ -52,71 +72,124 @@ void DocumentProcessor::parseJson(const char *fileName) {
     }
 
     //get and store raw text
+    string docText;
     for(Value &val : document["body_text"].GetArray()) {
-        docText += val["text"].GetString();
+        docText.append(val["text"].GetString());
     }
+
+    doc.setRawText(docText);
+
+    documents.push_back(doc);
+
+    return true;
 }
 
-void DocumentProcessor::populateStopWords(const char *stopFileName) {
-    ifstream stopWordsFile(stopFileName);
-    if (!stopWordsFile) {
-        cout << "could not open stop words file" << endl;
+void DocumentProcessor::clearPWords() {
+    processedWords.clear();
+}
+
+void DocumentProcessor::populateMetadata(const char *fileName)
+{
+    ifstream metadataFile(fileName);
+    if (!metadataFile) {
+        cout << "could not open metadata file" << endl;
         exit(1);
     }
 
-    string stopWord;
-    while (stopWordsFile >> stopWord) {
-        stopWords.push_back(stopWord);
+    //add metadata information to documents vector
+    string line;
+    string docID, publicationDate, url;
+    getline(metadataFile, line); //get rid of category line
+
+    getline(metadataFile, line);
+    while (!metadataFile.eof()) {
+        getSpecificInMetadata(line, docID, publicationDate, url);
+
+        MetadataEntry *value = new MetadataEntry(publicationDate, url);
+        metadata.emplace( docID, *value );
+
+        //get a new line
+        getline(metadataFile, line);
     }
+
+    metadataFile.close();
 }
 
-void DocumentProcessor::populateProcessedWords() {
-    stringstream sstream(docText);
+void DocumentProcessor::getSpecificInMetadata(const string &line, string &docID, string &publicationDate, string &url)
+{
+    //get position of fist comma of publish date
+    auto pos = 0;
+    auto next = line.find(',');
+    auto length = 0;
 
-    docWordCount = 0;
-    string word;
-    while(sstream >> word) {
-        stem(word);
-
-        // if not a stop word AND more than 1 letter
-        if (word.size() > 1 && (count(stopWords.begin(), stopWords.end(), word) == 0)) {
-            DocumentWord *docWord = new DocumentWord(word);
-
-            if (count(processedWords.begin(), processedWords.end(), word) != 0) { //already in processedWords
-                //increment that word's count
-                find(processedWords.begin(), processedWords.end(), *docWord)->incrementTimesInDoc();
-            }
-            else {
-                //add to processedWords
-                processedWords.push_back(*docWord);
-            }
-            //increment total word count in document
-            docWordCount++;
+    for (int i = 0; i < 17; i++) {
+        if (i == 1) {
+            length = next - pos - 1;
+            docID = line.substr(pos + 1, length);
         }
+        else if (i == 8) {
+            next = line.find('\"', pos + 2) + 1;
+        }
+        else if (i == 9) {
+            length = next - pos - 1;
+            publicationDate = line.substr(pos + 1, length);
+        }
+        else if (i == 10)
+            next = line.find('\"', pos + 2) + 1;
+
+        pos = next;
+        next = line.find(',', pos + 1);
+    }
+    url = line.substr(pos + 1);
+}
+
+void DocumentProcessor::addMetadataData()
+{
+    for (int i = 0; i < documents.size(); i++) {
+        addMetadataTo(documents[i]);
     }
 }
 
-void DocumentProcessor::initializeDocWordsTermFrequency() {
-    for (int i = 0; i < processedWords.size(); i++) {
-        processedWords[i].initTermFreq(docWordCount);
-    }
+void DocumentProcessor::addMetadataTo(Document &doc)
+{
+    MetadataEntry value = metadata.at(doc.getDocID());
+    doc.setPublication(value.getPublicationDate());
+    doc.setURL(value.getURL());
 }
 
-void DocumentProcessor::stem(string &toStem) {
-    Porter2Stemmer::trim(toStem);
-    Porter2Stemmer::stem(toStem);
+void DocumentProcessor::populateProcessedWords()
+{
+    documents[documents.size() - 1].populateProcessedWords(stopWords, processedWords);
+//    cout << "processed words populated" << endl;
+    documents[documents.size() - 1].initializeDocWordsTermFrequency(processedWords);
+//    cout << "term freqs initialized" << endl;
+
+//    for (int i = 0; i < documents.size(); i++) {
+//        documents.at(i).populateProcessedWords(stopWords, processedWords);
+//    }
+//    cout << "docs populated" << endl;
+//    for (int i = 0; i < documents.size(); i++) {
+//        documents.at(i).initializeDocWordsTermFrequency();
+//    }
+//    cout << "term frequency" << endl;
+//    for (int i = 0; i < documents.size(); i++) {
+////        mergeCurrentWords(documents.at(i));
+//    }
+//    cout << "merged" << endl;
 }
 
-void DocumentProcessor::print() {
-    cout << doc.getDocID() << endl;
-
-    vector<string> authors = doc.getAuthors();
-    for (int i = 0; i < authors.size(); i++) {
-        cout << "\t- " << authors.at(i) << endl;
-    }
-
-    cout << "Total words: " << docWordCount << endl;
-    for (int i = 0; i < processedWords.size(); i++) {
-        cout << i + 1 << ": " << processedWords.at(i) << endl;
-    }
+void DocumentProcessor::mergeCurrentWords(Document &doc)
+{
+//    vector<DocumentWord> docWords = doc.getDocWords();
+//    for(int i = 0; i < docWords.size(); i++){
+//        if ( count(processedWords.begin(), processedWords.end(), docWords[i].getWord()) != 0 ) { //already in processed Words
+//            auto pWord = find(processedWords.begin(), processedWords.end(), docWords[i].getWord());
+//            pWord->addDocID(doc.getDocID());
+//            pWord->addTermFrequency(docWords[i].getTermFreq());
+//        }
+//        else {
+//            Word *wrdPtr = new Word(docWords[i].getWord(), doc.getDocID(), docWords[i].getTermFreq());
+//            processedWords.push_back(*wrdPtr);
+//        }
+//    }
 }

@@ -20,7 +20,7 @@ using namespace std;
 class UserInterface {
 private:
     IndexHandler handler;
-    int numDocsParsed;
+    vector<Document> documents;
 public:
     UserInterface();
 
@@ -30,12 +30,12 @@ private:
     void introduction();
     void displayOptions();
     void populateIndexWithCorpus();
-    void populateIndexWithFile(const char *, const char *);
-    void writeIndexToFile(const char *, const char *);
+    void populateIndexWithFile(const char *, const char *, const char *);
+    void writeIndexToFile(const char *, const char *, const char *);
     void submitQuery();
-    bool paginateResultingDocuments(vector<Document> &, int);
+    bool paginateResultingDocuments(vector<string> &, int);
     void getStatistics();
-    void clear(const char *, const char *);
+    void clear();
 
     string lowercase(string);
 };

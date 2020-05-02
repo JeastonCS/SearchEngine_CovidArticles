@@ -11,14 +11,14 @@ Word::Word(const string& word) {
 }
 
 // CHECK
-Word::Word(const string& word, const Document& doc, double termFrequency) {
+Word::Word(const string& word, const string& doc, double termFrequency) {
     this->word = word;
     docIDs.push_back(doc);
     termFrequencies.push_back(termFrequency);
     numOfDocs = 1;
 }
 
-void Word::addDoc(const Document& doc) {
+void Word::addDocID(const string& doc) {
     docIDs.push_back(doc);
     numOfDocs++;
 }
@@ -27,7 +27,7 @@ void Word::addTermFrequency(double frequency) {
     termFrequencies.push_back(frequency);
 }
 
-vector<Document>& Word::getDocs() {
+vector<string>& Word::getDocIDs() {
     return docIDs;
 }
 
@@ -45,6 +45,10 @@ bool Word::operator>(const Word& rhs) const {
 
 bool Word::operator==(const Word& rhs) const {
     return word == rhs.word;
+}
+
+bool Word::operator==(const string &rhs) const {
+    return rhs == word;
 }
 
 ostream &operator<<(ostream &os, const Word &rhs) {
