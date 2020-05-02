@@ -2,6 +2,7 @@
 #include <iterator>
 #include <math.h>
 #include <algorithm>
+#include <queue>
 #include "stemmer/porter2_stemmer.h"
 QueryProcessor::QueryProcessor(const IndexHandler & handler) {
     ih = handler;
@@ -25,125 +26,156 @@ vector<Document> QueryProcessor::stringToDoc(const string word) {
 }
 
 vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
+    // set numOfDocs
     numOfDocs = numDocs;
 
     // process/split query
     stringstream ss(query);
     istream_iterator<string> begin(ss);
     istream_iterator<string> end;
-    vector<string> queryOrder(begin, end);
+    vector<string> split(begin, end);
 
+    // create queue and list
+    queue<string> queryOrder;
     vector<Document> currentList;
-    vector<string> params;
+    for (string& s: split)
+        queryOrder.push(s);
 
-    // use a stack functionality to compute queries similar to math infix notation
-    // pop words into the parameters and pop operator calls set functions
+    // use a queue functionality to compute queries similar to math prefix/Polish notation
+    // pop words as the parameters until reach end of queue or KEYWORD
     while (!queryOrder.empty()){
-        string curr = queryOrder[queryOrder.size() - 1];
+        string curr = queryOrder.front();
+        queryOrder.pop();
 
         if(strcasecmp(curr.c_str(),"AUTHOR") == 0){
-            // get Authors and convert to Documents
+            // stem and initialize
             vector<vector<Document>> docs;
-            for (string& s: params) {
-                vector<Document> tempDocs = ih.getAuthorDocs(s);
-                for (Document& d : tempDocs) {
-                    d.tfStat = 0;
-                }
-                docs.push_back(tempDocs);
+            curr = queryOrder.front();
+
+            // get terms until keyword
+            while (!queryOrder.empty() &&
+                   strcasecmp(curr.c_str(),"AND") != 0 &&
+                   strcasecmp(curr.c_str(),"OR") != 0 &&
+                   strcasecmp(curr.c_str(),"AUTHOR")!= 0 &&
+                   strcasecmp(curr.c_str(),"NOT") != 0)
+            {
+                docs.push_back(ih.getAuthorDocs(curr));
+                queryOrder.pop();
+                if(!queryOrder.empty())
+                    curr = queryOrder.front();
             }
 
-            // check current to chain queries
-            if (!currentList.empty())
-                docs.push_back(currentList);
-
             // get search term preceding the AUTHOR
-            if (queryOrder.size() == 1) {
+            if (currentList.empty()) {
                 cout << "not valid AUTHOR Statement --  term AUTHOR author(s)" << endl;
                 break;
             }
-            string nextParam = queryOrder[queryOrder.size() - 2];
-            stem(nextParam);
-            vector<Document> d1 = stringToDoc(nextParam);
 
-            // do set difference and clear
-            currentList = getAuthor(d1,docs);
-            queryOrder.pop_back();
-            params.clear();
+            // do Author Set Intersection
+            currentList = getAuthor(currentList,docs);
         }
 
         else if(strcasecmp(curr.c_str(),"AND") == 0){
             // stem and initialize
             vector<vector<Document>> docs;
-            for (string& s: params) {
-                stem(s);
-                docs.push_back(stringToDoc(s));
+            curr = queryOrder.front();
+
+            // get terms until keyword
+            while (!queryOrder.empty() &&
+                    strcasecmp(curr.c_str(),"AND") != 0 &&
+                    strcasecmp(curr.c_str(),"OR") != 0 &&
+                    strcasecmp(curr.c_str(),"AUTHOR")!= 0 &&
+                    strcasecmp(curr.c_str(),"NOT") != 0)
+            {
+                stem(curr);
+                docs.push_back(stringToDoc(curr));
+                queryOrder.pop();
+                if(!queryOrder.empty())
+                    curr = queryOrder.front();
             }
 
             // check current to chain queries
             if (!currentList.empty())
                 docs.push_back(currentList);
 
-            // get set intersection and clear
+            // get set intersection
             currentList = getIntersection(docs);
-            params.clear();
         }
 
         else if(strcasecmp(curr.c_str(),"OR") == 0){
             // stem and initialize
             vector<vector<Document>> docs;
-            for (string& s: params) {
-                stem(s);
-                docs.push_back(stringToDoc(s));
+            curr = queryOrder.front();
+
+            // get terms until keyword
+            while (!queryOrder.empty() &&
+                   strcasecmp(curr.c_str(),"AND") != 0 &&
+                   strcasecmp(curr.c_str(),"OR") != 0 &&
+                   strcasecmp(curr.c_str(),"AUTHOR") != 0 &&
+                   strcasecmp(curr.c_str(),"NOT") != 0)
+            {
+                stem(curr);
+                docs.push_back(stringToDoc(curr));
+                queryOrder.pop();
+                if(!queryOrder.empty())
+                    curr = queryOrder.front();
             }
 
             // check current to chain queries
             if (!currentList.empty())
                 docs.push_back(currentList);
 
-            // get set Union and clear
+            // get set intersection
             currentList = getUnion(docs);
-            params.clear();
         }
 
         else if(strcasecmp(curr.c_str(),"NOT") == 0){
             // stem and initialize
             vector<vector<Document>> docs;
-            for (string& s: params) {
-                stem(s);
-                docs.push_back(stringToDoc(s));
+            curr = queryOrder.front();
+
+            // get terms until keyword
+            while (!queryOrder.empty() &&
+                   strcasecmp(curr.c_str(),"AND") != 0 &&
+                   strcasecmp(curr.c_str(),"OR") != 0 &&
+                   strcasecmp(curr.c_str(),"AUTHOR")!= 0 &&
+                   strcasecmp(curr.c_str(),"NOT") != 0)
+            {
+                stem(curr);
+                docs.push_back(stringToDoc(curr));
+                queryOrder.pop();
+                if(!queryOrder.empty())
+                    curr = queryOrder.front();
             }
 
-            // check current to chain queries
-            if (!currentList.empty())
-                docs.push_back(currentList);
-
             // get search term preceding the NOT
-            if (queryOrder.size() == 1) {
+            if (currentList.empty()) {
                 cout << "Not Valid NOT statement -- term NOT term(s)" << endl;
                 break;
             }
-            string nextParam = queryOrder[queryOrder.size() - 2];
-            stem(nextParam);
-            vector<Document> d1 = stringToDoc(nextParam);
 
-            // do set difference and clear
-            currentList = getDifference(d1,docs);
-            queryOrder.pop_back();
-            params.clear();
+            // do set difference
+            currentList = getDifference(currentList,docs);
         }
-
+        //start with word and store in currList
         else {
-            params.push_back(curr);
-        }
+            if (currentList.empty()) {
+                // first word in query
+                stem(curr);
+                currentList = stringToDoc(curr);
+                relevancySort(currentList);
 
-        // if query is only one word
-        if(params.size() == 1 && queryOrder.size() == 1) {
-            stem(params[0]);
-            currentList = stringToDoc(params[0]);
-            relevancySort(currentList);
-        }
+            } else {
+                // unintended list at start with no keyword
+                vector<vector<Document>> docs;
+                stem(curr);
+                docs.push_back(currentList);
+                docs.push_back(stringToDoc(curr));
 
-        queryOrder.pop_back();
+                // DEFAULT is a union of these words
+                getUnion(docs);
+            }
+        }
     }
 
     return currentList;

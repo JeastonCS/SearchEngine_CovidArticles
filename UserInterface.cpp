@@ -60,9 +60,24 @@ void UserInterface::interfaceLoop()
 
 void UserInterface::introduction()
 {
+    cout    << "                   -====-__-======-__-========-_____-==========-___-===-_\n"
+            << "                 _( ___                  _      ___           _          )_\n"
+            << "               _(  / __| ___ __ _ _ _ __| |_   | __|_ _  __ _(_)_ _  ___   )\n"
+            << "            OO(    \\__ \\/ -_) _` | '_/ _| ' \\  | _|| ' \\/ _` | | ' \\/ -_)   )\n"
+            << "           0  (_   |___/\\___\\__,_|_| \\__|_||_| |___|_||_\\__, |_|_||_\\___| _)\n"
+            << "         o0     (_                                      |___/           _)\n"
+            << "        o         '=-___-===-_____-========-_________-===-_______-====-'\n"
+            << "      .o                                _________\n"
+            << "     . ______          ______________  |         |      _____\n"
+            << "   _()_||__|| ________ |            |  |_________|   __||___||__\n"
+            << "  (         | |      | |            | __Y______00_| |_         _|\n"
+            << " /-OO----OO\"\"=\"OO--OO\"=\"OO--------OO\"=\"OO-------OO\"=\"OO-------OO\"=P\n"
+            << "#####################################################################\n" << endl;
+
     cout    << "Welcome to the FonteKNOW search engine where we can get you all of the Coronavirus\n"
             << "information you need! Pick from the following list of options to get started.\n"
-            << "Each option follows this format: command -> short description of command\n" << endl; ;
+            << "Each option follows this format: command -> short description of command\n" << endl;
+
 }
 
 void UserInterface::displayOptions()
@@ -198,6 +213,7 @@ void UserInterface::getStatistics()
 {
     cout << "Number of documents parsed: " << numDocsParsed << endl;
     cout << "Number of unique words: " << handler.getNumUniqueWords() << endl;
+    cout << "Number of unique authors: " << handler.getNumUniqueAuthors() << endl;
     cout << endl;
 }
 

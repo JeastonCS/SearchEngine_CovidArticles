@@ -22,4 +22,7 @@ public:
     void clear() {
         table.removeAll();
     }
+    int getNumUniqueAuthors() {
+        return table.getNumOfAuthors();
+    };
 };

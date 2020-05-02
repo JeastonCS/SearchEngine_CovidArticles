@@ -29,4 +29,5 @@ public:
     int hashFunc(string k);
     void writeToFile(const char* file);
     void getFile(const char* file);
+    int getNumOfAuthors();
 };
