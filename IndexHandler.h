@@ -36,6 +36,7 @@ public:
     vector<string> getAuthorDocIDs(string);
 
     int getNumUniqueWords() {return textIndex.getNumUniqueWords(); }
+    int getNumUniqueAuthors() {return nameIndex.getNumUniqueAuthors(); }
     vector<Word> getTopFifty() { return textIndex.getTopFifty(); }
 
     void addToWordIndex(const string &, string, double);
