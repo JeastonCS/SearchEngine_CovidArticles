@@ -7,7 +7,6 @@
 IndexHandler::IndexHandler() {
     textIndex = * new WordIndex;
     nameIndex = * new AuthorIndex;
-//    dProcessor = * new DocumentProcessor;
 }
 
 void IndexHandler::addProcessorWords(vector<DocumentWord> &words, const string &docID) {
@@ -75,21 +74,24 @@ void IndexHandler::populateAuthorsWithFile(const char *fileName)
     input.close();
 }
 
-vector<Document> IndexHandler::getDocumentsWithFile(const char *fileName) {
+void IndexHandler::getDocumentsWithFile(const char *fileName, vector<Document> &documents) {
     ifstream docsFile(fileName);
     if (!docsFile) {
         cout << "could not open documents file to read from" << endl;
         exit(1);
     }
 
-    vector<Document> documents;
-
+    //info to store
     string ID, publication, url, title, rawText;
-    string line, author;
     vector<string> authors;
+    double wordCount;
+
+    //temp strings
+    string line, author;
 
     docsFile >> ID;
     while(!docsFile.eof()) {
+        docsFile >> wordCount;
         docsFile >> publication;
         docsFile >> url;
         getline(docsFile, title);
@@ -102,15 +104,15 @@ vector<Document> IndexHandler::getDocumentsWithFile(const char *fileName) {
         getline(docsFile, rawText);
 
         //create Document object with persistence file data
-        Document doc(ID, publication, url, title, authors, rawText);
+        Document doc(ID, wordCount, publication, url, title, authors, rawText);
 
         //add current document to vector of documents
         documents.push_back(doc);
+
+        authors.clear();
     }
 
     docsFile.close();
-
-    return documents;
 }
 
 void IndexHandler::writeMainToFile(const char *outputName)
@@ -132,11 +134,16 @@ void IndexHandler::writeDocumentsToFile(vector<Document> &documents, const char 
     }
 
     for (Document& doc : documents) {
-        documentFile << doc.getDocID() << " " << doc.getPublication() << " " << doc.getURL() << " " << doc.getTitle() << endl;
+        //export general info: id, pub date, url, title
+        documentFile << doc.getDocID() << " " << doc.getWordCount() << " " << doc.getPublication() << " " << doc.getURL() << " " << doc.getTitle() << endl;
+
+        //export authors
         for (string &author: doc.getAuthors()) {
             documentFile << author << " ";
         }
         documentFile << endl;
+
+        //export first 300 words of document's raw text
         documentFile << doc.getText() << endl;
     }
 
@@ -147,11 +154,6 @@ vector<string> IndexHandler::getWordDocIDs(string word)
 {
     return textIndex.getWordDocIDs(word);
 }
-//
-//vector<Document> &IndexHandler::getWordDocs(string word)
-//{
-//
-//}
 
 vector<string> IndexHandler::getAuthorDocIDs(string name) {
     return nameIndex.getAuthor(name);
@@ -160,10 +162,6 @@ vector<string> IndexHandler::getAuthorDocIDs(string name) {
 vector<double> IndexHandler::getWordFreq(string word) {
     return textIndex.getTermFreq(word);
 }
-
-//void IndexHandler::setProcessor(const DocumentProcessor &other) {
-//    dProcessor = other;
-//}
 
 void IndexHandler::addToWordIndex(const string &docID, string word, double termFreq) {
     textIndex.addWord(word, docID, termFreq);

@@ -19,7 +19,6 @@ class IndexHandler {
 private:
     WordIndex textIndex;
     AuthorIndex nameIndex;
-//    DocumentProcessor dProcessor;
 public:
     IndexHandler();
 
@@ -27,19 +26,17 @@ public:
     void addProcessorAuthors(vector<string> &, const string &);
     void populateMainWithFile(const char *);
     void populateAuthorsWithFile(const char *);
-    vector<Document> getDocumentsWithFile(const char *);
+    void getDocumentsWithFile(const char *, vector<Document> &);
     void writeMainToFile(const char *);
     void writeAuthorsToFile(const char *);
     void writeDocumentsToFile(vector<Document> &, const char *);
 
     vector<string> getWordDocIDs(string);
-//    vector<Document> &getWordDocs(string);
     vector<double> getWordFreq(string);
     vector<string> getAuthorDocIDs(string);
 
     int getNumUniqueWords() {return textIndex.getNumUniqueWords(); }
-
-//    void setProcessor(const DocumentProcessor &);
+    vector<Word> getTopFifty() { return textIndex.getTopFifty(); }
 
     void addToWordIndex(const string &, string, double);
     void addToAuthorIndex(const string &, string);

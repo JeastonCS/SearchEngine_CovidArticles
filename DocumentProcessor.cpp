@@ -160,36 +160,21 @@ void DocumentProcessor::addMetadataTo(Document &doc)
 void DocumentProcessor::populateProcessedWords()
 {
     documents[documents.size() - 1].populateProcessedWords(stopWords, processedWords);
-//    cout << "processed words populated" << endl;
     documents[documents.size() - 1].initializeDocWordsTermFrequency(processedWords);
-//    cout << "term freqs initialized" << endl;
-
-//    for (int i = 0; i < documents.size(); i++) {
-//        documents.at(i).populateProcessedWords(stopWords, processedWords);
-//    }
-//    cout << "docs populated" << endl;
-//    for (int i = 0; i < documents.size(); i++) {
-//        documents.at(i).initializeDocWordsTermFrequency();
-//    }
-//    cout << "term frequency" << endl;
-//    for (int i = 0; i < documents.size(); i++) {
-////        mergeCurrentWords(documents.at(i));
-//    }
-//    cout << "merged" << endl;
 }
 
-void DocumentProcessor::mergeCurrentWords(Document &doc)
+void DocumentProcessor::cleanRawText()
 {
-//    vector<DocumentWord> docWords = doc.getDocWords();
-//    for(int i = 0; i < docWords.size(); i++){
-//        if ( count(processedWords.begin(), processedWords.end(), docWords[i].getWord()) != 0 ) { //already in processed Words
-//            auto pWord = find(processedWords.begin(), processedWords.end(), docWords[i].getWord());
-//            pWord->addDocID(doc.getDocID());
-//            pWord->addTermFrequency(docWords[i].getTermFreq());
-//        }
-//        else {
-//            Word *wrdPtr = new Word(docWords[i].getWord(), doc.getDocID(), docWords[i].getTermFreq());
-//            processedWords.push_back(*wrdPtr);
-//        }
-//    }
+    stringstream ss(documents.at(documents.size() - 1).getText());
+    string result;
+
+    string word;
+    int i = 0;
+    while (ss >> word && i < 300) {
+        result += word;
+        result += " ";
+        i++;
+    }
+    result += "...";
+    documents.at(documents.size() - 1).setRawText(result);
 }

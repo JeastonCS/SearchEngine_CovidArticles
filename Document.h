@@ -28,7 +28,7 @@ private:
 
 public:
     Document(string t = "empty") {docID = t;}
-    Document(string, string, string, string, vector<string>, string);
+    Document(const string &, int, const string &, const string &, const string &, const vector<string> &, const string &);
     Document(const Document& doc);
     Document& operator=(const Document& rhs);
 
@@ -57,9 +57,9 @@ public:
     string getDocID() { return docID; }
     string getTitle() { return title; }
     string getPublication() { return publication; }
-//    vector<DocumentWord> & getDocWords() { return docWords; }
     string getURL() { return url; }
     string getText() { return rawText; }
+    int getWordCount() { return wordCount; }
 private:
     void stem(string &);
 };

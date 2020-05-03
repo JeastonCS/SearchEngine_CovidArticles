@@ -44,6 +44,7 @@ public:
 
     bool parseJson(const char *);
     void populateProcessedWords();
+    void cleanRawText();
     void clearPWords();
 
     void addMetadataData();
@@ -56,8 +57,6 @@ public:
 private:
     void addMetadataTo(Document &);
     void getSpecificInMetadata(const string &, string &, string &, string &);
-
-    void mergeCurrentWords(Document &);
 };
 
 

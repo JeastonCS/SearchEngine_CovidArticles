@@ -20,7 +20,7 @@ void UserInterface::interfaceLoop()
     introduction();
 
     string command = "command list";
-    while (command != "quit") {
+    while (command != "exit") {
         //chose path based on user command
         if (command == "command list") {
             displayOptions();
@@ -37,9 +37,13 @@ void UserInterface::interfaceLoop()
         }
         else if (command == "file") {
             populateIndexWithFile(wordFile, authorFile, documentFile);
+            getStatistics();
         }
         else if (command == "clear") {
             clear();
+        }
+        else if (command == "50") {
+            getTopFifty();
         }
         else {
             cout << "Invalid command. Try again." << endl;
@@ -69,9 +73,10 @@ void UserInterface::displayOptions()
             << " - json    -> populate indexes using directory with json documents\n"
             << " - file    -> populate indexes using files\n"
             << " - query   -> enter a query\n"
+            << " - 50      -> get the top 50 most frequent words\n"
             << " - to file -> write current indexes to files\n"
             << " - clear   -> clear current indexes\n"
-            << " - quit    -> quit session\n"
+            << " - exit    -> end session\n"
             << flush;
 }
 
@@ -84,13 +89,13 @@ void UserInterface::populateIndexWithCorpus()
     struct stat filestat;
 
     while(dp == NULL) {
-        cout    << "Enter the name of your directory (or type \"new command\" to submit a new command):\n"
+        cout    << "Enter the name of your directory (or type \"menu\" to return to the menu):\n"
                 << ">>> " << flush;
         getline(cin, dir);
         cout << endl;
 
         //user wants to ask a new command
-        if (dir == "new command") {
+        if (dir == "menu") {
             cout << "REDIRECTING...\n" << endl;
             return;
         }
@@ -114,11 +119,11 @@ void UserInterface::populateIndexWithCorpus()
 
         //parse json document unless filepath is metadata.csv, then extract metadata's data
         if (!dProcessor.parseJson(filepath.c_str())) {
-            cout << "parsed jsons" << endl;
             dProcessor.populateMetadata(filepath.c_str());
         }
         else {
             dProcessor.populateProcessedWords();
+            dProcessor.cleanRawText();
 
             //add document processor's words to indexes through index handler
             handler.addProcessorWords(dProcessor.getCurrProcessedWords(), dProcessor.getCurrDocID());
@@ -127,20 +132,19 @@ void UserInterface::populateIndexWithCorpus()
             dProcessor.clearPWords();
         }
     }
-    cout << "all parsed" << endl;
     dProcessor.addMetadataData();
-    cout << "added metadata" << endl;
 
     closedir(dp);
 
     //initialize instance variable "documents"
     documents = dProcessor.getDocuments();
+
 }
 
 void UserInterface::populateIndexWithFile(const char *wordIndex, const char *authorIndex, const char *docs) {
     handler.populateMainWithFile(wordIndex);
     handler.populateAuthorsWithFile(authorIndex);
-    documents = handler.getDocumentsWithFile(docs);
+    handler.getDocumentsWithFile(docs, documents);
 }
 
 void UserInterface::writeIndexToFile(const char *wordOutput, const char *authorOutput, const char *documentOutput)
@@ -159,7 +163,7 @@ void UserInterface::submitQuery()
 //            << ">>> " << flush;
 //    getline(cin, query);
 //
-//    while (query != "new command") {
+//    while (query != "menu") {
 //        //get query results
 //        vector<string> qResults;
 //        qResults = qProcessor->runQuery(query, documents.size());
@@ -168,28 +172,38 @@ void UserInterface::submitQuery()
 //        cout << "Number of documents: " << qResults.size() << '\n' << endl;
 //
 //        int pageNum = 1;
+//        string choice;
 //        while(paginateResultingDocuments(qResults, pageNum)) {
 //            //check to see if user wants to see more documents
-//            cout    << "View next page? (\"yes\" or \"no\")\n"
+//            cout    << "Pick a source to display or type \"next\" to see more results (or \"new\" to submit a new query)\n"
 //                    << ">>> " << flush;
-//            string choice;
 //            getline(cin, choice);
 //            cout << endl;
-//            lowercase(choice);
 //
 //            //user wants to ask a new command
-//            if (choice == "no") {
-//                return;
+//            if (choice == "new") {
+//                break;
+//            }
+//            else if (choice != "next") {
+//                getResultText(qResults, stoi(choice));
 //            }
 //
 //            pageNum++;
 //        }
 //
-//        cout    << "Enter a new query (or \"new command\" to go back to the main menu):\n"
+//        cout    << "Enter a new query (or type \"menu\" to return to the menu):\n"
 //                << ">>> ";
 //        getline(cin, query);
 //        cout << endl;
 //    }
+
+    cout << "REDIRECTING...\n" << endl;
+}
+
+void UserInterface::getResultText(vector<string> &qResults, int sourceNum) {
+    auto it = find(documents.begin(), documents.end(), qResults[sourceNum]);
+    cout << "\n\"" << it->getTitle() << "\"" << endl;
+    cout << "\t" << it->getText() << endl;
 }
 
 bool UserInterface::paginateResultingDocuments(vector<string> &qResults, int pageNum) {
@@ -205,8 +219,29 @@ bool UserInterface::paginateResultingDocuments(vector<string> &qResults, int pag
 
 void UserInterface::getStatistics()
 {
+    //document info
     cout << "Number of documents parsed: " << documents.size() << endl;
+    int sum = 0;
+    for (auto it = documents.begin(); it != documents.end(); it++)
+        sum += it->getWordCount();
+    int average = sum / documents.size();
+    cout << "Average word count per document: " << average << endl;
+
+    //unique element count for each index
     cout << "Number of unique words: " << handler.getNumUniqueWords() << endl;
+    cout << "Number of unique authors: " << endl;
+
+    cout << endl;
+}
+
+void UserInterface::getTopFifty()
+{
+    cout << "Top 50 most frequent words" << endl;
+    vector<Word> topFifty = handler.getTopFifty();
+    int i = 1;
+    for (int i = 1; i <= topFifty.size(); i++)
+        cout << i << ". " << topFifty.at(topFifty.size() - i).getWord() << endl;
+
     cout << endl;
 }
 

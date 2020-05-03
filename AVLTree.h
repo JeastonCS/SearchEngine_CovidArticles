@@ -109,10 +109,11 @@ AVLTree<T> &AVLTree<T>::operator=(const AVLTree &rhs) {
 
 template<typename T>
 void AVLTree<T>::clear() {
-    delete root;
-    root = nullptr;
-
-    numNodes = 0;
+    if (root != nullptr) {
+        delete root;
+        root = nullptr;
+        numNodes = 0;
+    }
 }
 
 template<typename T>

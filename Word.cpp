@@ -52,7 +52,7 @@ bool Word::operator==(const string &rhs) const {
 }
 
 ostream &operator<<(ostream &os, const Word &rhs) {
-    os << rhs.word << " ";
+    os << rhs.word << " " << flush;
 
     for (int i = 0; i < rhs.docIDs.size(); i++)
         os << rhs.docIDs[i] << " " << rhs.termFrequencies[i] << " ";

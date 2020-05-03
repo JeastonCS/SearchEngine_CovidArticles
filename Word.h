@@ -21,6 +21,8 @@ public:
     //getters
     vector<string>& getDocIDs();
     vector<double>& getTermFrequencies();
+    string getWord() { return word;}
+    int getNumDocs() { return numOfDocs; }
 
     // compares based on word, not docIDS
     bool operator>(const Word &) const;

@@ -1,8 +1,10 @@
 #include "Document.h"
 
-Document::Document(string id, string pub, string u, string tit, vector<string> auths, string text) {
+Document::Document(const string &id, int count, const string &pub, const string &u, const string &tit, const vector<string> &auths, const string &text) {
     docID = id;
+    wordCount = count;
     publication = pub;
+    url = u;
     title = tit;
     authors = auths;
     rawText = text;

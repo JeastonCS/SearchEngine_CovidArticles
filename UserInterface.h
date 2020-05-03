@@ -12,6 +12,7 @@
 
 #include <dirent.h>
 #include <sys/stat.h>
+#include <cctype>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -34,7 +35,9 @@ private:
     void writeIndexToFile(const char *, const char *, const char *);
     void submitQuery();
     bool paginateResultingDocuments(vector<string> &, int);
+    void getResultText(vector<string> &, int);
     void getStatistics();
+    void getTopFifty();
     void clear();
 
     string lowercase(string);
