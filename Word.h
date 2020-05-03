@@ -1,3 +1,6 @@
+// Yash Sinha
+//
+
 #ifndef WORD_H
 #define WORD_H
 

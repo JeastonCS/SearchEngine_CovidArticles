@@ -1,3 +1,6 @@
+// Yash Sinha
+//
+
 #include "HashTable.h"
 #include <iostream>
 #include <vector>

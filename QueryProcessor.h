@@ -1,3 +1,6 @@
+// Yash Sinha
+//
+
 #include "IndexHandler.h"
 #include "DocStat.h"
 #include <iostream>

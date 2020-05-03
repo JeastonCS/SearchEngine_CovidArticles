@@ -1,3 +1,6 @@
+// Yash Sinha
+//
+
 #include<iostream>
 #include<cstdlib>
 #include<string>
@@ -22,6 +25,8 @@ private:
 public:
     HashTable();
     ~HashTable();
+    HashTable(const HashTable&);
+    HashTable& operator=(const HashTable&);
     void insert(string k, string v);
     vector<string> getAtKey(string k);
     void remove(string k);

@@ -1,3 +1,6 @@
+// Yash Sinha
+//
+
 #include "QueryProcessor.h"
 #include <iterator>
 #include <math.h>
@@ -53,17 +56,17 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
         string curr = queryOrder.front();
         queryOrder.pop();
 
-        if(strcasecmp(curr.c_str(),"AUTHOR") == 0){
+        if(curr == "AUTHOR"){
             // stem and initialize
             vector<vector<DocStat>> docs;
             curr = queryOrder.front();
 
             // get terms until keyword
             while (!queryOrder.empty() &&
-                   strcasecmp(curr.c_str(),"AND") != 0 &&
-                   strcasecmp(curr.c_str(),"OR") != 0 &&
-                   strcasecmp(curr.c_str(),"AUTHOR")!= 0 &&
-                   strcasecmp(curr.c_str(),"NOT") != 0)
+                   curr != "AND" &&
+                   curr != "OR" &&
+                   curr != "AUTHOR" &&
+                   curr != "NOT")
             {
                 vector<string> authors = ih.getAuthorDocIDs(curr);
                 vector<DocStat> temp;
@@ -89,17 +92,17 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
             currentList = getAuthor(currentList,docs);
         }
 
-        else if(strcasecmp(curr.c_str(),"AND") == 0){
+        else if(curr == "AND"){
             // stem and initialize
             vector<vector<DocStat>> docs;
             curr = queryOrder.front();
 
             // get terms until keyword
             while (!queryOrder.empty() &&
-                   strcasecmp(curr.c_str(),"AND") != 0 &&
-                   strcasecmp(curr.c_str(),"OR") != 0 &&
-                   strcasecmp(curr.c_str(),"AUTHOR")!= 0 &&
-                   strcasecmp(curr.c_str(),"NOT") != 0)
+                   curr != "AND" &&
+                   curr != "OR" &&
+                   curr != "AUTHOR" &&
+                   curr != "NOT")
             {
                 stem(curr);
                 if(find(stopWords.begin(), stopWords.end(), curr) == stopWords.end())
@@ -117,17 +120,17 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
             currentList = getIntersection(docs);
         }
 
-        else if(strcasecmp(curr.c_str(),"OR") == 0){
+        else if(curr == "OR"){
             // stem and initialize
             vector<vector<DocStat>> docs;
             curr = queryOrder.front();
 
             // get terms until keyword
             while (!queryOrder.empty() &&
-                   strcasecmp(curr.c_str(),"AND") != 0 &&
-                   strcasecmp(curr.c_str(),"OR") != 0 &&
-                   strcasecmp(curr.c_str(),"AUTHOR") != 0 &&
-                   strcasecmp(curr.c_str(),"NOT") != 0)
+                   curr != "AND" &&
+                   curr != "OR" &&
+                   curr != "AUTHOR" &&
+                   curr != "NOT")
             {
                 stem(curr);
                 if(find(stopWords.begin(), stopWords.end(), curr) == stopWords.end())
@@ -145,17 +148,17 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
             currentList = getUnion(docs);
         }
 
-        else if(strcasecmp(curr.c_str(),"NOT") == 0){
+        else if(curr == "NOT"){
             // stem and initialize
             vector<vector<DocStat>> docs;
             curr = queryOrder.front();
 
             // get terms until keyword
             while (!queryOrder.empty() &&
-                   strcasecmp(curr.c_str(),"AND") != 0 &&
-                   strcasecmp(curr.c_str(),"OR") != 0 &&
-                   strcasecmp(curr.c_str(),"AUTHOR")!= 0 &&
-                   strcasecmp(curr.c_str(),"NOT") != 0)
+                   curr != "AND" &&
+                   curr != "OR" &&
+                   curr != "AUTHOR" &&
+                   curr != "NOT")
             {
                 stem(curr);
                 if(find(stopWords.begin(), stopWords.end(), curr) == stopWords.end())

@@ -1,3 +1,6 @@
+// Yash Sinha
+//
+
 #include "HashTable.h"
 #include <unordered_map>
 #include <iterator>
@@ -9,6 +12,44 @@ HashTable::HashTable() {
     table = new HashNode* [tableSize];
     for (int i = 0; i < tableSize; i++) {
         table[i] = nullptr;
+    }
+}
+
+HashTable::HashTable(const HashTable & table1) {
+    table = new HashNode* [tableSize];
+    for (int i = 0; i < tableSize; i++) {
+        table[i] = nullptr;
+    }
+    newAuthors = table1.newAuthors;
+
+
+    for (int i = 0; i < tableSize; ++i) {
+        if(table1.table[i] != nullptr){
+            HashNode* temp = table1.table[i];
+            while (temp != nullptr){
+                insert(temp->key,temp->value);
+                temp = temp->next;
+            }
+        }
+    }
+}
+
+HashTable & HashTable::operator=(const HashTable & table1) {
+    table = new HashNode* [tableSize];
+    for (int i = 0; i < tableSize; i++) {
+        table[i] = nullptr;
+    }
+    newAuthors = table1.newAuthors;
+
+
+    for (int i = 0; i < tableSize; ++i) {
+        if(table1.table[i] != nullptr){
+            HashNode* temp = table1.table[i];
+            while (temp != nullptr){
+                insert(temp->key,temp->value);
+                temp = temp->next;
+            }
+        }
     }
 }
 
