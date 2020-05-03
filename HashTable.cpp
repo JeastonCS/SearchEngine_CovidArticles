@@ -81,6 +81,7 @@ void HashTable::removeAll() {
             table[i] = nullptr;
         }
     }
+    newAuthors = 0;
 }
 
 vector<string> HashTable::getAtKey(string k) {
@@ -131,4 +132,8 @@ void HashTable::getFile(const char *file) {
     }
 
     delete buf;
+}
+
+int HashTable::getNumOfAuthors() {
+    return newAuthors;
 }
