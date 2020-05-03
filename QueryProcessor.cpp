@@ -7,6 +7,7 @@
 
 
 QueryProcessor::QueryProcessor(const IndexHandler & handler) {
+    populateStopWords();
     ih = handler;
 }
 

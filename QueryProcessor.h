@@ -15,8 +15,8 @@ public:
     QueryProcessor(const IndexHandler &);
 
     vector<string> runQuery(string query, int numOfDocs);
-    vector<string> stopWords;
 private:
+    vector<string> stopWords;
     vector<DocStat> getUnion(vector<vector<DocStat>>& docs);
     vector<DocStat> getIntersection(vector<vector<DocStat>>& docs);
     vector<DocStat> getDifference(vector<DocStat>& terms, vector<vector<DocStat>>& docs);
