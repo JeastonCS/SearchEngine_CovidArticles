@@ -101,7 +101,8 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
                    strcasecmp(curr.c_str(),"NOT") != 0)
             {
                 stem(curr);
-                docs.push_back(stringToDoc(curr));
+                if(find(stopWords.begin(), stopWords.end(), curr) == stopWords.end())
+                    docs.push_back(stringToDoc(curr));
                 queryOrder.pop();
                 if(!queryOrder.empty())
                     curr = queryOrder.front();
@@ -128,7 +129,8 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
                    strcasecmp(curr.c_str(),"NOT") != 0)
             {
                 stem(curr);
-                docs.push_back(stringToDoc(curr));
+                if(find(stopWords.begin(), stopWords.end(), curr) == stopWords.end())
+                    docs.push_back(stringToDoc(curr));
                 queryOrder.pop();
                 if(!queryOrder.empty())
                     curr = queryOrder.front();
@@ -155,7 +157,8 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
                    strcasecmp(curr.c_str(),"NOT") != 0)
             {
                 stem(curr);
-                docs.push_back(stringToDoc(curr));
+                if(find(stopWords.begin(), stopWords.end(), curr) == stopWords.end())
+                    docs.push_back(stringToDoc(curr));
                 queryOrder.pop();
                 if(!queryOrder.empty())
                     curr = queryOrder.front();
@@ -175,7 +178,8 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
             if (currentList.empty()) {
                 // first word in query
                 stem(curr);
-                currentList = stringToDoc(curr);
+                if(find(stopWords.begin(), stopWords.end(), curr) == stopWords.end())
+                    currentList = (stringToDoc(curr));
                 relevancySort(currentList);
 
             } else {
@@ -183,7 +187,8 @@ vector<string> QueryProcessor::runQuery(string query, int numDocs) {
                 vector<vector<DocStat>> docs;
                 stem(curr);
                 docs.push_back(currentList);
-                docs.push_back(stringToDoc(curr));
+                if(find(stopWords.begin(), stopWords.end(), curr) == stopWords.end())
+                    docs.push_back(stringToDoc(curr));
 
                 // DEFAULT is a union of these words
                 getUnion(docs);
@@ -304,4 +309,19 @@ void QueryProcessor::relevancySort(vector<DocStat> & list) {
         list[j + 1] = key;
     }
     reverse(list.begin(),list.end());
+}
+
+void QueryProcessor::populateStopWords() {
+    ifstream stopWordsFile("StopWords.txt");
+    if (!stopWordsFile) {
+        cout << "could not open stop words file" << endl;
+        exit(1);
+    }
+
+    string stopWord;
+    while (stopWordsFile >> stopWord) {
+        stopWords.push_back(stopWord);
+    }
+
+    stopWordsFile.close();
 }
