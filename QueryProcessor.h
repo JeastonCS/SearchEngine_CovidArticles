@@ -1,5 +1,5 @@
 #include "IndexHandler.h"
-#include "Document.h"
+#include "DocStat.h"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -14,15 +14,15 @@ public:
 //    QueryProcessor() = default;
     QueryProcessor(const IndexHandler &);
 
-    vector<Document> runQuery(string query, int numOfDocs);
+    vector<string> runQuery(string query, int numOfDocs);
 
-    vector<Document> getUnion(vector<vector<Document>>& docs);
-    vector<Document> getIntersection(vector<vector<Document>>& docs);
-    vector<Document> getDifference(vector<Document>& terms, vector<vector<Document>>& docs);
-    vector<Document> getAuthor(vector<Document>& terms, vector<vector<Document>>& docs);
+    vector<DocStat> getUnion(vector<vector<DocStat>>& docs);
+    vector<DocStat> getIntersection(vector<vector<DocStat>>& docs);
+    vector<DocStat> getDifference(vector<DocStat>& terms, vector<vector<DocStat>>& docs);
+    vector<DocStat> getAuthor(vector<DocStat>& terms, vector<vector<DocStat>>& docs);
 
     void stem(string& str);
-    vector<Document> stringToDoc(const string strs);
+    vector<DocStat> stringToDoc(const string &);
     double findTFIDRStat(int querySize, int numOfDoc, double termFreq);
-    static void relevancySort(vector<Document>&);
+    static void relevancySort(vector<DocStat>&);
 };

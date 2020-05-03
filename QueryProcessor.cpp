@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <queue>
 #include "stemmer/porter2_stemmer.h"
+
+
 QueryProcessor::QueryProcessor(const IndexHandler & handler) {
     ih = handler;
 }
@@ -13,19 +15,22 @@ void QueryProcessor::stem(string & str) {
     Porter2Stemmer::stem(str);
 }
 
-vector<Document> QueryProcessor::stringToDoc(const string word) {
-    vector<Document> docs = ih.getWordDocs(word);
+vector<DocStat> QueryProcessor::stringToDoc(const string& word) {
+    vector<string> docs = ih.getWordDocIDs(word);
     vector<double> freq = ih.getWordFreq(word);
-
+    vector<DocStat> final;
     int i = 0;
-    for (Document& s:docs) {
-        s.tfStat = findTFIDRStat(docs.size(),numOfDocs,freq[i]);
+    // pair strings with tfidr stats
+    for (string& s:docs) {
+        double stat = findTFIDRStat(docs.size(),numOfDocs,freq[i]);
+        DocStat d(s,stat);
+        final.push_back(d);
         i++;
     }
-    return docs;
+    return final;
 }
 
-vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
+vector<string> QueryProcessor::runQuery(string query, int numDocs) {
     // set numOfDocs
     numOfDocs = numDocs;
 
@@ -37,7 +42,7 @@ vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
 
     // create queue and list
     queue<string> queryOrder;
-    vector<Document> currentList;
+    vector<DocStat> currentList;
     for (string& s: split)
         queryOrder.push(s);
 
@@ -49,7 +54,7 @@ vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
 
         if(strcasecmp(curr.c_str(),"AUTHOR") == 0){
             // stem and initialize
-            vector<vector<Document>> docs;
+            vector<vector<DocStat>> docs;
             curr = queryOrder.front();
 
             // get terms until keyword
@@ -59,7 +64,15 @@ vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
                    strcasecmp(curr.c_str(),"AUTHOR")!= 0 &&
                    strcasecmp(curr.c_str(),"NOT") != 0)
             {
-                docs.push_back(ih.getAuthorDocs(curr));
+                vector<string> authors = ih.getAuthorDocIDs(curr);
+                vector<DocStat> temp;
+
+                // make DocStats from list of author Docs
+                for (string s: authors)
+                    temp.emplace_back(s);
+
+                // add to current query logic
+                docs.push_back(temp);
                 queryOrder.pop();
                 if(!queryOrder.empty())
                     curr = queryOrder.front();
@@ -67,7 +80,7 @@ vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
 
             // get search term preceding the AUTHOR
             if (currentList.empty()) {
-                cout << "not valid AUTHOR Statement --  term AUTHOR author(s)" << endl;
+                cout << "not valid AUTHOR Statement--  [term] AUTHOR [author(s)]" << endl;
                 break;
             }
 
@@ -77,15 +90,15 @@ vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
 
         else if(strcasecmp(curr.c_str(),"AND") == 0){
             // stem and initialize
-            vector<vector<Document>> docs;
+            vector<vector<DocStat>> docs;
             curr = queryOrder.front();
 
             // get terms until keyword
             while (!queryOrder.empty() &&
-                    strcasecmp(curr.c_str(),"AND") != 0 &&
-                    strcasecmp(curr.c_str(),"OR") != 0 &&
-                    strcasecmp(curr.c_str(),"AUTHOR")!= 0 &&
-                    strcasecmp(curr.c_str(),"NOT") != 0)
+                   strcasecmp(curr.c_str(),"AND") != 0 &&
+                   strcasecmp(curr.c_str(),"OR") != 0 &&
+                   strcasecmp(curr.c_str(),"AUTHOR")!= 0 &&
+                   strcasecmp(curr.c_str(),"NOT") != 0)
             {
                 stem(curr);
                 docs.push_back(stringToDoc(curr));
@@ -104,7 +117,7 @@ vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
 
         else if(strcasecmp(curr.c_str(),"OR") == 0){
             // stem and initialize
-            vector<vector<Document>> docs;
+            vector<vector<DocStat>> docs;
             curr = queryOrder.front();
 
             // get terms until keyword
@@ -131,7 +144,7 @@ vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
 
         else if(strcasecmp(curr.c_str(),"NOT") == 0){
             // stem and initialize
-            vector<vector<Document>> docs;
+            vector<vector<DocStat>> docs;
             curr = queryOrder.front();
 
             // get terms until keyword
@@ -150,14 +163,14 @@ vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
 
             // get search term preceding the NOT
             if (currentList.empty()) {
-                cout << "Not Valid NOT statement -- term NOT term(s)" << endl;
+                cout << "Not Valid NOT statement--  [term] NOT [term(s)]" << endl;
                 break;
             }
 
             // do set difference
             currentList = getDifference(currentList,docs);
         }
-        //start with word and store in currList
+            //start with word and store in currList
         else {
             if (currentList.empty()) {
                 // first word in query
@@ -167,7 +180,7 @@ vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
 
             } else {
                 // unintended list at start with no keyword
-                vector<vector<Document>> docs;
+                vector<vector<DocStat>> docs;
                 stem(curr);
                 docs.push_back(currentList);
                 docs.push_back(stringToDoc(curr));
@@ -178,7 +191,12 @@ vector<Document> QueryProcessor::runQuery(string query, int numDocs) {
         }
     }
 
-    return currentList;
+    // convert back to string to get Documents in UI
+    vector<string> finalList;
+    for (DocStat& d : currentList)
+        finalList.push_back(d.docID);
+
+    return finalList;
 }
 
 double QueryProcessor::findTFIDRStat(int querySize,int numOfDocs, double termFreq) {
@@ -187,16 +205,16 @@ double QueryProcessor::findTFIDRStat(int querySize,int numOfDocs, double termFre
     return tf * idf;
 }
 
-vector<Document> QueryProcessor::getUnion(vector<vector<Document>>& docs){
-    vector<Document> resultList = docs[0];
+vector<DocStat> QueryProcessor::getUnion(vector<vector<DocStat>>& docs){
+    vector<DocStat> resultList = docs[0];
 
     for (int i = 1; i < docs.size(); i++){
-        for (Document &x : docs[i]) {
+        for (DocStat &x : docs[i]) {
             bool found = false;
-            for (Document &y: resultList) {
+            for (DocStat &y: resultList) {
                 if (x.docID == y.docID) {
-                    y.tfStat += x.tfStat; // change to make more precise
-                    y.tfStat /= 2;
+                    y.tfidf += x.tfidf;
+                    y.tfidf /= 2;
                     found = true;
                     break;
                 }
@@ -209,16 +227,16 @@ vector<Document> QueryProcessor::getUnion(vector<vector<Document>>& docs){
     return resultList;
 }
 
-vector<Document> QueryProcessor::getIntersection(vector<vector<Document>>& docs) {
-    vector<Document> currList = docs[0];
-    vector<Document> resultList;
+vector<DocStat> QueryProcessor::getIntersection(vector<vector<DocStat>>& docs) {
+    vector<DocStat> currList = docs[0];
+    vector<DocStat> resultList;
 
     for (int i = 1; i < docs.size(); ++i) {
-        for (Document &x : docs[i]) {
-            for (Document &y : currList) {
+        for (DocStat &x : docs[i]) {
+            for (DocStat &y : currList) {
                 if (x.docID == y.docID) {
-                    x.tfStat += y.tfStat; // edit to make more precise
-                    x.tfStat /= 2;
+                    x.tfidf += y.tfidf;
+                    x.tfidf /= 2;
                     resultList.push_back(x);
                 }
             }
@@ -232,13 +250,13 @@ vector<Document> QueryProcessor::getIntersection(vector<vector<Document>>& docs)
     return currList;
 }
 
-vector<Document> QueryProcessor::getDifference(vector<Document>& terms, vector<vector<Document>>& docs) {
-    vector<Document> currList = getUnion(docs);
-    vector<Document> resultList;
+vector<DocStat> QueryProcessor::getDifference(vector<DocStat>& terms, vector<vector<DocStat>>& docs) {
+    vector<DocStat> currList = getUnion(docs);
+    vector<DocStat> resultList;
 
-    for (Document& x : terms) {
+    for (DocStat& x : terms) {
         bool found = false;
-        for (Document& y: currList) {
+        for (DocStat& y: currList) {
             if(x.docID == y.docID) {
                 found = true;
                 break;
@@ -254,12 +272,12 @@ vector<Document> QueryProcessor::getDifference(vector<Document>& terms, vector<v
 }
 
 
-vector<Document> QueryProcessor::getAuthor(vector<Document>& terms, vector<vector<Document>>& docs) {
-    vector<Document> currList = getUnion(docs);
-    vector<Document> resultList;
+vector<DocStat> QueryProcessor::getAuthor(vector<DocStat>& terms, vector<vector<DocStat>>& docs) {
+    vector<DocStat> currList = getUnion(docs);
+    vector<DocStat> resultList;
 
-    for (Document& x : terms) {
-        for (Document& y : currList) {
+    for (DocStat& x : terms) {
+        for (DocStat& y : currList) {
             if (x.docID == y.docID)
                 resultList.push_back(x);
         }
@@ -269,11 +287,12 @@ vector<Document> QueryProcessor::getAuthor(vector<Document>& terms, vector<vecto
     return resultList;
 }
 
-void QueryProcessor::relevancySort(vector<Document> & list) {
+void QueryProcessor::relevancySort(vector<DocStat> & list) {
     // used insertion sort
+
     int size = list.size();
     int i, j;
-    Document key;
+    DocStat key;
 
     for (i = 1; i < size; i++) {
         key = list[i];

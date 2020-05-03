@@ -9,16 +9,15 @@
 UserInterface::UserInterface()
 {
     handler = * new IndexHandler;
-
-    numDocsParsed = 0;
 }
 
 void UserInterface::interfaceLoop()
 {
-    introduction();
-
     const char *wordFile = "word_index.txt";
     const char *authorFile = "author_index.txt";
+    const char *documentFile = "documents.txt";
+
+    introduction();
 
     string command = "command list";
     while (command != "quit") {
@@ -34,14 +33,13 @@ void UserInterface::interfaceLoop()
             submitQuery();
         }
         else if (command == "to file") {
-            writeIndexToFile(wordFile, authorFile);
+            writeIndexToFile(wordFile, authorFile, documentFile);
         }
         else if (command == "file") {
-            populateIndexWithFile(wordFile, authorFile);
+            populateIndexWithFile(wordFile, authorFile, documentFile);
         }
         else if (command == "clear") {
-            handler.clearIndexes();
-            clear(wordFile, authorFile);
+            clear();
         }
         else {
             cout << "Invalid command. Try again." << endl;
@@ -76,8 +74,7 @@ void UserInterface::introduction()
 
     cout    << "Welcome to the FonteKNOW search engine where we can get you all of the Coronavirus\n"
             << "information you need! Pick from the following list of options to get started.\n"
-            << "Each option follows this format: command -> short description of command\n" << endl;
-
+            << "Each option follows this format: command -> short description of command\n" << endl; ;
 }
 
 void UserInterface::displayOptions()
@@ -118,11 +115,8 @@ void UserInterface::populateIndexWithCorpus()
         }
     }
 
-    dp = opendir(dir.c_str());
-    if (dp == NULL) {
-        cout << "invalid directory" << endl;
-        exit(1);
-    }
+    DocumentProcessor dProcessor;
+    dProcessor.populateStopWords("StopWords.txt");
 
     while ( (dirp = readdir(dp)) ) {
         filepath = dir + "/" + dirp->d_name;
@@ -131,29 +125,43 @@ void UserInterface::populateIndexWithCorpus()
         if (stat( filepath.c_str(), &filestat ))    continue;
         if (S_ISDIR( filestat.st_mode ))        continue;
 
-        //create DocumentProcessor with current json and add its words/authors
-        DocumentProcessor dProcessor(filepath.c_str());
-        dProcessor.initializeDocWordsTermFrequency();
-        handler.setProcessor(dProcessor);
-        handler.addProcessorWords();
-        handler.addProcessorAuthors();
 
-        //increment number of parsed documents
-        numDocsParsed++;
+        //parse json document unless filepath is metadata.csv, then extract metadata's data
+        if (!dProcessor.parseJson(filepath.c_str())) {
+            cout << "parsed jsons" << endl;
+            dProcessor.populateMetadata(filepath.c_str());
+        }
+        else {
+            dProcessor.populateProcessedWords();
+
+            //add document processor's words to indexes through index handler
+            handler.addProcessorWords(dProcessor.getCurrProcessedWords(), dProcessor.getCurrDocID());
+            handler.addProcessorAuthors(dProcessor.getCurrAuthors(), dProcessor.getCurrDocID());
+
+            dProcessor.clearPWords();
+        }
     }
+    cout << "all parsed" << endl;
+    dProcessor.addMetadataData();
+    cout << "added metadata" << endl;
 
     closedir(dp);
+
+    //initialize instance variable "documents"
+    documents = dProcessor.getDocuments();
 }
 
-void UserInterface::populateIndexWithFile(const char *wordIndex, const char *authorIndex) {
+void UserInterface::populateIndexWithFile(const char *wordIndex, const char *authorIndex, const char *docs) {
     handler.populateMainWithFile(wordIndex);
     handler.populateAuthorsWithFile(authorIndex);
+    documents = handler.getDocumentsWithFile(docs);
 }
 
-void UserInterface::writeIndexToFile(const char *wordOutput, const char *authorOutput)
+void UserInterface::writeIndexToFile(const char *wordOutput, const char *authorOutput, const char *documentOutput)
 {
     handler.writeMainToFile(wordOutput);
     handler.writeAuthorsToFile(authorOutput);
+    handler.writeDocumentsToFile(documents, documentOutput);
 }
 
 void UserInterface::submitQuery()
@@ -167,14 +175,14 @@ void UserInterface::submitQuery()
 
     while (query != "new command") {
         //get query results
-        vector<Document> documents;
-        documents = qProcessor->runQuery(query, numDocsParsed);
+        vector<string> qResults;
+        qResults = qProcessor->runQuery(query, documents.size());
 
         //output query results to user
-        cout << "Number of documents: " << documents.size() << '\n' << endl;
+        cout << "Number of documents: " << qResults.size() << '\n' << endl;
 
         int pageNum = 1;
-        while(paginateResultingDocuments(documents, pageNum)) {
+        while(paginateResultingDocuments(qResults, pageNum)) {
             //check to see if user wants to see more documents
             cout    << "View next page? (\"yes\" or \"no\")\n"
                     << ">>> " << flush;
@@ -198,11 +206,11 @@ void UserInterface::submitQuery()
     }
 }
 
-bool UserInterface::paginateResultingDocuments(vector<Document> &documents, int pageNum) {
+bool UserInterface::paginateResultingDocuments(vector<string> &qResults, int pageNum) {
     cout << "Page " << pageNum << endl;
-    for (int i = (pageNum - 1) * 15; i < documents.size() && i < pageNum * 15; i++) {
+    for (int i = (pageNum - 1) * 15; i < qResults.size() && i < pageNum * 15; i++) {
         cout << i+1 << ". ";
-        documents[i].print();
+        find(documents.begin(), documents.end(), qResults[i])->print();
     }
     cout << endl;
 
@@ -211,22 +219,17 @@ bool UserInterface::paginateResultingDocuments(vector<Document> &documents, int 
 
 void UserInterface::getStatistics()
 {
-    cout << "Number of documents parsed: " << numDocsParsed << endl;
+    cout << "Number of documents parsed: " << documents.size() << endl;
     cout << "Number of unique words: " << handler.getNumUniqueWords() << endl;
     cout << "Number of unique authors: " << handler.getNumUniqueAuthors() << endl;
+
     cout << endl;
 }
 
-void UserInterface::clear(const char *wordFileName, const char *authorFileName)
+void UserInterface::clear()
 {
-    ifstream wordFile(wordFileName), authorFile(authorFileName);
-    if (!wordFile || !authorFile) {
-        cout << "could not open index files to clear" << endl;
-        exit(1);
-    }
-
-    wordFile.close();
-    authorFile.close();
+    handler.clearIndexes();
+    documents.clear();
 }
 
 string UserInterface::lowercase(string command)

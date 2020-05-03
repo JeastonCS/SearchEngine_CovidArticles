@@ -6,16 +6,18 @@
 #define JSONTEST_DOCUMENTPROCESSOR_H
 
 #include "DocumentWord.h"
+#include "Word.h"
 #include "Document.h"
+#include "MetadataEntry.h"
 
 #include "rapidjson/document.h"
 #include "rapidjson/istreamwrapper.h"
-#include "stemmer/porter2_stemmer.h"
 
 #include <algorithm>
 #include <sstream>
 #include <string>
 #include <vector>
+#include <map>
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -23,31 +25,39 @@ using namespace std;
 
 class DocumentProcessor {
 private:
-    string docText;
-    int docWordCount;
-    vector<DocumentWord> processedWords;
-    Document doc;
-
     vector<string> stopWords;
+    map<string,MetadataEntry> metadata;
+
+    vector<Document> documents;
+
+    //to submit to index handler (put into indexes)
+    string currDocID;
+    vector<DocumentWord> processedWords;
 public:
     DocumentProcessor() = default;
-    DocumentProcessor(const char *);
+    DocumentProcessor(const DocumentProcessor &);
     DocumentProcessor & operator=(const DocumentProcessor &);
 
-    Document & getDocument() { return doc; }
-    vector<DocumentWord> & getProcessedWords() { return processedWords; }
-    vector<string> & getAuthors() { return doc.getAuthors(); }
-
-    void initializeDocWordsTermFrequency();
-
-    void print();
-
-private:
-    void parseJson(const char *);
+    //user interface methods
     void populateStopWords(const char *);
-    void populateProcessedWords();
+    void populateMetadata(const char *);
 
-    void stem(string &);
+    bool parseJson(const char *);
+    void populateProcessedWords();
+    void clearPWords();
+
+    void addMetadataData();
+
+
+    vector<DocumentWord> & getCurrProcessedWords() { return processedWords; }
+    vector<string> & getCurrAuthors() { return documents[documents.size() - 1].getAuthors(); }
+    string getCurrDocID() { return documents[documents.size() - 1].getDocID(); }
+    vector<Document> & getDocuments() { return documents; }
+private:
+    void addMetadataTo(Document &);
+    void getSpecificInMetadata(const string &, string &, string &, string &);
+
+    void mergeCurrentWords(Document &);
 };
 
 

@@ -7,10 +7,10 @@ class AuthorIndex{
 private:
     HashTable table;
 public:
-    void addAuthor(string word, const Document &doc) {
+    void addAuthor(string word, const string &doc) {
         table.insert(word,doc);
     }
-    vector<Document> getAuthor(string name) {
+    vector<string> getAuthor(string name) {
         return table.getAtKey(name);
     }
     void writeToFile(const char * file) {
@@ -24,5 +24,5 @@ public:
     }
     int getNumUniqueAuthors() {
         return table.getNumOfAuthors();
-    };
+    }
 };
