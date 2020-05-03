@@ -21,6 +21,7 @@ private:
     AuthorIndex nameIndex;
 public:
     IndexHandler();
+    IndexHandler & operator=(const IndexHandler &);
 
     void addProcessorWords(vector<DocumentWord> &, const string &);
     void addProcessorAuthors(vector<string> &, const string &);

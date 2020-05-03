@@ -22,6 +22,9 @@ class UserInterface {
 private:
     IndexHandler handler;
     vector<Document> documents;
+
+    DocumentProcessor dProcessor;
+    QueryProcessor qProcessor;
 public:
     UserInterface();
 

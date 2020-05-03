@@ -7,6 +7,10 @@ class AuthorIndex{
 private:
     HashTable table;
 public:
+    AuthorIndex &operator=(const AuthorIndex &rhs) {
+        table = rhs.table;
+        return *this;
+    }
     void addAuthor(string word, const string &doc) {
         table.insert(word,doc);
     }

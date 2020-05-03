@@ -6,6 +6,10 @@ class WordIndex{
 private:
     AVLTree<Word> tree;
 public:
+    WordIndex &operator=(const WordIndex &rhs) {
+        tree = rhs.tree;
+        return *this;
+    }
     void addWord(string word, const string &docID, double termFreq) {
         Word index = *new Word(word,docID, termFreq);
         AVLNode<Word>* node = tree.find(index);

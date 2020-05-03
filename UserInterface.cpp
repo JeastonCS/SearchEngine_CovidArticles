@@ -9,6 +9,9 @@
 UserInterface::UserInterface()
 {
     handler = * new IndexHandler;
+//    dProcessor = * new DocumentProcessor;
+    dProcessor.populateStopWords("StopWords.txt");
+//    qProcessor = * new QueryProcessor;
 }
 
 void UserInterface::interfaceLoop()
@@ -120,9 +123,6 @@ void UserInterface::populateIndexWithCorpus()
         }
     }
 
-    DocumentProcessor dProcessor;
-    dProcessor.populateStopWords("StopWords.txt");
-
     while ( (dirp = readdir(dp)) ) {
         filepath = dir + "/" + dirp->d_name;
 
@@ -153,6 +153,9 @@ void UserInterface::populateIndexWithCorpus()
     //initialize instance variable "documents"
     documents = dProcessor.getDocuments();
 
+    //initialize query processor
+    //not done in submit query method so running a query can be faster
+    qProcessor.setHandler(handler);
 }
 
 void UserInterface::populateIndexWithFile(const char *wordIndex, const char *authorIndex, const char *docs) {
@@ -170,7 +173,6 @@ void UserInterface::writeIndexToFile(const char *wordOutput, const char *authorO
 
 void UserInterface::submitQuery()
 {
-    QueryProcessor *qProcessor = new QueryProcessor(handler);
     //get query
     string query;
     cout    << "Enter your query:\n"
@@ -180,7 +182,7 @@ void UserInterface::submitQuery()
     while (query != "menu") {
         //get query results
         vector<string> qResults;
-        qResults = qProcessor->runQuery(query, documents.size());
+        qResults = qProcessor.runQuery(query, documents.size());
 
         //output query results to user
         cout << "Number of documents: " << qResults.size() << '\n' << endl;

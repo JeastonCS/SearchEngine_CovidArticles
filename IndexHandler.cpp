@@ -179,3 +179,9 @@ void IndexHandler::print() {
     textIndex.print();
 }
 
+IndexHandler &IndexHandler::operator=(const IndexHandler &rhs) {
+    textIndex = rhs.textIndex;
+    nameIndex = rhs.nameIndex;
+    return *this;
+}
+

@@ -6,9 +6,9 @@
 #include "stemmer/porter2_stemmer.h"
 
 
-QueryProcessor::QueryProcessor(const IndexHandler & handler) {
+QueryProcessor::QueryProcessor() {
     populateStopWords();
-    ih = handler;
+//    ih = handler;
 }
 
 void QueryProcessor::stem(string & str) {
