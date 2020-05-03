@@ -51,8 +51,6 @@ measure the speed. The rate at speed performance will then be gathered and then 
 Data structure overview
 -----------------------
 
-## Data being stored
-
 ### Introduction to AVL tree implementation:
 
 In the AVL tree each inverted index is a node that contains a Word class which 
@@ -109,36 +107,33 @@ next four are those branches and so on.
 
 The hashtable is a data structure that is similar to the functions of an
 array. In the hashtable written for the program, each spot on the table
-contained an item object. The item object held inside of it four
-different variables: a string to hold the word, a string to hold the PDF
-name, an int to hold the number of times it was in each PDF, and a
-vector of item objects used to store items with the same key value as
-the item. In order to place the item object in a specific index on the
-hashtable, a hashing function was used. The purpose of the hashing
+contained an HashNode object. Inside the node contains a string of the Author, a document ID, 
+and a pointer to the next node. For Nodes that have the same Author, we add
+them to the pointer to the next node thus creating a LinkedList of Nodes of 
+the same Author at a specific location in the table. In order to place the Node in this specific index on the
+hashtable, a hash function was used. The purpose of the hashing
 function is generate a key value, (a unique number) for each word that
-needs to be inserted into the hashtable.  The hashing function generates
-this unique number ,and then stores the item object at the index of the
+needs to be inserted into the hashtable. The hashing function generates
+this unique number, and then stores the item object at the index of the
 number on the hashtable. In this way, each item object has a unique
 location on the hashtable, and that location can be found by running the
-word being searching for through the hashing function. For the case of
+word being searching for through the hashing function. In our case, we used the standard hasing function 
+found when importing unordered_map. For the case of
 any collisions (item objects that generate the same number when run
-through the hashing function), the colliding item object was added to
-the vector of the already existing item object. This way, the hashtable
-does not write over previously stored data.
+through the hashing function), the Node keeps a string of the Author, validating 
+if it is the correct one before displaying its results. This way, the hashtable
+does not return faulty information.
 
-When reading in form the inverted index, the hashtable converts the data
-into an item object. It then takes the word, and puts it through the
-hashing function, and stores the item at this index on the hashtable.
-The bigO of this insertion operation is O(1) or constant time. If the
-hashtable goes to insert, and there is already another item present, the
-hashtable just adds the colliding item to the end of the vector. This
-insertion operation is also O(1).  
+When reading in from the inverted index, the hashtable simply gets the Author name 
+and creates Nodes of each DocID. By using the hash function, it finds the corresponding 
+location for that Author's hash and adds the Node of the DocID to the end of the LinkedList.
+Because we have to prse through every line in the inverted index, the bigO of this operation 
+is linear time i.e. O(n).
 
-When searching for a word, the hashtable just inserts the word into the
-hash function. This generates the index of where the word would be
-stored on the hashtable if present. Then it just searches all of the
-items at that index for that word. The bigO of this operation is
-constant time or O(1).
+When searching for a word, the hashtable just inserts the author name into the
+hash function. This generates the index of where the author would be
+stored on the hashtable if present. Then it just searches nodes of the LinkedList
+for that author. The bigO of this operation is constant time i.e. O(1).
 
 
 
