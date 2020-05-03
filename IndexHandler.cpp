@@ -27,7 +27,6 @@ void IndexHandler::populateMainWithFile(const char *fileName)
         cout << "could not open file with index data" << endl;
         exit(1);
     }
-
     string line;
     while (!input.eof()) {
         getline(input, line);

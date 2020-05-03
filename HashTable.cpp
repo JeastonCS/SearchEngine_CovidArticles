@@ -51,6 +51,8 @@ HashTable & HashTable::operator=(const HashTable & table1) {
             }
         }
     }
+
+    return *this;
 }
 
 HashTable::~HashTable() {

@@ -9,9 +9,9 @@
 UserInterface::UserInterface()
 {
     handler = * new IndexHandler;
-//    dProcessor = * new DocumentProcessor;
+    dProcessor = * new DocumentProcessor;
     dProcessor.populateStopWords("StopWords.txt");
-//    qProcessor = * new QueryProcessor;
+    qProcessor = * new QueryProcessor;
 }
 
 void UserInterface::interfaceLoop()
@@ -162,6 +162,10 @@ void UserInterface::populateIndexWithFile(const char *wordIndex, const char *aut
     handler.populateMainWithFile(wordIndex);
     handler.populateAuthorsWithFile(authorIndex);
     handler.getDocumentsWithFile(docs, documents);
+
+    //initialize query processor
+    //not done in submit query method so running a query can be faster
+    qProcessor.setHandler(handler);
 }
 
 void UserInterface::writeIndexToFile(const char *wordOutput, const char *authorOutput, const char *documentOutput)

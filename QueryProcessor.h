@@ -15,9 +15,10 @@ private:
 
 public:
 //    QueryProcessor() = default;
-    QueryProcessor(const IndexHandler &);
+    QueryProcessor();
 
     vector<string> runQuery(string query, int numOfDocs);
+    void setHandler(const IndexHandler &handler) { ih = handler; }
 private:
     vector<string> stopWords;
     vector<DocStat> getUnion(vector<vector<DocStat>>& docs);
