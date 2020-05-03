@@ -66,8 +66,11 @@ bool DocumentProcessor::parseJson(const char *fileName) {
     doc.setTitle(document["metadata"]["title"].GetString());
 
     //get and store author names
+    string authorName;
     for (Value &val : document["metadata"]["authors"].GetArray()) {
-        string authorName = val["last"].GetString();
+        authorName = val["last"].GetString();
+        authorName += ",";
+        authorName += val["first"].GetString();
         doc.addAuthor(authorName);
     }
 
@@ -122,7 +125,8 @@ void DocumentProcessor::getSpecificInMetadata(const string &line, string &docID,
     auto next = line.find(',');
     auto length = 0;
 
-    for (int i = 0; i < 17; i++) {
+    string current;
+    for (int i = 0; i < 10; i++) {
         if (i == 1) {
             length = next - pos - 1;
             docID = line.substr(pos + 1, length);
@@ -134,13 +138,22 @@ void DocumentProcessor::getSpecificInMetadata(const string &line, string &docID,
             length = next - pos - 1;
             publicationDate = line.substr(pos + 1, length);
         }
-        else if (i == 10)
-            next = line.find('\"', pos + 2) + 1;
+//        else if (i == 10)
+//            next = line.find('\"', pos + 2) + 1;
+
+//        length = next - pos - 1;
+//        current = line.substr(pos + 1, length);
 
         pos = next;
-        next = line.find(',', pos + 1);
+        if (line.at(pos + 1) == ',') {
+            next = pos + 1;
+        }
+        else {
+            next = line.find(',', pos + 1);
+        }
     }
-    url = line.substr(pos + 1);
+    pos = line.find("https", next + 1);
+    url = line.substr(pos);
 }
 
 void DocumentProcessor::addMetadataData()

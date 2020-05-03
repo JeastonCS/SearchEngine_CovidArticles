@@ -31,7 +31,7 @@ private:
     vector<Document> documents;
 
     //to submit to index handler (put into indexes)
-    string currDocID;
+//    string currDocID;
     vector<DocumentWord> processedWords;
 public:
     DocumentProcessor() = default;

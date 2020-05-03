@@ -20,36 +20,77 @@ Document::Document(const Document& doc){
     wordCount = doc.wordCount;
     tfStat = doc.tfStat;
 }
-void Document::print() {
-    //print title
+void Document::print(int numSpaces) {
+    //formatting
+    string customTab;
+    for (int i = 0; i < numSpaces; i++) {
+        customTab += " ";
+    }
+
+    //print url
+    cout << url << endl;
+
+    //print title (has ability to wrap if title is too long)
+    cout << customTab << flush;
     if (title.size() == 0) {
-        cout << "*no title*" << endl;
-        cout << "\t" << docID << endl;
+        cout << "*no title*" << flush;
+        cout << " (" << docID << ")" << endl;
     }
     else {
+        cout << "\"" << flush;
         stringstream ss(title);
+
         int size = 0;
         string word;
-        while (ss >> word) {
+        ss >> word;
+        while (true) {
             size += word.size() + 1;
             if (size > 80) {
                 cout << "\n\t" << flush;
                 size = word.size() + 1;
             }
 
-            cout << word << " ";
+            cout << word;
+            if (ss >> word) {
+                cout << " " << flush;
+            }
+            else {
+                break;
+            }
+        }
+        cout << "\"" << endl;
+    }
+
+    //print authors (has ability to wrap if authors is too long)
+    cout << customTab << flush;
+    cout << "Authors:\n\t" << flush;
+
+    if(authors.size() == 0) {
+        cout << "\t" << "*no authors*" << endl;
+    }
+    else {
+        int size = 0;
+        for (int i = 0; i < authors.size(); i++) {
+            size += authors[i].size() + 1;
+            if (size > 75) {
+                cout << "\n\t" << flush;
+                size = authors[i].size() + 1;
+            }
+
+            cout << authors[i] << "; ";
         }
         cout << endl;
     }
 
-    //print authors
-    for (int i = 0; i < authors.size(); i++) {
-        cout << "\t- " << authors[i] << endl;
-    }
-
-    cout << "\t" << url << endl;
-
-    cout << "\t" << publication << endl;
+        //print publication info
+        cout << customTab << flush;
+        cout << "Publication Information: " << endl;
+        if (publication.size() == 0) {
+            cout << "\t" << "*no publication date*" << endl;
+        }
+        else {
+            cout << "\t" << publication << endl;
+        }
 }
 Document& Document::operator=(const Document& rhs) {
 
@@ -72,6 +113,10 @@ bool Document::operator<(const Document& rhs) {
 }
 bool Document::operator==(const Document& rhs) {
     return tfStat==rhs.tfStat;
+}
+
+bool Document::operator==(const string &rhs) {
+    return docID == rhs;
 }
 
 ostream &operator<<(ostream &os, const Document &doc) {

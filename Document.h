@@ -36,12 +36,13 @@ public:
     bool operator>(const Document& rhs) ;
     bool operator<(const Document& rhs) ;
     bool operator==(const Document& rhs) ;
+    bool operator==(const string &);
     friend ostream& operator<<(ostream &, const Document &);
 
     //misc methods
     void populateProcessedWords(const vector<string> &, vector<DocumentWord> &);
     void initializeDocWordsTermFrequency(vector<DocumentWord> &);
-    void print();
+    void print(int);
 
     //setters
     void setDocID(const string &docID) { this->docID = docID; }

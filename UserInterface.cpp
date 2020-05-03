@@ -52,7 +52,7 @@ void UserInterface::interfaceLoop()
         //update user command
         cout    << "<<<----------------------------------------------------------------------------->>>" << endl;
         cout    << "Type your command below (or type \"command list\" for a list of commands):\n"
-                << ">>> " << flush;
+                << ">>>" << flush;
 
         getline(cin, command);
         command = lowercase(command);
@@ -104,7 +104,7 @@ void UserInterface::populateIndexWithCorpus()
 
     while(dp == NULL) {
         cout    << "Enter the name of your directory (or type \"menu\" to return to the menu):\n"
-                << ">>> " << flush;
+                << ">>>" << flush;
         getline(cin, dir);
         cout << endl;
 
@@ -170,65 +170,114 @@ void UserInterface::writeIndexToFile(const char *wordOutput, const char *authorO
 
 void UserInterface::submitQuery()
 {
-//    QueryProcessor *qProcessor = new QueryProcessor(handler);
-//    //get query
-//    string query;
-//    cout    << "Enter your query:\n"
-//            << ">>> " << flush;
-//    getline(cin, query);
-//
-//    while (query != "menu") {
-//        //get query results
-//        vector<string> qResults;
-//        qResults = qProcessor->runQuery(query, documents.size());
-//
-//        //output query results to user
-//        cout << "Number of documents: " << qResults.size() << '\n' << endl;
-//
-//        int pageNum = 1;
-//        string choice;
-//        while(paginateResultingDocuments(qResults, pageNum)) {
-//            //check to see if user wants to see more documents
-//            cout    << "Pick a source to display or type \"next\" to see more results (or \"new\" to submit a new query)\n"
-//                    << ">>> " << flush;
-//            getline(cin, choice);
-//            cout << endl;
-//
-//            //user wants to ask a new command
-//            if (choice == "new") {
-//                break;
-//            }
-//            else if (choice != "next") {
-//                getResultText(qResults, stoi(choice));
-//            }
-//
-//            pageNum++;
-//        }
-//
-//        cout    << "Enter a new query (or type \"menu\" to return to the menu):\n"
-//                << ">>> ";
-//        getline(cin, query);
-//        cout << endl;
-//    }
+    QueryProcessor *qProcessor = new QueryProcessor(handler);
+    //get query
+    string query;
+    cout    << "Enter your query:\n"
+            << ">>>" << flush;
+    getline(cin, query);
+
+    while (query != "menu") {
+        //get query results
+        vector<string> qResults;
+        qResults = qProcessor->runQuery(query, documents.size());
+
+        //output query results to user
+        cout << "Number of documents: " << qResults.size() << '\n' << endl;
+
+        int pagesPerPagination = 5;
+        int pageNum = 1;
+        string choice = "next";
+        bool morePages = paginateResultingDocuments(qResults, pageNum, pagesPerPagination);
+        while(morePages && choice == "next") {
+            //check to see if user wants to see more documents
+            cout    << "Pick a source to display or type \"next\" to see more results (or \"new\" to submit a new query)\n"
+                    << ">>>" << flush;
+            getline(cin, choice);
+            cout << endl;
+
+            //user wants to ask a new command
+            if ( isdigit(choice.at(0)) ) {
+                getResultText(qResults, stoi(choice));
+                choice = "next";
+                continue;
+            }
+            else if (choice == "new"){
+                break;
+            }
+            else if (choice != "next") {
+                cout << "invalid choice" << endl;
+                choice = "next";
+                continue;
+            }
+
+            pageNum++;
+            paginateResultingDocuments(qResults, pageNum, pagesPerPagination);
+        }
+
+        if (choice != "new") {
+            do {
+                cout << "Pick a source to display (or \"new\" to submit a new query)\n"
+                     << ">>>" << flush;
+                getline(cin, choice);
+                cout << endl;
+                if ( isdigit(choice.at(0)) ) {
+                    getResultText(qResults, stoi(choice));
+                }
+                else if (choice != "new") {
+                    cout << "invalid" << endl;
+                }
+            } while (choice != "new");
+        }
+
+
+        cout    << "Enter a new query (or type \"menu\" to return to the menu):\n"
+                << ">>>";
+        getline(cin, query);
+        cout << endl;
+    }
 
     cout << "REDIRECTING...\n" << endl;
 }
 
 void UserInterface::getResultText(vector<string> &qResults, int sourceNum) {
-    auto it = find(documents.begin(), documents.end(), qResults[sourceNum]);
-    cout << "\n\"" << it->getTitle() << "\"" << endl;
-    cout << "\t" << it->getText() << endl;
+    if (sourceNum > 0 && sourceNum <= qResults.size()) {
+        auto it = find(documents.begin(), documents.end(), qResults[sourceNum - 1]);
+        cout << "\n\"" << it->getTitle() << "\"" << endl;
+        cout << "\t" << it->getText() << "\n" << endl;
+    }
+    else {
+        cout << "Invalid source number. Choose another source." << endl;
+    }
 }
 
-bool UserInterface::paginateResultingDocuments(vector<string> &qResults, int pageNum) {
+bool UserInterface::paginateResultingDocuments(vector<string> &qResults, int pageNum, int pagesPerPag) {
     cout << "Page " << pageNum << endl;
-    for (int i = (pageNum - 1) * 15; i < qResults.size() && i < pageNum * 15; i++) {
+    cout << "|-------------------------------------------------------------------------------------------|" << endl;
+
+    for (int i = (pageNum - 1) * pagesPerPag; i < qResults.size() && i < pageNum * pagesPerPag; i++) {
         cout << i+1 << ". ";
-        find(documents.begin(), documents.end(), qResults[i])->print();
+        auto it = find( documents.begin(), documents.end(), qResults[i] );
+
+        //formatting
+        int digits = 0;
+        int temp = pageNum;
+        while (temp != 0) {
+            temp /= 10;
+            digits++;
+        }
+
+        //print document
+        it->print(digits + 2); //1 for period, 1 for space
+
+        if (i+1 < qResults.size() && i+1 < pageNum * pagesPerPag)
+            cout << endl;
     }
+
+    cout << "|-------------------------------------------------------------------------------------------|" << endl;
     cout << endl;
 
-    return (pageNum * 15) < documents.size();
+    return (pageNum * pagesPerPag) < qResults.size();
 }
 
 void UserInterface::getStatistics()

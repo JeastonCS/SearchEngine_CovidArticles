@@ -84,13 +84,12 @@ void IndexHandler::getDocumentsWithFile(const char *fileName, vector<Document> &
     //info to store
     string ID, publication, url, title, rawText;
     vector<string> authors;
-    double wordCount;
+    int wordCount;
 
     //temp strings
     string line, author;
 
-    docsFile >> ID;
-    while(!docsFile.eof()) {
+    while(docsFile >> ID) {
         docsFile >> wordCount;
         docsFile >> publication;
         docsFile >> url;

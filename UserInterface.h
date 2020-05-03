@@ -34,7 +34,7 @@ private:
     void populateIndexWithFile(const char *, const char *, const char *);
     void writeIndexToFile(const char *, const char *, const char *);
     void submitQuery();
-    bool paginateResultingDocuments(vector<string> &, int);
+    bool paginateResultingDocuments(vector<string> &, int, int);
     void getResultText(vector<string> &, int);
     void getStatistics();
     void getTopFifty();
