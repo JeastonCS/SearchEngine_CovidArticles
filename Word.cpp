@@ -1,5 +1,5 @@
 //
-// Created by sinha on 4/14/2020.
+// Created by Yash Sinha on 4/14/2020.
 //
 #include "Word.h"
 using namespace std;

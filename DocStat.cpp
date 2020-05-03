@@ -1,3 +1,5 @@
+//Yash Sinha
+//
 #include "DocStat.h"
 
 DocStat::DocStat(){

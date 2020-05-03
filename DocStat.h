@@ -1,3 +1,6 @@
+// Yash Sinha
+//
+
 #include <string>
 using namespace std;
 class DocStat {

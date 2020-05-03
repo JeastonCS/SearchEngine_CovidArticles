@@ -1,3 +1,5 @@
+// Yash Sinha
+//
 #include "Document.h"
 
 Document::Document(const string &id, int count, const string &pub, const string &u, const string &tit, const vector<string> &auths, const string &text) {

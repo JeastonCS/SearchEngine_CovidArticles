@@ -1,3 +1,6 @@
+// Yash Sinha
+//
+
 #include "iostream"
 #include "Word.h"
 #include "AVLTree.h"
