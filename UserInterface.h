@@ -12,11 +12,15 @@
 
 #include <dirent.h>
 #include <sys/stat.h>
+#include <algorithm>
+#include <chrono>
 #include <cctype>
 #include <vector>
 #include <string>
 #include <iostream>
+#include <iomanip>
 using namespace std;
+using namespace std::chrono;
 
 class UserInterface {
 private:
@@ -25,6 +29,9 @@ private:
 
     DocumentProcessor dProcessor;
     QueryProcessor qProcessor;
+
+    long time1 = 0; // wordIndex in milliseconds
+    long time2 = 0; // authorIndex in milliseconds
 public:
     UserInterface();
 

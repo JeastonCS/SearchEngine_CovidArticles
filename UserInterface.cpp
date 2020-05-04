@@ -123,6 +123,8 @@ void UserInterface::populateIndexWithCorpus()
         }
     }
 
+    auto start = high_resolution_clock::now();
+
     while ( (dirp = readdir(dp)) ) {
         filepath = dir + "/" + dirp->d_name;
 
@@ -146,6 +148,10 @@ void UserInterface::populateIndexWithCorpus()
             dProcessor.clearPWords();
         }
     }
+    // get time
+    auto stop = high_resolution_clock::now();
+    time1 = time2 = duration_cast<milliseconds>(stop - start).count();
+
     dProcessor.addMetadataData();
 
     closedir(dp);
@@ -159,8 +165,19 @@ void UserInterface::populateIndexWithCorpus()
 }
 
 void UserInterface::populateIndexWithFile(const char *wordIndex, const char *authorIndex, const char *docs) {
+    // time and run wordIndex
+    auto start = high_resolution_clock::now();
     handler.populateMainWithFile(wordIndex);
+    auto stop = high_resolution_clock::now();
+    time1 = duration_cast<milliseconds>(stop - start).count();
+
+    // time and run AuthorIndex
+    start = high_resolution_clock::now();
     handler.populateAuthorsWithFile(authorIndex);
+    stop = high_resolution_clock::now();
+    time2 = duration_cast<milliseconds>(stop - start).count();
+
+
     handler.getDocumentsWithFile(docs, documents);
 
     //initialize query processor
@@ -186,10 +203,17 @@ void UserInterface::submitQuery()
     while (query != "menu") {
         //get query results
         vector<string> qResults;
+        // time response
+        auto start = high_resolution_clock::now();
         qResults = qProcessor.runQuery(query, documents.size());
+        auto stop = high_resolution_clock::now();
+
+        int duration = duration_cast<microseconds>(stop - start).count();
+        double micro = duration / 1000000.0;
 
         //output query results to user
-        cout << "Number of documents: " << qResults.size() << '\n' << endl;
+        cout << "Number of documents: " << qResults.size() << endl;
+        cout << "Time of query: "<< setprecision(10) << micro << " seconds " << '\n' << endl;
 
         int pagesPerPagination = 5;
         int pageNum = 1;
@@ -300,6 +324,13 @@ void UserInterface::getStatistics()
     cout << "Number of unique words: " << handler.getNumUniqueWords() << endl;
     cout << "Number of unique authors: " << handler.getNumUniqueAuthors() << endl;
 
+    // time of author Index and Word Index
+    if (time1 == time2)
+        cout  << "Time to populate Indexes: "<< time1/60000 << " min "<< (time1%60000)*1.0/ 1000 << " secs" << endl;
+    else {
+        cout << "Time to populate WordIndex: " << time1/60000 << " min "<< (time1%60000)*1.0/ 1000 << " secs" << endl;
+        cout << "Time to populate AuthorIndex: " << time2/60000 << " min "<< (time2%60000)*1.0/ 1000 << " secs" << endl;
+    }
 
     cout << endl;
 }
