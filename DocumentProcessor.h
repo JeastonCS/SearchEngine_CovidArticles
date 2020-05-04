@@ -34,12 +34,12 @@ private:
 //    string currDocID;
     vector<DocumentWord> processedWords;
 public:
-    DocumentProcessor() = default;
+//    DocumentProcessor() = default;
+    DocumentProcessor(const vector<string> &stops) {stopWords = stops;}
     DocumentProcessor(const DocumentProcessor &);
     DocumentProcessor & operator=(const DocumentProcessor &);
 
     //user interface methods
-    void populateStopWords(const char *);
     void populateMetadata(const char *);
 
     bool parseJson(const char *);

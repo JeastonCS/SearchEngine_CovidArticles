@@ -9,9 +9,9 @@
 UserInterface::UserInterface()
 {
     handler = * new IndexHandler;
-    dProcessor = * new DocumentProcessor;
-    dProcessor.populateStopWords("StopWords.txt");
-    qProcessor = * new QueryProcessor;
+    populateStopWords();
+    dProcessor = new DocumentProcessor(stopWords);
+    qProcessor = new QueryProcessor(stopWords);
 }
 
 void UserInterface::interfaceLoop()
@@ -22,10 +22,10 @@ void UserInterface::interfaceLoop()
 
     introduction();
 
-    string command = "command list";
+    string command = "help";
     while (command != "exit") {
         //chose path based on user command
-        if (command == "command list") {
+        if (command == "help") {
             displayOptions();
         }
         else if (command == "json") {
@@ -54,7 +54,7 @@ void UserInterface::interfaceLoop()
 
         //update user command
         cout    << "<<<----------------------------------------------------------------------------->>>" << endl;
-        cout    << "Type your command below (or type \"command list\" for a list of commands):\n"
+        cout    << "Type your command below (or type \"help\" for a list of commands):\n"
                 << ">>>" << flush;
 
         getline(cin, command);
@@ -134,34 +134,35 @@ void UserInterface::populateIndexWithCorpus()
 
 
         //parse json document unless filepath is metadata.csv, then extract metadata's data
-        if (!dProcessor.parseJson(filepath.c_str())) {
-            dProcessor.populateMetadata(filepath.c_str());
+        if (!dProcessor->parseJson(filepath.c_str())) {
+            dProcessor->populateMetadata(filepath.c_str());
         }
         else {
-            dProcessor.populateProcessedWords();
-            dProcessor.cleanRawText();
+            dProcessor->populateProcessedWords();
+            dProcessor->cleanRawText();
 
             //add document processor's words to indexes through index handler
-            handler.addProcessorWords(dProcessor.getCurrProcessedWords(), dProcessor.getCurrDocID());
-            handler.addProcessorAuthors(dProcessor.getCurrAuthors(), dProcessor.getCurrDocID());
+            handler.addProcessorWords(dProcessor->getCurrProcessedWords(), dProcessor->getCurrDocID());
+            handler.addProcessorAuthors(dProcessor->getCurrAuthors(), dProcessor->getCurrDocID());
 
-            dProcessor.clearPWords();
+            dProcessor->clearPWords();
         }
     }
     // get time
     auto stop = high_resolution_clock::now();
     time1 = time2 = duration_cast<milliseconds>(stop - start).count();
 
-    dProcessor.addMetadataData();
+    dProcessor->addMetadataData();
 
     closedir(dp);
 
     //initialize instance variable "documents"
-    documents = dProcessor.getDocuments();
+    documents = dProcessor->getDocuments();
 
-    //initialize query processor
+    //initialize query processor and vector of top 50 most frequent words
     //not done in submit query method so running a query can be faster
-    qProcessor.setHandler(handler);
+    qProcessor->setHandler(handler);
+    topFifty = handler.getTopFifty();
 }
 
 void UserInterface::populateIndexWithFile(const char *wordIndex, const char *authorIndex, const char *docs) {
@@ -180,9 +181,10 @@ void UserInterface::populateIndexWithFile(const char *wordIndex, const char *aut
 
     handler.getDocumentsWithFile(docs, documents);
 
-    //initialize query processor
+    //initialize query processor and vector of top 50 most frequent words
     //not done in submit query method so running a query can be faster
-    qProcessor.setHandler(handler);
+    qProcessor->setHandler(handler);
+    topFifty = handler.getTopFifty();
 }
 
 void UserInterface::writeIndexToFile(const char *wordOutput, const char *authorOutput, const char *documentOutput)
@@ -205,15 +207,15 @@ void UserInterface::submitQuery()
         vector<string> qResults;
         // time response
         auto start = high_resolution_clock::now();
-        qResults = qProcessor.runQuery(query, documents.size());
+        qResults = qProcessor->runQuery(query, documents.size());
         auto stop = high_resolution_clock::now();
 
         int duration = duration_cast<microseconds>(stop - start).count();
         double micro = duration / 1000000.0;
 
         //output query results to user
-        cout << "Number of documents: " << qResults.size() << endl;
         cout << "Time of query: "<< setprecision(10) << micro << " seconds " << '\n' << endl;
+        cout << "Number of documents: " << qResults.size() << "\n" << endl;
 
         int pagesPerPagination = 5;
         int pageNum = 1;
@@ -312,6 +314,16 @@ bool UserInterface::paginateResultingDocuments(vector<string> &qResults, int pag
 
 void UserInterface::getStatistics()
 {
+    // time of author Index and Word Index
+    cout  << "Time to populate Indexes: "<< time1/60000 << " min "<< (time1%60000)*1.0/ 1000 << " secs" << endl;
+//    if (time1 == time2)
+//        cout  << "Time to populate Indexes: "<< time1/60000 << " min "<< (time1%60000)*1.0/ 1000 << " secs" << endl;
+//    else {
+//        cout << "Time to populate WordIndex: " << time1/60000 << " min "<< (time1%60000)*1.0/ 1000 << " secs" << endl;
+//        cout << "Time to populate AuthorIndex: " << time2/60000 << " min "<< (time2%60000)*1.0/ 1000 << " secs" << endl;
+//    }
+    cout << endl;
+
     //document info
     cout << "Number of documents parsed: " << documents.size() << endl;
     int sum = 0;
@@ -324,21 +336,12 @@ void UserInterface::getStatistics()
     cout << "Number of unique words: " << handler.getNumUniqueWords() << endl;
     cout << "Number of unique authors: " << handler.getNumUniqueAuthors() << endl;
 
-    // time of author Index and Word Index
-    if (time1 == time2)
-        cout  << "Time to populate Indexes: "<< time1/60000 << " min "<< (time1%60000)*1.0/ 1000 << " secs" << endl;
-    else {
-        cout << "Time to populate WordIndex: " << time1/60000 << " min "<< (time1%60000)*1.0/ 1000 << " secs" << endl;
-        cout << "Time to populate AuthorIndex: " << time2/60000 << " min "<< (time2%60000)*1.0/ 1000 << " secs" << endl;
-    }
-
     cout << endl;
 }
 
 void UserInterface::getTopFifty()
 {
     cout << "Top 50 most frequent words" << endl;
-    vector<Word> topFifty = handler.getTopFifty();
     int i = 1;
     for (int i = 1; i <= topFifty.size(); i++)
         cout << i << ". " << topFifty.at(topFifty.size() - i).getWord() << endl;
@@ -350,6 +353,25 @@ void UserInterface::clear()
 {
     handler.clearIndexes();
     documents.clear();
+    topFifty.clear();
+
+    dProcessor = new DocumentProcessor (stopWords);
+    qProcessor = new QueryProcessor (stopWords);
+}
+
+void UserInterface::populateStopWords() {
+    ifstream stopWordsFile("StopWords.txt");
+    if (!stopWordsFile) {
+        cout << "could not open stop words file" << endl;
+        exit(1);
+    }
+
+    string stopWord;
+    while (stopWordsFile >> stopWord) {
+        stopWords.push_back(stopWord);
+    }
+
+    stopWordsFile.close();
 }
 
 string UserInterface::lowercase(string command)

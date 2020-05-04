@@ -9,10 +9,7 @@
 #include "stemmer/porter2_stemmer.h"
 
 
-QueryProcessor::QueryProcessor() {
-    populateStopWords();
-//    ih = handler;
-}
+//QueryProcessor::QueryProcessor() { }
 
 void QueryProcessor::stem(string & str) {
     Porter2Stemmer::trim(str);
@@ -313,19 +310,4 @@ void QueryProcessor::relevancySort(vector<DocStat> & list) {
         list[j + 1] = key;
     }
     reverse(list.begin(),list.end());
-}
-
-void QueryProcessor::populateStopWords() {
-    ifstream stopWordsFile("StopWords.txt");
-    if (!stopWordsFile) {
-        cout << "could not open stop words file" << endl;
-        exit(1);
-    }
-
-    string stopWord;
-    while (stopWordsFile >> stopWord) {
-        stopWords.push_back(stopWord);
-    }
-
-    stopWordsFile.close();
 }

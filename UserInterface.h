@@ -26,9 +26,11 @@ class UserInterface {
 private:
     IndexHandler handler;
     vector<Document> documents;
+    vector<Word> topFifty;
+    vector<string> stopWords;
 
-    DocumentProcessor dProcessor;
-    QueryProcessor qProcessor;
+    DocumentProcessor *dProcessor;
+    QueryProcessor *qProcessor;
 
     long time1 = 0; // wordIndex in milliseconds
     long time2 = 0; // authorIndex in milliseconds
@@ -50,6 +52,7 @@ private:
     void getTopFifty();
     void clear();
 
+    void populateStopWords();
     string lowercase(string);
 };
 

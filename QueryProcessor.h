@@ -15,7 +15,8 @@ private:
 
 public:
 //    QueryProcessor() = default;
-    QueryProcessor();
+//    QueryProcessor();
+    QueryProcessor(const vector<string> &stops) {stopWords = stops;}
 
     vector<string> runQuery(string query, int numOfDocs);
     void setHandler(const IndexHandler &handler) { ih = handler; }
@@ -26,7 +27,6 @@ private:
     vector<DocStat> getDifference(vector<DocStat>& terms, vector<vector<DocStat>>& docs);
     vector<DocStat> getAuthor(vector<DocStat>& terms, vector<vector<DocStat>>& docs);
 
-    void populateStopWords();
     void stem(string& str);
     vector<DocStat> stringToDoc(const string &);
     double findTFIDRStat(int querySize, int numOfDoc, double termFreq);

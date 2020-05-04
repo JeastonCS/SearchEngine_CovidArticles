@@ -23,21 +23,6 @@ DocumentProcessor &DocumentProcessor::operator=(const DocumentProcessor &rhs) {
     return *this;
 }
 
-void DocumentProcessor::populateStopWords(const char *stopFileName) {
-    ifstream stopWordsFile(stopFileName);
-    if (!stopWordsFile) {
-        cout << "could not open stop words file" << endl;
-        exit(1);
-    }
-
-    string stopWord;
-    while (stopWordsFile >> stopWord) {
-        stopWords.push_back(stopWord);
-    }
-
-    stopWordsFile.close();
-}
-
 bool DocumentProcessor::parseJson(const char *fileName) {
     Document doc = *new Document;
 
