@@ -1,7 +1,7 @@
 # JSON Search Engine
 
-Introduction
-============
+## Introduction
+
 
 In this paper we will look at the ability of both an AVL Tree and
 Hashtable to manage, store, and retrieve data from inverted indices. The
@@ -37,8 +37,7 @@ even more variance due to these variables. As a node is inserted, the
 iterations of maintaining every node has its own vector structure to
 store documents. Logically the hashtable will also have a big O of N to
 maintain. These deviances require a more empirical approach performance.
-
-### 
+ 
 
 ### Steps taken:
 
@@ -51,7 +50,7 @@ measure the speed. The rate at speed performance will then be gathered and then 
 Data structure overview
 -----------------------
 
-### Introduction to AVL tree implementation:
+### AVL tree implementation:
 
 In the AVL tree each inverted index is a node that contains a Word class which 
 stores the document and corresponding term frequency. 
@@ -103,7 +102,7 @@ The breadth first traversal display the contents of the node based on their leve
 not branch. This means that the first node seen and printed is root, the next two are roots branches, and 
 next four are those branches and so on.
 
-### Introduction to Hashtable implementation:
+### Hashtable implementation:
 
 The hashtable is a data structure that is similar to the functions of an
 array. In the hashtable written for the program, each spot on the table
@@ -136,4 +135,38 @@ stored on the hashtable if present. Then it just searches nodes of the LinkedLis
 for that author. The bigO of this operation is constant time i.e. O(1).
 
 
+## Experiment
+
+Using our AVL Tree and Hash Table, we test how efficiently we are able to populate the indexes 
+from the corpus, from the file to WordIndex, and from the file to author Index. Also, we keep track 
+of the number of documents, unique words, and unique authors for each trial.
+
+Mentioned earlier, in order to reduce variation in the internal computer processes/hardware, we 
+use a virtual machine limited to 4 GB RAM and 2 cores of the processor and we shutdown almost all 
+processes (except necessary daemon processes to keep system running). Using these guidelines, we are 
+able to get the data below. 
+
+#### Data
+
+| # of Docs | JSON to index | file to wordIndex | unique words | file to authorIndex | unique Authors |
+|-----------|---------------|-------------------|--------------|---------------------|----------------|
+| 50        | 4.638         | 0.472             | 10242        | 0.002               | 299            |
+| 100       | 9.766         | 0.836             | 16601        | 0.003               | 689            |
+| 250       | 29.369        | 2.226             | 35034        | 0.01                | 1757           |
+| 500       | 54.701        | 4.388             | 52952        | 0.02                | 3745           |
+| 1000      | 109.338       | 8.24              | 85470        | 0.043               | 6848           |
+| 2500      | 332.814       | 24.494            | 163011       | 0.124               | 14908          |
+| 5000      | 1020.548      | 47.471            | 267466       | 0.238               | 25881          |
+| 7500      | 1487.533      | 71.773            | 355621       | 0.345               | 34234          |
+
+### Analysis 
+
+Using the R-script and the data we collected provided in the Documentation branch, we are able to test the 
+efficiency of the search engine. In this case, we fit 3 linear models, one for a bigO linear time, one for bigO 
+nlogn, and one for bigO quadratic. After fitting a model, we see that the linear gives us the the lowest p-val. 
+However this is probably due to the leverage some of the data points. We then looked at the QQ plots to analyze 
+how far residual values were from the model and found that nlogn was the closest fit in terms of shape. 
+
+In conclusion, it is safe to say that the search engine populates is around a O(n) and O(nlogn) complexity and is 
+important to note that processing speed is relative to the amount of CPU, GPU, and the current state of the computer. 
 
