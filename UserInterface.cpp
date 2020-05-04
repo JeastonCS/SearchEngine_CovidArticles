@@ -2,6 +2,8 @@
  * 4/13/2020
  *
  * Citations:
+ * stemmer -> porter2_stemmer
+ * json parser -> rapidjson
  */
 
 #include "UserInterface.h"

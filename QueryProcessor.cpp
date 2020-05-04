@@ -1,5 +1,8 @@
-// Yash Sinha
-//
+/* Yash Sinha
+ *
+ * Citations:
+ * stemmer -> porter2_stemmer
+ */
 
 #include "QueryProcessor.h"
 #include <iterator>
